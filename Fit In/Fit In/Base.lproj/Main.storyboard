@@ -224,13 +224,83 @@
                     <view key="view" contentMode="scaleToFill" id="bAx-TB-Yvq">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" translatesAutoresizingMaskIntoConstraints="NO" id="0uj-ln-YBn">
+                                <rect key="frame" x="16" y="80" width="568" height="60"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0uj-ln-YBn" id="RMc-cd-ndG">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Daily Reminder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y94-u2-hqy">
+                                            <rect key="frame" x="43" y="19" width="117" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LmA-0B-M4i">
+                                            <rect key="frame" x="503" y="14" width="51" height="31"/>
+                                        </switch>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="1" green="0.98422563370000005" blue="0.01794494403" alpha="1" colorSpace="calibratedRGB"/>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" translatesAutoresizingMaskIntoConstraints="NO" id="1i8-PW-57m">
+                                <rect key="frame" x="16" y="140" width="568" height="260"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1i8-PW-57m" id="GGS-uU-EFP">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="xnq-eC-rWr">
+                                            <rect key="frame" x="0.0" y="49" width="568" height="162"/>
+                                            <date key="date" timeIntervalSinceReferenceDate="438581765.53193098">
+                                                <!--2014-11-25 04:16:05 +0000-->
+                                            </date>
+                                            <date key="minimumDate" timeIntervalSinceReferenceDate="-978253200">
+                                                <!--1970-01-01 15:00:00 +0000-->
+                                            </date>
+                                            <date key="maximumDate" timeIntervalSinceReferenceDate="1167606000">
+                                                <!--2037-12-31 23:00:00 +0000-->
+                                            </date>
+                                        </datePicker>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.05077030229" green="0.68726325759999995" blue="0.02399894822" alpha="1" colorSpace="calibratedRGB"/>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" translatesAutoresizingMaskIntoConstraints="NO" id="nui-Xl-Fc4">
+                                <rect key="frame" x="16" y="20" width="568" height="60"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nui-Xl-Fc4" id="cR0-8W-wbe">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Workout Timing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agF-w6-EDz">
+                                            <rect key="frame" x="44" y="19" width="121" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="1" green="0.70739088109243897" blue="0.33441632036798352" alpha="1" colorSpace="calibratedRGB"/>
+                            </tableViewCell>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="0uj-ln-YBn" secondAttribute="trailing" id="CDB-BL-2pd"/>
+                            <constraint firstItem="HYT-X6-G6n" firstAttribute="top" secondItem="1i8-PW-57m" secondAttribute="bottom" constant="200" id="Cla-2l-vu6"/>
+                            <constraint firstItem="0uj-ln-YBn" firstAttribute="top" secondItem="nui-Xl-Fc4" secondAttribute="bottom" id="D7u-jR-feR"/>
+                            <constraint firstItem="HYT-X6-G6n" firstAttribute="top" secondItem="0uj-ln-YBn" secondAttribute="bottom" constant="460" id="Dvj-9y-XhP"/>
+                            <constraint firstAttribute="bottom" secondItem="nui-Xl-Fc4" secondAttribute="bottom" constant="520" id="Nxw-tQ-4vf"/>
+                            <constraint firstItem="nui-Xl-Fc4" firstAttribute="top" secondItem="EiN-OC-fJB" secondAttribute="bottom" id="TCK-SC-clt"/>
+                            <constraint firstItem="0uj-ln-YBn" firstAttribute="leading" secondItem="bAx-TB-Yvq" secondAttribute="leadingMargin" id="Zxg-xW-PiC"/>
+                            <constraint firstItem="1i8-PW-57m" firstAttribute="leading" secondItem="bAx-TB-Yvq" secondAttribute="leadingMargin" id="egY-ED-wLZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nui-Xl-Fc4" secondAttribute="trailing" id="lRc-LF-ERK"/>
+                            <constraint firstItem="nui-Xl-Fc4" firstAttribute="leading" secondItem="bAx-TB-Yvq" secondAttribute="leadingMargin" id="tec-f3-fMF"/>
+                            <constraint firstItem="1i8-PW-57m" firstAttribute="top" secondItem="0uj-ln-YBn" secondAttribute="bottom" id="uCG-gu-lhr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1i8-PW-57m" secondAttribute="trailing" id="vrg-cK-0dG"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="boM-2s-KJv"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0E3-Cg-5ct" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1147" y="756"/>
+            <point key="canvasLocation" x="1163" y="816"/>
         </scene>
         <!--Accepted Workout Controller-->
         <scene sceneID="Jb9-6t-cv0">
