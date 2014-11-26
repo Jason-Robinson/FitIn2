@@ -16,6 +16,10 @@ class HomeController: UIViewController {
     let orangeSquare = UIView()
    let graySquare = UIView()
     
+    
+    
+    @IBOutlet weak var dateLabel: UILabel!
+    
     @IBOutlet weak var container1: UIView!
     
     @IBOutlet weak var container2: UIView!
@@ -32,6 +36,11 @@ class HomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let date = NSDate()
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "eeee, MMM. d"
+        dateLabel.text = formatter.stringFromDate(date)
         
         //self.container.frame = CGRect(x: 60, y: 60, width: 200, height: 200)
         //self.view.addSubview(container)
