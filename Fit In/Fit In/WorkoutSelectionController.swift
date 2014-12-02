@@ -85,11 +85,11 @@ class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITable
         
         //adds struct data to tableView
         if (segmentIdentifier == 0){
-            cell.textLabel.text = homeData.name//home
+            cell.textLabel?.text = homeData.name//home
         }else if (segmentIdentifier == 1){
-            cell.textLabel.text = officeData.name//office
+            cell.textLabel?.text = officeData.name//office
         }else if (segmentIdentifier == 2){
-            cell.textLabel.text = gymData.name//gym
+            cell.textLabel?.text = gymData.name//gym
         }
         
         // Configure the cell
