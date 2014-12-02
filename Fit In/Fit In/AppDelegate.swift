@@ -13,7 +13,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var workoutData:WorkoutSelectionController = WorkoutSelectionController()
+    
     var segmentData:SegmentData = SegmentData()
+    
+    func getWorkoutData() -> WorkoutSelectionController{
+        return workoutData
+    }
     
     func getSegmentData() -> SegmentData{
         return segmentData

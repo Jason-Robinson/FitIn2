@@ -9,16 +9,26 @@
 import UIKit
 
 class HomeController: UIViewController {
+
+    //access the data through app delegate
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    
+    //var workoutData = appDelegate.
+    
+    @IBOutlet weak var dateLabel: UILabel!
+    
+   
     let container = UIView()
     let redSquare = UIView()
     let blueSquare = UIView()
     let greenSquare = UIView()
     let orangeSquare = UIView()
    let graySquare = UIView()
+    var returnStatus = "none"
     
     
+    @IBOutlet weak var testDataLbl: UILabel!
     
-    @IBOutlet weak var dateLabel: UILabel!
     
     @IBOutlet weak var container1: UIView!
     
@@ -37,17 +47,9 @@ class HomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let date = NSDate()
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "eeee, MMM. d"
-        dateLabel.text = formatter.stringFromDate(date)
+        let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
+       dateLabel.text = timestamp
         
-        //self.container.frame = CGRect(x: 60, y: 60, width: 200, height: 200)
-        //self.view.addSubview(container)
-        //self.view.addSubview(container1)
-        // set red square frame up
-        // we want the blue square to have the same position as redSquare
-        // so lets just reuse blueSquare.frame
         self.redSquare.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         self.blueSquare.frame = redSquare.frame
         self.greenSquare.frame = redSquare.frame
@@ -121,7 +123,15 @@ class HomeController: UIViewController {
         
         
         // Do any additional setup after loading the view.
+        
     }
+    
+    @IBAction func returnToHome(segue: UIStoryboardSegue) {
+        println("return to home")
+    }
+    
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
