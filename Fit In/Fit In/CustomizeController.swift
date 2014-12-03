@@ -10,6 +10,7 @@ import UIKit
 
 class CustomizeController: UIViewController {
 
+    var cell:UITableViewCell!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,6 +23,9 @@ class CustomizeController: UIViewController {
     }
     
 
+    @IBAction func returnHome(sender: AnyObject) {
+        performSegueWithIdentifier("customize", sender: self)
+    }
     /*
     // MARK: - Navigation
 

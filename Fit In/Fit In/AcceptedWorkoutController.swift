@@ -51,6 +51,7 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
     //segmented controller outlet
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     //table view outlet
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -91,7 +92,7 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
     //gets current index and adds the matching element from the struct to the table view, does this to all elements
       func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         //ientifies which cell to use, must set Reuse ID in story board to match "Cell" <-generic name for cell
-       cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+       cell = tableView.dequeueReusableCellWithIdentifier("acceptedCell", forIndexPath: indexPath) as UITableViewCell
         
         //strut objects on specific row
         let gymData = gyms[indexPath.row]
@@ -100,7 +101,7 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
        
         //adds struct data to tableView
         if (segmentIdentifier == 0){
-      cell.textLabel?.text = homeData.name//home
+            cell.textLabel?.text = homeData.name//home
         }else if (segmentIdentifier == 1){
             cell.textLabel?.text = officeData.name//office
         }else if (segmentIdentifier == 2){
