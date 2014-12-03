@@ -8,12 +8,17 @@
 
 import UIKit
 
-class CustomizeController: UIViewController {
+class CustomizeController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    
+    var homes = ["Workout Selection"]
+    
+    @IBOutlet weak var tableView: UITableView!
     var cell:UITableViewCell!
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tableView.reloadData()
         // Do any additional setup after loading the view.
     }
 
@@ -21,19 +26,41 @@ class CustomizeController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        var result = self.homes.count
+        
+        //home
+      
+        
+        return result
+    }
     
+    //gets current index and adds the matching element from the struct to the table view, does this to all elements
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+        //ientifies which cell to use, must set Reuse ID in story board to match "Cell" <-generic name for cell
+        cell = tableView.dequeueReusableCellWithIdentifier("customizeCell", forIndexPath: indexPath) as UITableViewCell
+        
+        //strut objects on specific row
+        
+         let homeData = homes[indexPath.row]
+        //adds struct data to tableView
+        
+            cell.textLabel?.text = homeData//home
+                
+        // Configure the cell
+        
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        return cell;
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        println(" cell Selected #\(indexPath.row)!")
+        
+    }
 
     @IBAction func returnHome(sender: AnyObject) {
         performSegueWithIdentifier("customize", sender: self)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }

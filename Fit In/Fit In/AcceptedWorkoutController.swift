@@ -9,42 +9,19 @@
 import UIKit
 
 
-struct Home {
-    
-    var name : String
-}
-struct Office {
-    
-    var name : String
-}
-struct Gym {
-    
-    var name : String
-}
+
 class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
     
     @IBOutlet weak var datePicker: UIDatePicker!
     //var segData = appDelegate.getSegmentData()
     var cell:UITableViewCell!
     
-    //home data
-    var homes = [Home(name:"home 1"),
-    Home(name:"home 2"),
-    Home(name:"home 3")]
+    var homeW:[String] = []
+    var gymW:[String] = []
+    var officeW:[String] = []
     
-    //offices data
-     var offices = [Office(name:"office 1"),
-    Office(name:"office 2"),
-    Office(name:"office 3")]
-    
-    //gym data
-    var gyms = [Gym(name:"gym 1"),
-    Gym(name:"gym 2"),
-    Gym(name:"gym 3")]
     
     var segmentIdentifier = 0;
     var status = "none"
@@ -57,10 +34,15 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let data = appDelegate.getSegmentData()
+        
+        homeW = data.home
+        gymW = data.gym
+        officeW = data.office
         
         
         
-        //self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
         // Reload the table
         self.tableView.reloadData()
@@ -75,15 +57,15 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
         
         //home
         if (segmentIdentifier == 0){
-            result = self.homes.count
+            result = self.homeW.count
         }
         //office
         else if (segmentIdentifier == 1){
-            result = self.offices.count
+            result = self.officeW.count
         }
         //gym
         else if (segmentIdentifier == 2){
-            result = self.gyms.count
+            result = self.gymW.count
         }
         
         return result
@@ -95,17 +77,17 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
        cell = tableView.dequeueReusableCellWithIdentifier("acceptedCell", forIndexPath: indexPath) as UITableViewCell
         
         //strut objects on specific row
-        let gymData = gyms[indexPath.row]
-        let homeData = homes[indexPath.row]
-        let officeData = offices[indexPath.row]
+        let gymData = gymW[indexPath.row]
+        let homeData = homeW[indexPath.row]
+        let officeData = officeW[indexPath.row]
        
         //adds struct data to tableView
         if (segmentIdentifier == 0){
-            cell.textLabel?.text = homeData.name//home
+            cell.textLabel?.text = homeData//home
         }else if (segmentIdentifier == 1){
-            cell.textLabel?.text = officeData.name//office
+            cell.textLabel?.text = officeData//office
         }else if (segmentIdentifier == 2){
-            cell.textLabel?.text = gymData.name//gym
+            cell.textLabel?.text = gymData//gym
         }
         
         // Configure the cell

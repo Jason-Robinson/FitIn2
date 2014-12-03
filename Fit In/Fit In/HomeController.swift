@@ -11,14 +11,21 @@ import UIKit
 class HomeController: UIViewController {
 
     //access the data through app delegate
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     
-    //var workoutData = appDelegate.
+    
+    var buttonID = 0
     
     @IBOutlet weak var dateLabel: UILabel!
-    
-   
+    @IBOutlet weak var button1Time: UILabel!
+    @IBOutlet weak var button2Time: UILabel!
+    @IBOutlet weak var button3Time: UILabel!
+    @IBOutlet weak var button4Time: UILabel!
+    @IBOutlet weak var button4Workout: UILabel!
+   @IBOutlet weak var button1Workout: UILabel!
+    @IBOutlet weak var button2Workout: UILabel!
+    @IBOutlet weak var button3Workout: UILabel!
     let container = UIView()
+    
     let redSquare = UIView()
     let blueSquare = UIView()
     let greenSquare = UIView()
@@ -46,6 +53,11 @@ class HomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        
+        var workoutData = appDelegate.getWorkoutData()
+        
         
         let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
        dateLabel.text = timestamp

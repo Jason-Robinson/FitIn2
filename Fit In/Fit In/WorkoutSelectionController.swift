@@ -10,31 +10,31 @@ import UIKit
 
 
 
+
 class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    //let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    
     
     var status:String = ""
     
     @IBOutlet weak var datePicker: UIDatePicker!
-    //var segData = appDelegate.getSegmentData()
+     @IBOutlet weak var timeAmountPicker: UIDatePicker!
+    
     var cell:UITableViewCell!
     var returnStatus = "none"
     
     //home data
-    var homes = [Home(name:"home 1"),
-        Home(name:"home 2"),
-        Home(name:"home 3")]
+    var strTime:String = ""
+    var strWorkout:String = ""
+    
+    var homeW:[String] = []
+    var gymW:[String] = []
+    var officeW:[String] = []
     
     //offices data
-    var offices = [Office(name:"office 1"),
-        Office(name:"office 2"),
-        Office(name:"office 3")]
     
     //gym data
-    var gyms = [Gym(name:"gym 1"),
-        Gym(name:"gym 2"),
-        Gym(name:"gym 3")]
+    
     
     var segmentIdentifier = 0;
     
@@ -43,14 +43,22 @@ class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITable
     //table view outlet
     @IBOutlet weak var tableView: UITableView!
     
+   
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let data = appDelegate.getSegmentData()
+
+        homeW = data.home
+        gymW = data.gym
+        officeW = data.office
         
         self.tableView.reloadData()
         
         //targets date picker changed function
-        datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+       datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+        timeAmountPicker.addTarget(self, action: Selector("timeAmountChanged:"), forControlEvents: UIControlEvents.ValueChanged)
         // Do any additional setup after loading the view.
     }
 
@@ -59,15 +67,15 @@ class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITable
         
         //home
         if (segmentIdentifier == 0){
-            result = self.homes.count
+            result = self.homeW.count
         }
             //office
         else if (segmentIdentifier == 1){
-            result = self.offices.count
+            result = self.officeW.count
         }
             //gym
         else if (segmentIdentifier == 2){
-            result = self.gyms.count
+            result = self.gymW.count
         }
         
         return result
@@ -79,17 +87,20 @@ class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITable
         cell = tableView.dequeueReusableCellWithIdentifier("workoutCells", forIndexPath: indexPath) as UITableViewCell
         
         //strut objects on specific row
-        let gymData = gyms[indexPath.row]
-        let homeData = homes[indexPath.row]
-        let officeData = offices[indexPath.row]
+        let gymData = gymW[indexPath.row]
+        let homeData = homeW[indexPath.row]
+        let officeData = officeW[indexPath.row]
         
         //adds struct data to tableView
         if (segmentIdentifier == 0){
-            cell.textLabel?.text = homeData.name//home
+            cell.textLabel?.text = homeData//home
+           
         }else if (segmentIdentifier == 1){
-            cell.textLabel?.text = officeData.name//office
-        }else if (segmentIdentifier == 2){
-            cell.textLabel?.text = gymData.name//gym
+            cell.textLabel?.text = officeData//office
+                    }else if (segmentIdentifier == 2){
+            cell.textLabel?.text = gymData//gym
+           
+            
         }
         
         // Configure the cell
@@ -99,14 +110,39 @@ class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if (segmentIdentifier == 0){
+            strWorkout = homeW[indexPath.row]
+        }
+        else if (segmentIdentifier == 1){
+             strWorkout = officeW[indexPath.row]
+        }
+        else if (segmentIdentifier == 2){
+             strWorkout = homeW[indexPath.row]
+        }
+        println(strWorkout)
         println(" cell Selected #\(indexPath.row)!")
         
     }
+    func timeAmountChanged(timePicker:UIDatePicker) {
+        var dateFormatter = NSDateFormatter()
+        
+        //datePicker.datePickerMode = UIDatePickerMode.CountDownTimer
+        
+        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        
+        var strDate = dateFormatter.stringFromDate(timePicker.date)
+        strTime = strDate
+        
+        println(strTime)
+    }
+    
     //formats and adds selected date to console log
     func datePickerChanged(datePicker:UIDatePicker) {
         var dateFormatter = NSDateFormatter()
         
-        dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+        //datePicker.datePickerMode = UIDatePickerMode.CountDownTimer
+        
         dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
         
         var strDate = dateFormatter.stringFromDate(datePicker.date)
