@@ -111,16 +111,20 @@ class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let data = appDelegate.getSegmentData()
+
+        
         if (segmentIdentifier == 0){
-            strWorkout = homeW[indexPath.row]
+            data.dataFromWorkout = homeW[indexPath.row]
         }
         else if (segmentIdentifier == 1){
-             strWorkout = officeW[indexPath.row]
+             data.dataFromWorkout = officeW[indexPath.row]
         }
         else if (segmentIdentifier == 2){
-             strWorkout = homeW[indexPath.row]
+             data.dataFromWorkout = gymW[indexPath.row]
         }
-        println(strWorkout)
+        println(data.dataFromWorkout)
         println(" cell Selected #\(indexPath.row)!")
         
     }
@@ -163,7 +167,7 @@ class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITable
             self.tableView.reloadData()
             
             println("seg1")
-            println(segmentIdentifier)
+           // println(strWorkout)
             
         case 1:
             segmentIdentifier = 1
@@ -187,7 +191,7 @@ class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITable
     @IBAction func cancel(sender: AnyObject) {
         println("In cancel workout selection")
        status = "cancel"
-        performSegueWithIdentifier("Home", sender: self)
+                performSegueWithIdentifier("Home", sender: self)
     }
     
 

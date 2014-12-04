@@ -60,6 +60,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="button3:" destination="A7R-fA-3bY" eventType="touchUpInside" id="7hE-VG-tbe"/>
                                     <segue destination="j3V-O0-sda" kind="show" id="a87-i1-uNq"/>
                                 </connections>
                             </button>
@@ -69,6 +70,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="button2:" destination="A7R-fA-3bY" eventType="touchUpInside" id="ttG-9k-Lc8"/>
                                     <segue destination="j3V-O0-sda" kind="show" identifier="Home" id="fZL-Lw-YM4"/>
                                 </connections>
                             </button>
@@ -78,6 +80,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="button1:" destination="A7R-fA-3bY" eventType="touchUpInside" id="cO5-fw-wcf"/>
                                     <segue destination="rUY-wn-e34" kind="show" identifier="accepted" id="ClF-2O-Oy9"/>
                                 </connections>
                             </button>
@@ -87,6 +90,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="button4:" destination="A7R-fA-3bY" eventType="touchUpInside" id="GaH-mG-BAr"/>
                                     <segue destination="j3V-O0-sda" kind="show" id="qaX-ZP-m4L"/>
                                 </connections>
                             </button>

@@ -54,9 +54,7 @@ class HomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         
-        var workoutData = appDelegate.getWorkoutData()
         
         
         let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
@@ -137,12 +135,42 @@ class HomeController: UIViewController {
         // Do any additional setup after loading the view.
         
     }
-    
+    //unwind segue
     @IBAction func returnToHome(segue: UIStoryboardSegue) {
         println("return to home")
+        println(buttonID)
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let data = appDelegate.getSegmentData()
+        
+        //println(data.dataFromWorkout)
+        if (buttonID == 2){
+            button2Workout.text = data.dataFromWorkout
+        }else if(buttonID == 3){
+            button3Workout.text = data.dataFromWorkout
+        }else if(buttonID == 4){
+            button4Workout.text = data.dataFromWorkout
+        }
+        
+        
+        
     }
     
+    @IBAction func button3(sender: AnyObject) {
+        buttonID = 3
+    }
+    @IBAction func button4(sender: AnyObject) {
+        buttonID = 4
+    }
     
+    @IBAction func button1(sender: AnyObject) {
+        buttonID = 1
+    }
+   
+    
+    @IBAction func button2(sender: AnyObject) {
+        buttonID = 2
+    }
     
     
     override func didReceiveMemoryWarning() {

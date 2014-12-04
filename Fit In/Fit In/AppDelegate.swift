@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var segmentData:SegmentData = SegmentData()
     
+    var homeData:HomeController = HomeController()
     func getWorkoutData() -> WorkoutSelectionController{
         return workoutData
     }
@@ -25,6 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return segmentData
     }
 
+    func getHomeData() -> HomeController{
+        return homeData
+    }
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         return true
