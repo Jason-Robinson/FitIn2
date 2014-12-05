@@ -8,17 +8,17 @@
 
 import UIKit
 
-class CustomizeController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CustomizeController: UIViewController{
 
     
     var homes = ["Workout Selection"]
     
-    @IBOutlet weak var tableView: UITableView!
+    
     var cell:UITableViewCell!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tableView.reloadData()
+        let alertController = UIAlertController(title: "Hey AppCoda", message: "What do you want to do?", preferredStyle: UIAlertControllerStyle.Alert)
         // Do any additional setup after loading the view.
     }
 
@@ -26,38 +26,37 @@ class CustomizeController: UIViewController, UITableViewDelegate, UITableViewDat
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        var result = self.homes.count
+   
+    
+    @IBAction func showAlert(sender: AnyObject) {
+        let optionMenu = UIAlertController(title: nil,  message: nil,preferredStyle: .ActionSheet)
         
-        //home
-      
+        // 2
         
-        return result
+        let saveAction = UIAlertAction(title: "Restore Defaults", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            println("File Saved")
+        })
+        
+        //
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+            println("Cancelled")
+        })
+        
+        
+        // 4
+        
+        optionMenu.addAction(saveAction)
+        optionMenu.addAction(cancelAction)
+        
+        // 5
+        self.presentViewController(optionMenu, animated: true, completion: nil)
     }
     
-    //gets current index and adds the matching element from the struct to the table view, does this to all elements
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        //ientifies which cell to use, must set Reuse ID in story board to match "Cell" <-generic name for cell
-        cell = tableView.dequeueReusableCellWithIdentifier("customizeCell", forIndexPath: indexPath) as UITableViewCell
-        
-        //strut objects on specific row
-        
-         let homeData = homes[indexPath.row]
-        //adds struct data to tableView
-        
-            cell.textLabel?.text = homeData//home
-                
-        // Configure the cell
-        
-        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
-        return cell;
+    @IBAction func returnToHome(segue: UIStoryboardSegue) {
+        println("return to home")
     }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        println(" cell Selected #\(indexPath.row)!")
-        
-    }
-
     @IBAction func returnHome(sender: AnyObject) {
         performSegueWithIdentifier("customize", sender: self)
     }

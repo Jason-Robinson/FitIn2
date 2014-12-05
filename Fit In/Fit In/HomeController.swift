@@ -13,6 +13,7 @@ class HomeController: UIViewController {
     //access the data through app delegate
     
     
+    @IBOutlet weak var namePlate: UIImageView!
     var buttonID = 0
     
     @IBOutlet weak var dateLabel: UILabel!
@@ -54,8 +55,9 @@ class HomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
+        var image = UIImage(named: "nameplate.png")
+        namePlate.image = image
+        self.view.addSubview(namePlate)
         
         let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
        dateLabel.text = timestamp
@@ -136,6 +138,7 @@ class HomeController: UIViewController {
         
     }
     //unwind segue
+    
     @IBAction func returnToHome(segue: UIStoryboardSegue) {
         println("return to home")
         println(buttonID)
@@ -146,10 +149,13 @@ class HomeController: UIViewController {
         //println(data.dataFromWorkout)
         if (buttonID == 2){
             button2Workout.text = data.dataFromWorkout
+            button2Time.text = data.workoutTime
         }else if(buttonID == 3){
             button3Workout.text = data.dataFromWorkout
+            button3Time.text = data.workoutTime
         }else if(buttonID == 4){
             button4Workout.text = data.dataFromWorkout
+            button4Time.text = data.workoutTime
         }
         
         

@@ -17,6 +17,8 @@
 		8E9AEC8F1A12850D00B2F870 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E9AEC8D1A12850D00B2F870 /* LaunchScreen.xib */; };
 		8E9AEC9B1A12850D00B2F870 /* Fit_InTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9AEC9A1A12850D00B2F870 /* Fit_InTests.swift */; };
 		965C853D1A1C36FA00E65EB8 /* CircleOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965C853C1A1C36FA00E65EB8 /* CircleOneViewController.swift */; };
+		9668591B1A314D0E00C068AD /* nameplate.png in Resources */ = {isa = PBXBuildFile; fileRef = 9668591A1A314D0E00C068AD /* nameplate.png */; };
+		9668591D1A315F6E00C068AD /* WorkoutTimingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9668591C1A315F6E00C068AD /* WorkoutTimingViewController.swift */; };
 		968C0C091A1EDDBB000518EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 968C0C071A1EDDBB000518EF /* Main.storyboard */; };
 		968C0C0D1A23F808000518EF /* SegmentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968C0C0C1A23F808000518EF /* SegmentData.swift */; };
 		969033EF1A1C201E00AF37A3 /* CircleTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969033EE1A1C201E00AF37A3 /* CircleTwoViewController.swift */; };
@@ -47,6 +49,8 @@
 		8E9AEC991A12850D00B2F870 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E9AEC9A1A12850D00B2F870 /* Fit_InTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fit_InTests.swift; sourceTree = "<group>"; };
 		965C853C1A1C36FA00E65EB8 /* CircleOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleOneViewController.swift; sourceTree = "<group>"; };
+		9668591A1A314D0E00C068AD /* nameplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nameplate.png; sourceTree = "<group>"; };
+		9668591C1A315F6E00C068AD /* WorkoutTimingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutTimingViewController.swift; sourceTree = "<group>"; };
 		968C0C081A1EDDBB000518EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		968C0C0C1A23F808000518EF /* SegmentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentData.swift; sourceTree = "<group>"; };
 		969033EE1A1C201E00AF37A3 /* CircleTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleTwoViewController.swift; sourceTree = "<group>"; };
@@ -91,12 +95,14 @@
 		8E9AEC811A12850D00B2F870 /* Fit In */ = {
 			isa = PBXGroup;
 			children = (
+				9668591A1A314D0E00C068AD /* nameplate.png */,
 				8E9AEC841A12850D00B2F870 /* AppDelegate.swift */,
 				8E9AEC861A12850D00B2F870 /* ViewController.swift */,
 				969033EE1A1C201E00AF37A3 /* CircleTwoViewController.swift */,
 				8E4672001A12BB1E006E7F14 /* WorkoutSelectionController.swift */,
 				968C0C071A1EDDBB000518EF /* Main.storyboard */,
 				968C0C0C1A23F808000518EF /* SegmentData.swift */,
+				9668591C1A315F6E00C068AD /* WorkoutTimingViewController.swift */,
 				8E4672021A12BB45006E7F14 /* AcceptedWorkoutController.swift */,
 				965C853C1A1C36FA00E65EB8 /* CircleOneViewController.swift */,
 				8E4672041A12BB55006E7F14 /* CustomizeController.swift */,
@@ -216,6 +222,7 @@
 				968C0C091A1EDDBB000518EF /* Main.storyboard in Resources */,
 				8E9AEC8F1A12850D00B2F870 /* LaunchScreen.xib in Resources */,
 				8E9AEC8C1A12850D00B2F870 /* Images.xcassets in Resources */,
+				9668591B1A314D0E00C068AD /* nameplate.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +243,7 @@
 				8E4672011A12BB1E006E7F14 /* WorkoutSelectionController.swift in Sources */,
 				8E4672051A12BB55006E7F14 /* CustomizeController.swift in Sources */,
 				968C0C0D1A23F808000518EF /* SegmentData.swift in Sources */,
+				9668591D1A315F6E00C068AD /* WorkoutTimingViewController.swift in Sources */,
 				8E9AEC871A12850D00B2F870 /* ViewController.swift in Sources */,
 				965C853D1A1C36FA00E65EB8 /* CircleOneViewController.swift in Sources */,
 				8E9AEC851A12850D00B2F870 /* AppDelegate.swift in Sources */,

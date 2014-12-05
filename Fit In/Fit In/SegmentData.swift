@@ -14,5 +14,7 @@ class SegmentData: NSObject {
     var home: [String] = ["home", "home1"]
     var office: [String] = ["office", "office1"]
     
-    var dataFromWorkout:String = ""
+    var dataFromWorkout:String = "Workout"
+    var workoutLength:String = ""
+    var workoutTime:String = "Select"
 }
