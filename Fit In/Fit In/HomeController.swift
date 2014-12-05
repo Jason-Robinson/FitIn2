@@ -11,7 +11,7 @@ import UIKit
 class HomeController: UIViewController {
 
     //access the data through app delegate
-    
+    var acceptedWorkoutViewController: UIViewController?
     
     @IBOutlet weak var namePlate: UIImageView!
     var buttonID = 0
@@ -55,9 +55,7 @@ class HomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var image = UIImage(named: "nameplate.png")
-        namePlate.image = image
-        self.view.addSubview(namePlate)
+        
         
         let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
        dateLabel.text = timestamp
@@ -162,6 +160,19 @@ class HomeController: UIViewController {
         
     }
     
+    
+    @IBAction func button2Filled(sender: AnyObject) {
+        
+        if (buttonID == 0){
+        acceptedWorkoutViewController=self.storyboard!.instantiateViewControllerWithIdentifier("AcceptedWorkoutController") as AcceptedWorkoutController
+        if (acceptedWorkoutViewController != nil ) {
+            presentViewController(acceptedWorkoutViewController!, animated: true, completion: nil)
+            }}
+    }
+    @IBAction func openCalender(sender: AnyObject) {
+        
+        UIApplication.sharedApplication().openURL(NSURL(string:"calshow://")!)
+    }
     @IBAction func button3(sender: AnyObject) {
         buttonID = 3
     }

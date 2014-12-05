@@ -10,6 +10,8 @@ import UIKit
 
 class WorkoutTimingViewController: UIViewController {
    
+    @IBOutlet weak var sliderLabel: UILabel!
+    @IBOutlet weak var sliderValue: UISlider!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -26,4 +28,9 @@ class WorkoutTimingViewController: UIViewController {
         //last action of view controller
     }
     
+    @IBAction func sliderChange(sender: UISlider) {
+        var currentValue = Int(sender.value)
+        
+        sliderLabel.text = "\(currentValue)"
+    }
 }

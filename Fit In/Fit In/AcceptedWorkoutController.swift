@@ -14,9 +14,7 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
 
     
     
-    @IBOutlet weak var datePicker: UIDatePicker!
-    //var segData = appDelegate.getSegmentData()
-    var cell:UITableViewCell!
+        var cell:UITableViewCell!
     
     var homeW:[String] = []
     var gymW:[String] = []
@@ -48,7 +46,7 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
         self.tableView.reloadData()
         
         //targets date picker changed function
-        datePicker.addTarget(self, action: Selector("datePickerChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+       
         
     }
     //returns count of struct to set number of cells
@@ -101,15 +99,7 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
         
     }
     //formats and adds selected date to console log
-    func datePickerChanged(datePicker:UIDatePicker) {
-        var dateFormatter = NSDateFormatter()
-        
-        dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
-        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
-        
-        var strDate = dateFormatter.stringFromDate(datePicker.date)
-        println(strDate)
-    }
+    
     //determines which segment "Home, office, gym" that has been selected, changes segmentIdentifier based on users selection, reloads tableView func's for this change 
     @IBAction func locationSegment(sender: UISegmentedControl) {
         
@@ -150,6 +140,9 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
         performSegueWithIdentifier("accepted", sender: self)
     }
     
+    @IBAction func openCalender(sender: AnyObject) {
+        UIApplication.sharedApplication().openURL(NSURL(string:"calshow://")!)
+    }
     
         override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
