@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func getSegmentData() -> SegmentData{
         return segmentData
     }
-
+    
     func getHomeData() -> HomeController{
         return homeData
     }

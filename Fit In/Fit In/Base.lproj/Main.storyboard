@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dJZ-iJ-Cya">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dJZ-iJ-Cya">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -472,17 +472,17 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="wIH-WW-Q5e">
+                            <datePicker contentMode="scaleToFill" restorationIdentifier="dailyPickerChanged" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wIH-WW-Q5e">
                                 <rect key="frame" x="0.0" y="192" width="600" height="162"/>
-                                <date key="date" timeIntervalSinceReferenceDate="439441584.211523">
-                                    <!--2014-12-05 03:06:24 +0000-->
+                                <date key="date" timeIntervalSinceReferenceDate="439394400.211523">
+                                    <!--2014-12-04 14:00:00 +0000-->
                                 </date>
                             </datePicker>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hOa-T3-CuR">
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <items>
                                     <navigationItem id="5Mk-ym-vH5">
-                                        <barButtonItem key="rightBarButtonItem" title="&gt;" style="plain" id="Pdu-rU-qO4">
+                                        <barButtonItem key="rightBarButtonItem" title=">" style="plain" id="Pdu-rU-qO4">
                                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <segue destination="jJm-hb-fCF" kind="show" identifier="Customize" id="dpn-od-Aqv"/>
@@ -553,6 +553,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="sN1-xo-vBZ"/>
                     <connections>
+                        <outlet property="dailyPicker" destination="wIH-WW-Q5e" id="ztI-7c-V1l"/>
                         <segue destination="uWd-oc-fAn" kind="unwind" identifier="customize" unwindAction="returnToHome:" id="CGM-9B-dno"/>
                     </connections>
                 </viewController>
@@ -610,10 +611,10 @@
                                 <color key="textColor" red="0.96470594409999999" green="0.57647061349999995" blue="0.20000001789999999" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="obH-tu-2S9">
+                            <datePicker contentMode="scaleToFill" restorationIdentifier="endPickerChanged" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="obH-tu-2S9">
                                 <rect key="frame" x="0.0" y="345" width="600" height="162"/>
-                                <date key="date" timeIntervalSinceReferenceDate="439499651.93200397">
-                                    <!--2014-12-05 19:14:11 +0000-->
+                                <date key="date" timeIntervalSinceReferenceDate="439513200.93200397">
+                                    <!--2014-12-05 23:00:00 +0000-->
                                 </date>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4f-N2-iQ4">
@@ -622,10 +623,10 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ouo-yG-ths">
+                            <datePicker contentMode="scaleToFill" restorationIdentifier="startPickerChanged" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ouo-yG-ths">
                                 <rect key="frame" x="0.0" y="108" width="600" height="162"/>
-                                <date key="date" timeIntervalSinceReferenceDate="439501666.73581398">
-                                    <!--2014-12-05 19:47:46 +0000-->
+                                <date key="date" timeIntervalSinceReferenceDate="439484400.73581398">
+                                    <!--2014-12-05 15:00:00 +0000-->
                                 </date>
                             </datePicker>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="5y3-AT-EyD">
@@ -725,8 +726,12 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="endPicker" destination="obH-tu-2S9" id="LVb-aC-Ld3"/>
+                        <outlet property="endTime" destination="RgP-il-Rft" id="jiX-Ka-kh3"/>
                         <outlet property="sliderLabel" destination="gmU-ah-9vy" id="cMP-Mf-nv0"/>
                         <outlet property="sliderValue" destination="5y3-AT-EyD" id="mIK-Y6-EDp"/>
+                        <outlet property="startPicker" destination="ouo-yG-ths" id="hUt-Pe-EbE"/>
+                        <outlet property="startTime" destination="rPi-Gz-cHV" id="pxU-IV-yxE"/>
                         <segue destination="sew-ul-pu7" kind="unwind" identifier="Timing" unwindAction="returnToHome:" id="xEa-8j-K3u"/>
                     </connections>
                 </viewController>

@@ -17,4 +17,11 @@ class SegmentData: NSObject {
     var dataFromWorkout:String = "Workout"
     var workoutLength:String = ""
     var workoutTime:String = "Select"
+    
+    var workoutTimingStart = "9:00 AM"
+    var workoutTimingEnd = "5:00 PM"
+    
+    var dailyReminderTime = "8:00 AM"
+    
+    var minWorkoutTime = 0
 }

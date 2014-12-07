@@ -14,11 +14,13 @@ class CustomizeController: UIViewController{
     var homes = ["Workout Selection"]
     
     
+    
+    @IBOutlet weak var dailyPicker: UIDatePicker!
     var cell:UITableViewCell!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let alertController = UIAlertController(title: "Hey AppCoda", message: "What do you want to do?", preferredStyle: UIAlertControllerStyle.Alert)
+         dailyPicker.addTarget(self, action: Selector("dailyPickerChanged:"), forControlEvents: UIControlEvents.ValueChanged)
         // Do any additional setup after loading the view.
     }
 
@@ -29,19 +31,27 @@ class CustomizeController: UIViewController{
    
     
     @IBAction func showAlert(sender: AnyObject) {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let data = appDelegate.getSegmentData()
         let optionMenu = UIAlertController(title: nil,  message: nil,preferredStyle: .ActionSheet)
         
         // 2
         
         let saveAction = UIAlertAction(title: "Restore Defaults", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
-            println("File Saved")
+            data.dailyReminderTime = "8:00 AM"
+            data.workoutTimingStart = "9:00 AM"
+            data.workoutTimingEnd = "5:00 PM"
+            data.minWorkoutTime = 0
+            println("Defaults restored")
         })
         
         //
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
             (alert: UIAlertAction!) -> Void in
-            println("Cancelled")
+            println("cancel alertscreen")
+            
         })
         
         
@@ -53,6 +63,24 @@ class CustomizeController: UIViewController{
         // 5
         self.presentViewController(optionMenu, animated: true, completion: nil)
     }
+    
+    func dailyPickerChanged(datePicker:UIDatePicker) {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let data = appDelegate.getSegmentData()
+        
+        var dateFormatter = NSDateFormatter()
+        
+        //datePicker.datePickerMode = UIDatePickerMode.CountDownTimer
+        
+        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        
+        var strDate = dateFormatter.stringFromDate(datePicker.date)
+        data.dailyReminderTime = strDate
+        
+        println(strDate)
+    }
+
     
     @IBAction func returnToHome(segue: UIStoryboardSegue) {
         println("return to home")
