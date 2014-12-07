@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dJZ-iJ-Cya">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dJZ-iJ-Cya">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -137,7 +137,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YFm-La-ClC">
-                                <rect key="frame" x="121" y="94" width="36" height="21"/>
+                                <rect key="frame" x="282" y="94" width="36" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -146,9 +146,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="YFm-La-ClC" secondAttribute="centerX" constant="3" id="4wK-NT-804"/>
+                            <constraint firstAttribute="centerX" secondItem="YFm-La-ClC" secondAttribute="centerX" id="6FZ-b2-1Mb"/>
+                            <constraint firstItem="9FS-Iw-PNH" firstAttribute="leading" secondItem="5yQ-7d-hoa" secondAttribute="leadingMargin" id="9qS-vC-Nc7"/>
+                            <constraint firstAttribute="trailing" secondItem="9FS-Iw-PNH" secondAttribute="trailing" constant="16" id="BIJ-mL-PkP"/>
                             <constraint firstAttribute="centerX" secondItem="YFm-La-ClC" secondAttribute="centerX" constant="5" id="E9C-Ze-kUD"/>
                             <constraint firstAttribute="bottom" secondItem="9FS-Iw-PNH" secondAttribute="bottom" id="EWj-Hx-pmX"/>
                             <constraint firstItem="YFm-La-ClC" firstAttribute="top" secondItem="5yQ-7d-hoa" secondAttribute="top" constant="94" id="M0H-X1-Udj"/>
+                            <constraint firstItem="9FS-Iw-PNH" firstAttribute="leading" secondItem="5yQ-7d-hoa" secondAttribute="leading" constant="16" id="MRA-mh-fnn"/>
+                            <constraint firstItem="9FS-Iw-PNH" firstAttribute="trailing" secondItem="5yQ-7d-hoa" secondAttribute="trailingMargin" id="OF1-Zf-gg3"/>
                             <constraint firstItem="YFm-La-ClC" firstAttribute="leading" secondItem="5yQ-7d-hoa" secondAttribute="leading" constant="121" id="loS-Dn-Pld"/>
                             <constraint firstItem="YFm-La-ClC" firstAttribute="top" secondItem="692-N2-l88" secondAttribute="bottom" constant="76" id="maN-XT-noI"/>
                             <constraint firstItem="9FS-Iw-PNH" firstAttribute="leading" secondItem="5yQ-7d-hoa" secondAttribute="leadingMargin" id="o5z-lb-Bxw"/>
@@ -159,8 +164,13 @@
                             <mask key="constraints">
                                 <exclude reference="4wK-NT-804"/>
                                 <exclude reference="E9C-Ze-kUD"/>
+                                <exclude reference="loS-Dn-Pld"/>
                                 <exclude reference="maN-XT-noI"/>
                                 <exclude reference="oOS-Al-W4C"/>
+                                <exclude reference="9qS-vC-Nc7"/>
+                                <exclude reference="OF1-Zf-gg3"/>
+                                <exclude reference="o5z-lb-Bxw"/>
+                                <exclude reference="yGL-9K-Wuz"/>
                             </mask>
                         </variation>
                     </view>
@@ -430,7 +440,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar autoresizesSubviews="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PAf-Do-Rse">
+                            <navigationBar autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PAf-Do-Rse">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <items>
                                     <navigationItem title="Customize" id="njD-vi-oIM">
@@ -472,7 +482,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <items>
                                     <navigationItem id="5Mk-ym-vH5">
-                                        <barButtonItem key="rightBarButtonItem" title=">" style="plain" id="Pdu-rU-qO4">
+                                        <barButtonItem key="rightBarButtonItem" title="&gt;" style="plain" id="Pdu-rU-qO4">
                                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <segue destination="jJm-hb-fCF" kind="show" identifier="Customize" id="dpn-od-Aqv"/>
@@ -500,7 +510,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Workout Timing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rbn-ui-VNe">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout Timing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rbn-ui-VNe">
                                 <rect key="frame" x="16" y="75" width="121" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -755,7 +765,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nameplate.png" translatesAutoresizingMaskIntoConstraints="NO" id="V2Z-np-xPR">
-                                <rect key="frame" x="180" y="80" width="240" height="120"/>
+                                <rect key="frame" x="196" y="120" width="208" height="90"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -764,16 +774,16 @@
                             <constraint firstItem="Ekb-cF-btl" firstAttribute="leading" secondItem="IgL-zS-HEC" secondAttribute="leadingMargin" constant="70" id="8oE-VM-9E7"/>
                             <constraint firstItem="Ekb-cF-btl" firstAttribute="top" secondItem="SvV-mH-mhA" secondAttribute="bottom" constant="94" id="ATa-3l-KWV"/>
                             <constraint firstItem="Ekb-cF-btl" firstAttribute="top" secondItem="V2Z-np-xPR" secondAttribute="bottom" constant="30" id="BfF-KQ-fuf"/>
-                            <constraint firstItem="V2Z-np-xPR" firstAttribute="leading" secondItem="IgL-zS-HEC" secondAttribute="leadingMargin" constant="164" id="GTJ-nv-5XI"/>
+                            <constraint firstItem="V2Z-np-xPR" firstAttribute="leading" secondItem="IgL-zS-HEC" secondAttribute="leadingMargin" constant="180" id="GTJ-nv-5XI"/>
                             <constraint firstItem="IJ4-Qd-54F" firstAttribute="top" secondItem="8Ai-Cn-Gjz" secondAttribute="bottom" constant="200" id="GwH-hD-1hg"/>
                             <constraint firstAttribute="centerY" secondItem="Ekb-cF-btl" secondAttribute="centerY" id="Snn-Oy-bWo"/>
                             <constraint firstItem="8Ai-Cn-Gjz" firstAttribute="top" secondItem="SvV-mH-mhA" secondAttribute="bottom" constant="220" id="WnQ-Zh-9sb"/>
-                            <constraint firstAttribute="bottom" secondItem="V2Z-np-xPR" secondAttribute="bottom" constant="400" id="bIh-Ei-gK4"/>
+                            <constraint firstAttribute="bottom" secondItem="V2Z-np-xPR" secondAttribute="bottom" constant="390" id="bIh-Ei-gK4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ekb-cF-btl" secondAttribute="trailing" constant="70" id="d6o-xB-ojE"/>
                             <constraint firstAttribute="centerX" secondItem="Ekb-cF-btl" secondAttribute="centerX" id="eVZ-dM-Zxe"/>
                             <constraint firstAttribute="centerX" secondItem="8Ai-Cn-Gjz" secondAttribute="centerX" id="mpM-9b-6g5"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="V2Z-np-xPR" secondAttribute="trailing" constant="164" id="oYm-qi-W7o"/>
-                            <constraint firstItem="V2Z-np-xPR" firstAttribute="top" secondItem="SvV-mH-mhA" secondAttribute="bottom" constant="60" id="pu3-1G-ebZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="V2Z-np-xPR" secondAttribute="trailing" constant="180" id="oYm-qi-W7o"/>
+                            <constraint firstItem="V2Z-np-xPR" firstAttribute="top" secondItem="SvV-mH-mhA" secondAttribute="bottom" constant="100" id="pu3-1G-ebZ"/>
                             <constraint firstItem="8Ai-Cn-Gjz" firstAttribute="top" secondItem="Ekb-cF-btl" secondAttribute="bottom" constant="28" id="w5z-si-qNH"/>
                         </constraints>
                         <variation key="default">
