@@ -36,7 +36,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="button3:" destination="A7R-fA-3bY" eventType="touchUpInside" id="7hE-VG-tbe"/>
+                                    <action selector="button3Filled:" destination="A7R-fA-3bY" eventType="touchUpInside" id="udX-Ww-M2s"/>
                                     <segue destination="j3V-O0-sda" kind="show" id="a87-i1-uNq"/>
                                 </connections>
                             </button>
@@ -46,7 +46,6 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="button2:" destination="A7R-fA-3bY" eventType="touchUpInside" id="ttG-9k-Lc8"/>
                                     <action selector="button2Filled:" destination="A7R-fA-3bY" eventType="touchUpInside" id="Vdo-mC-DnX"/>
                                 </connections>
                             </button>
@@ -56,7 +55,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="button1:" destination="A7R-fA-3bY" eventType="touchUpInside" id="cO5-fw-wcf"/>
+                                    <action selector="button1Filled:" destination="A7R-fA-3bY" eventType="touchUpInside" id="qKV-jV-UE2"/>
                                     <segue destination="rUY-wn-e34" kind="show" identifier="accepted" id="ClF-2O-Oy9"/>
                                 </connections>
                             </button>
@@ -66,7 +65,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="button4:" destination="A7R-fA-3bY" eventType="touchUpInside" id="GaH-mG-BAr"/>
+                                    <action selector="button4Filled:" destination="A7R-fA-3bY" eventType="touchUpInside" id="O7t-HL-Gd6"/>
                                     <segue destination="j3V-O0-sda" kind="show" id="qaX-ZP-m4L"/>
                                 </connections>
                             </button>
@@ -381,6 +380,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="rUY-wn-e34" id="4YR-1I-SGo"/>
+                                    <outlet property="delegate" destination="rUY-wn-e34" id="qvR-l6-e8J"/>
+                                </connections>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JJ0-Ba-Dfc">
                                 <rect key="frame" x="0.0" y="0.0" width="584" height="44"/>

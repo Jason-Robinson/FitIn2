@@ -233,9 +233,27 @@ class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITable
             }
     @IBAction func buttonPress(sender: AnyObject) {
         println("Button pressed...will dissmiss")
-        performSegueWithIdentifier("Home", sender: self)
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let data = appDelegate.getSegmentData()
+        
+        
+        
+        
+        println("button press  \(data.currentButtonPressed)")
+        
+        if (data.currentButtonPressed == 1){
+            data.button1Pressed = 1
+        }else if (data.currentButtonPressed == 2){
+            data.button2Pressed = 1
+        }else if (data.currentButtonPressed == 3){
+            data.button3Pressed = 1
+        }else if (data.currentButtonPressed == 4){
+            data.button4Pressed = 1
+        }
 
-        //last action of view controller
+        performSegueWithIdentifier("Home", sender: self)
+                //last action of view controller
     }
 
     func doOnDismissCompletion() {

@@ -39,7 +39,7 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
         gymW = data.gym
         officeW = data.office
         
-        
+        println(homeW)
         
         
         // Reload the table
@@ -52,7 +52,7 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
     //returns count of struct to set number of cells
       func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         var result = 0
-        
+        println("Hi")
         //home
         if (segmentIdentifier == 0){
             result = self.homeW.count
@@ -78,7 +78,7 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
         let gymData = gymW[indexPath.row]
         let homeData = homeW[indexPath.row]
         let officeData = officeW[indexPath.row]
-       
+       println("Segment ID: \(segmentIdentifier)")
         //adds struct data to tableView
         if (segmentIdentifier == 0){
             cell.textLabel?.text = homeData//home

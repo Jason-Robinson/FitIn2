@@ -23,5 +23,12 @@ class SegmentData: NSObject {
     
     var dailyReminderTime = "8:00 AM"
     
+    var currentButtonPressed = 0
+    var button1Pressed = 0
+    var button2Pressed = 0
+    var button3Pressed = 0
+    var button4Pressed = 0
+    
+    
     var minWorkoutTime = 0
 }

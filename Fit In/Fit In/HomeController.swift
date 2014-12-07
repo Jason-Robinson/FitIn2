@@ -12,9 +12,17 @@ class HomeController: UIViewController {
 
     //access the data through app delegate
     var acceptedWorkoutViewController: UIViewController?
-    
+    var workoutSelectionViewController: UIViewController?
     @IBOutlet weak var namePlate: UIImageView!
-    var buttonID = 0
+    
+    var currentButtonPressed:Int = 0
+    
+    var button1ID = 1
+    var button2ID = 2
+    var button3ID = 3
+    var button4ID = 4
+    
+    
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var button1Time: UILabel!
@@ -54,7 +62,7 @@ class HomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.currentButtonPressed = 0
         
         
         let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
@@ -139,55 +147,124 @@ class HomeController: UIViewController {
     
     @IBAction func returnToHome(segue: UIStoryboardSegue) {
         println("return to home")
-        println(buttonID)
+        
         
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let data = appDelegate.getSegmentData()
         
         //println(data.dataFromWorkout)
-        if (buttonID == 2){
+        if (data.currentButtonPressed == 2){
             button2Workout.text = data.dataFromWorkout
             button2Time.text = data.workoutTime
-        }else if(buttonID == 3){
+        }else if(data.currentButtonPressed == 3){
             button3Workout.text = data.dataFromWorkout
             button3Time.text = data.workoutTime
-        }else if(buttonID == 4){
+        }else if(data.currentButtonPressed == 4){
             button4Workout.text = data.dataFromWorkout
             button4Time.text = data.workoutTime
+        }else if (data.currentButtonPressed == 1){
+            button1Workout.text = data.dataFromWorkout
+            button1Time.text = data.workoutTime
         }
         
         
         
     }
     
+    @IBAction func button1Filled(sender: AnyObject) {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let data = appDelegate.getSegmentData()
+        
+        data.currentButtonPressed = 1
+        println("button1Filled \(data.currentButtonPressed)")
+        if ( data.button1Pressed == 1){
+            acceptedWorkoutViewController=self.storyboard!.instantiateViewControllerWithIdentifier("AcceptedWorkoutController") as AcceptedWorkoutController
+            
+            if (acceptedWorkoutViewController != nil ) {
+                presentViewController(acceptedWorkoutViewController!, animated: true, completion: nil)
+            }}
+        else{
+            workoutSelectionViewController = self.storyboard!.instantiateViewControllerWithIdentifier("WorkoutSelectionController") as WorkoutSelectionController
+            
+            if (workoutSelectionViewController != nil){
+                presentViewController(workoutSelectionViewController!, animated: true, completion: nil)
+            }
+        }
+
+    }
+   
     
     @IBAction func button2Filled(sender: AnyObject) {
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let data = appDelegate.getSegmentData()
         
-        if (buttonID == 0){
+        data.currentButtonPressed = 2
+       println(data.button2Pressed)
+        if ( data.button2Pressed == 1){
         acceptedWorkoutViewController=self.storyboard!.instantiateViewControllerWithIdentifier("AcceptedWorkoutController") as AcceptedWorkoutController
-        if (acceptedWorkoutViewController != nil ) {
-            presentViewController(acceptedWorkoutViewController!, animated: true, completion: nil)
+            
+            if (acceptedWorkoutViewController != nil ) {
+                presentViewController(acceptedWorkoutViewController!, animated: true, completion: nil)
             }}
+        else{
+            workoutSelectionViewController = self.storyboard!.instantiateViewControllerWithIdentifier("WorkoutSelectionController") as WorkoutSelectionController
+            
+            if (workoutSelectionViewController != nil){
+                presentViewController(workoutSelectionViewController!, animated: true, completion: nil)
+            }
+        }
+        
     }
+    
+    @IBAction func button3Filled(sender: AnyObject) {
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let data = appDelegate.getSegmentData()
+        data.currentButtonPressed = 3
+        
+        if ( data.button3Pressed == 1){
+            acceptedWorkoutViewController=self.storyboard!.instantiateViewControllerWithIdentifier("AcceptedWorkoutController") as AcceptedWorkoutController
+            
+            if (acceptedWorkoutViewController != nil ) {
+                presentViewController(acceptedWorkoutViewController!, animated: true, completion: nil)
+            }}
+        else{
+            workoutSelectionViewController = self.storyboard!.instantiateViewControllerWithIdentifier("WorkoutSelectionController") as WorkoutSelectionController
+            
+            if (workoutSelectionViewController != nil){
+                presentViewController(workoutSelectionViewController!, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    @IBAction func button4Filled(sender: AnyObject) {
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let data = appDelegate.getSegmentData()
+        
+        data.currentButtonPressed = 4
+        
+        if ( data.button4Pressed == 1){
+            acceptedWorkoutViewController=self.storyboard!.instantiateViewControllerWithIdentifier("AcceptedWorkoutController") as AcceptedWorkoutController
+            
+            if (acceptedWorkoutViewController != nil ) {
+                presentViewController(acceptedWorkoutViewController!, animated: true, completion: nil)
+            }}
+        else{
+            workoutSelectionViewController = self.storyboard!.instantiateViewControllerWithIdentifier("WorkoutSelectionController") as WorkoutSelectionController
+            
+            if (workoutSelectionViewController != nil){
+                presentViewController(workoutSelectionViewController!, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    
+    
     @IBAction func openCalender(sender: AnyObject) {
         
         UIApplication.sharedApplication().openURL(NSURL(string:"calshow://")!)
     }
-    @IBAction func button3(sender: AnyObject) {
-        buttonID = 3
-    }
-    @IBAction func button4(sender: AnyObject) {
-        buttonID = 4
-    }
     
-    @IBAction func button1(sender: AnyObject) {
-        buttonID = 1
-    }
-   
-    
-    @IBAction func button2(sender: AnyObject) {
-        buttonID = 2
-    }
     
     
     override func didReceiveMemoryWarning() {

@@ -81,10 +81,11 @@ class CustomizeController: UIViewController{
         println(strDate)
     }
 
-    
+    //receives unwind from workout timing view
     @IBAction func returnToHome(segue: UIStoryboardSegue) {
         println("return to home")
     }
+    //seque to customize view controller
     @IBAction func returnHome(sender: AnyObject) {
         performSegueWithIdentifier("customize", sender: self)
     }
