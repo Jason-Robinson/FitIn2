@@ -10,9 +10,9 @@ import UIKit
 
 class SegmentData: NSObject {
    
-    var gym: [String] = ["gym1",  "gym"]
-    var home: [String] = ["home", "home1"]
-    var office: [String] = ["office", "office1"]
+    var gym: [String] = ["Easy - 15 squats","Easy - Run up and down stairs for 2 minutes","Easy - 15 push-ups","Easy - 15 sit ups","Easy - 2 minutes of wall sits","Medium - 30 squats","Medium - 30 push-ups","Medium - 30 sit ups","Medium - Run up and down stairs for 5 minutes","Medium - 5 minutes of wall sits","Hard - 45 squats","Hard - 45 push-ups","Hard - 45 sit ups","Hard - 10 minutes of wall sits","Hard -  Run up and down stairs for 10 minutes"]
+    var home: [String] = ["Easy - 15 squats","Easy - Run up and down stairs for 2 minutes","Easy - 15 push-ups","Easy - 15 sit ups","Easy - 2 minutes of wall sits","Medium - 30 squats","Medium - 30 push-ups","Medium - 30 sit ups","Medium - Run up and down stairs for 5 minutes","Medium - 5 minutes of wall sits","Hard - 45 squats","Hard - 45 push-ups","Hard - 45 sit ups","Hard - 10 minutes of wall sits","Hard -  Run up and down stairs for 10 minutes"]
+    var office: [String] = ["Easy - 15 squats","Easy - Run up and down stairs for 2 minutes","Easy - 15 push-ups","Easy - 15 sit ups","Easy - 2 minutes of wall sits","Medium - 30 squats","Medium - 30 push-ups","Medium - 30 sit ups","Medium - Run up and down stairs for 5 minutes","Medium - 5 minutes of wall sits","Hard - 45 squats","Hard - 45 push-ups","Hard - 45 sit ups","Hard - 10 minutes of wall sits","Hard -  Run up and down stairs for 10 minutes"]
     
     var dataFromWorkout:String = "Workout"
     var workoutLength:String = ""

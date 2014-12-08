@@ -13,7 +13,9 @@ import UIKit
 class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
+    @IBOutlet weak var workoutSuggestion: UILabel!
     
+    @IBOutlet weak var workoutTimeAmount: UILabel!
         var cell:UITableViewCell!
     
     var homeW:[String] = []
@@ -39,8 +41,8 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
         gymW = data.gym
         officeW = data.office
         
-        println(homeW)
-        
+         workoutSuggestion.text = data.dataFromWorkout
+         workoutTimeAmount.text = "\(data.workoutTime) for \(data.workoutLength) minutes"
         
         // Reload the table
         self.tableView.reloadData()
@@ -95,6 +97,22 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
     }
     
       func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let data = appDelegate.getSegmentData()
+        
+        
+        if (segmentIdentifier == 0){
+            data.dataFromWorkout = homeW[indexPath.row]
+        }
+        else if (segmentIdentifier == 1){
+            data.dataFromWorkout = officeW[indexPath.row]
+        }
+        else if (segmentIdentifier == 2){
+            data.dataFromWorkout = gymW[indexPath.row]
+        }
+       
+        workoutSuggestion.text = data.dataFromWorkout
         println(" cell Selected #\(indexPath.row)!")
         
     }

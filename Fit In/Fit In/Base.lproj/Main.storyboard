@@ -398,31 +398,79 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fz2-aM-Teu">
+                                <rect key="frame" x="82" y="87" width="43" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time and Amount" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DW2-R7-tcE">
+                                <rect key="frame" x="232" y="128" width="136" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.96470594409999999" green="0.57647061349999995" blue="0.20000001789999999" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout suggestion" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ykZ-nf-gdC">
+                                <rect key="frame" x="224" y="220" width="153" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.96470594409999999" green="0.57647061349999995" blue="0.20000001789999999" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGg-Sr-Ilq">
+                                <rect key="frame" x="82" y="173" width="69" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ykZ-nf-gdC" firstAttribute="top" secondItem="62b-eF-bqT" secondAttribute="bottom" constant="200" id="49k-K7-JCh"/>
                             <constraint firstItem="BHS-kR-SvN" firstAttribute="top" secondItem="3oN-lW-aJT" secondAttribute="top" constant="325" id="8BV-2u-KnL"/>
+                            <constraint firstItem="DW2-R7-tcE" firstAttribute="centerX" secondItem="ykZ-nf-gdC" secondAttribute="centerX" constant="38.5" id="8Cc-qI-jH1"/>
                             <constraint firstItem="Thr-dM-dhR" firstAttribute="top" secondItem="EhX-sV-B5h" secondAttribute="bottom" id="BIC-iD-aYD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="EhX-sV-B5h" secondAttribute="trailing" id="FV7-oJ-bWO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ykZ-nf-gdC" secondAttribute="trailing" constant="207" id="GlA-GL-Ujr"/>
+                            <constraint firstItem="fz2-aM-Teu" firstAttribute="top" secondItem="JJ0-Ba-Dfc" secondAttribute="bottom" constant="43" id="Jax-bd-k33"/>
                             <constraint firstAttribute="centerX" secondItem="a4s-bT-CjA" secondAttribute="centerX" id="O0E-4r-Zdf"/>
+                            <constraint firstItem="ykZ-nf-gdC" firstAttribute="top" secondItem="DW2-R7-tcE" secondAttribute="bottom" constant="71" id="OIb-tu-TPJ"/>
+                            <constraint firstItem="DW2-R7-tcE" firstAttribute="leading" secondItem="3oN-lW-aJT" secondAttribute="leadingMargin" constant="216" id="OZD-Yo-oBy"/>
+                            <constraint firstItem="rGg-Sr-Ilq" firstAttribute="leading" secondItem="3oN-lW-aJT" secondAttribute="leadingMargin" constant="66" id="Plg-ko-eu5"/>
                             <constraint firstAttribute="trailing" secondItem="JJ0-Ba-Dfc" secondAttribute="trailing" constant="16" id="Q9c-3d-skn"/>
                             <constraint firstAttribute="centerX" secondItem="BHS-kR-SvN" secondAttribute="centerX" id="QAM-B8-kSt"/>
+                            <constraint firstItem="DW2-R7-tcE" firstAttribute="top" secondItem="JJ0-Ba-Dfc" secondAttribute="bottom" constant="84" id="U9a-J9-XEo"/>
+                            <constraint firstAttribute="centerX" secondItem="ykZ-nf-gdC" secondAttribute="centerX" id="U9c-L3-bnY"/>
                             <constraint firstItem="EhX-sV-B5h" firstAttribute="top" secondItem="62b-eF-bqT" secondAttribute="bottom" constant="365" id="asw-LE-PmP"/>
                             <constraint firstItem="BHS-kR-SvN" firstAttribute="top" secondItem="62b-eF-bqT" secondAttribute="bottom" constant="325" id="bqY-nw-yYF"/>
+                            <constraint firstAttribute="centerX" secondItem="DW2-R7-tcE" secondAttribute="centerX" id="c3H-YB-L3W"/>
                             <constraint firstItem="EhX-sV-B5h" firstAttribute="leading" secondItem="3oN-lW-aJT" secondAttribute="leadingMargin" id="cbC-a7-uR7"/>
+                            <constraint firstItem="rGg-Sr-Ilq" firstAttribute="top" secondItem="fz2-aM-Teu" secondAttribute="bottom" constant="65" id="fuD-Sh-H5O"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DW2-R7-tcE" secondAttribute="trailing" constant="216" id="g70-Tp-yPp"/>
+                            <constraint firstItem="ykZ-nf-gdC" firstAttribute="leading" secondItem="3oN-lW-aJT" secondAttribute="leadingMargin" constant="208" id="hKf-S0-uZf"/>
+                            <constraint firstItem="a4s-bT-CjA" firstAttribute="top" secondItem="ykZ-nf-gdC" secondAttribute="bottom" constant="44" id="jag-hO-6WB"/>
                             <constraint firstItem="JJ0-Ba-Dfc" firstAttribute="leading" secondItem="3oN-lW-aJT" secondAttribute="leading" id="k7i-2l-GJ7"/>
+                            <constraint firstItem="fz2-aM-Teu" firstAttribute="leading" secondItem="3oN-lW-aJT" secondAttribute="leadingMargin" constant="66" id="mrL-Rs-eMd"/>
                             <constraint firstItem="a4s-bT-CjA" firstAttribute="top" secondItem="62b-eF-bqT" secondAttribute="bottom" constant="265" id="wzb-H5-d47"/>
                             <constraint firstItem="JJ0-Ba-Dfc" firstAttribute="top" secondItem="3oN-lW-aJT" secondAttribute="top" id="xkT-Fb-bYm"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="8Cc-qI-jH1"/>
+                                <exclude reference="OZD-Yo-oBy"/>
+                                <exclude reference="g70-Tp-yPp"/>
+                                <exclude reference="GlA-GL-Ujr"/>
+                                <exclude reference="OIb-tu-TPJ"/>
+                                <exclude reference="hKf-S0-uZf"/>
                                 <exclude reference="bqY-nw-yYF"/>
+                                <exclude reference="jag-hO-6WB"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="segmentedControl" destination="BHS-kR-SvN" id="EAG-Hq-Dkb"/>
                         <outlet property="tableView" destination="EhX-sV-B5h" id="2P8-ss-Uia"/>
+                        <outlet property="workoutSuggestion" destination="ykZ-nf-gdC" id="X5h-hF-0pU"/>
+                        <outlet property="workoutTimeAmount" destination="DW2-R7-tcE" id="x0R-pO-zMy"/>
                         <segue destination="WvO-Dn-Kc8" kind="unwind" identifier="accepted" unwindAction="returnToHome:" id="jKP-gn-sta"/>
                     </connections>
                 </viewController>

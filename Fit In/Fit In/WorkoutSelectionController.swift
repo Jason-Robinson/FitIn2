@@ -68,15 +68,15 @@ class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITable
         
         //home
         if (segmentIdentifier == 0){
-            result = self.homeW.count
+            result = homeW.count
         }
             //office
         else if (segmentIdentifier == 1){
-            result = self.officeW.count
+            result = officeW.count
         }
             //gym
         else if (segmentIdentifier == 2){
-            result = self.gymW.count
+            result = gymW.count
         }
         
         return result
