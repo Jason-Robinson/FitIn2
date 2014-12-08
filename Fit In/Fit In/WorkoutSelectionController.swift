@@ -13,42 +13,47 @@ import UIKit
 
 class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDataSource, UIPickerViewDelegate {
 
+    //add workout button
     @IBOutlet weak var addWorkout: UIButton!
     
+    //workout length picker variable
     @IBOutlet weak var pickerData: UIPickerView!
     
     var status:String = ""
     
+    //time of day picker variable
     @IBOutlet weak var datePicker: UIDatePicker!
     
-       
+     //table cell variable
     var cell:UITableViewCell!
     var returnStatus = "none"
     
-    //home data
+    
     var strTime:String = ""
     var strWorkout:String = ""
     
+    //workout data arrays
     var homeW:[String] = []
     var gymW:[String] = []
     var officeW:[String] = []
     
-    //offices data
-    
-    //gym data
     
     
+    //ID for segment control
     var segmentIdentifier = 0;
     
     //segmented controller outlet
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     //table view outlet
     @IBOutlet weak var tableView: UITableView!
+    
+    //workout length options in picker
     var picker = ["5","10","15","20","25","30","35","40","45","50","55","60"]
    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //creates variable to AppDelegate
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let data = appDelegate.getSegmentData()
 
@@ -63,6 +68,7 @@ class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITable
         
     }
 
+    //returns number of rows based on the count of the works arrays
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         var result = 0
         
@@ -111,7 +117,7 @@ class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITable
     }
     
     
-    
+    //if row is selected sets variable in Segment data to it
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -137,21 +143,8 @@ class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITable
     
     
     
-    func timeAmountChanged(timePicker:UIDatePicker) {
-        var dateFormatter = NSDateFormatter()
-        
-        //datePicker.datePickerMode = UIDatePickerMode.CountDownTimer
-        
-        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
-        
-        var strDate = dateFormatter.stringFromDate(timePicker.date)
-        strTime = strDate
-        
-        
-        println(strTime)
-    }
     
-    //formats and adds selected date to console log
+    //formats and adds selected date to segment data variable
     func datePickerChanged(datePicker:UIDatePicker) {
         
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -177,45 +170,36 @@ class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITable
         {
         case 0:
             segmentIdentifier = 0
-            
-            
             self.tableView.reloadData()
-            
-            println("seg1")
-           // println(strWorkout)
             
         case 1:
             segmentIdentifier = 1
-            
             self.tableView.reloadData()
             
-            println("seg2")
-            println(segmentIdentifier)
         case 2:
             segmentIdentifier = 2
-            
             self.tableView.reloadData()
             
-            println("seg3")
-            println(segmentIdentifier)
         default:
             break;
         }
     }
+    
     //picker view----------------
+    //returns number of picker view wheels on screen
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
+    //creates enough rows based off the size of data array
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return picker.count
     }
-    
+    //sets the text based of the options in the array by location, returns said location
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String!{
-        //return picker[row]
         
         return picker[row]
     }
-    
+    //selected rows data is sent to segmentdata variable
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -224,24 +208,24 @@ class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITable
         data.workoutLength = picker[row]
         println( picker[row])
     }
-    
     //picker view------------------
+    
+    //cancel button on nav bar
     @IBAction func cancel(sender: AnyObject) {
         println("In cancel workout selection")
         status = "cancel"
-        dismissViewControllerAnimated(true, completion: doOnDismissCompletion)
+        dismissViewControllerAnimated(true, completion: nil)
             }
+    
+    ////add workout button function
     @IBAction func buttonPress(sender: AnyObject) {
         println("Button pressed...will dissmiss")
         
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let data = appDelegate.getSegmentData()
         
-        
-        
-        
-        println("button press  \(data.currentButtonPressed)")
-        
+        //determines which buttin was pushed and sets its ID has pressed to assist in navigating to 
+        //accepted workout controller upon return to home controller
         if (data.currentButtonPressed == 1){
             data.button1Pressed = 1
         }else if (data.currentButtonPressed == 2){
@@ -252,15 +236,11 @@ class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITable
             data.button4Pressed = 1
         }
 
+        //activates segue to home controller
         performSegueWithIdentifier("Home", sender: self)
-                //last action of view controller
-    }
+        }
 
-    func doOnDismissCompletion() {
-        println("This is on completion of dissmiss.")
-    }
-    //determines were to return
-   
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

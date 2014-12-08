@@ -13,19 +13,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    //variable to access WorkoutSelectionController data
     var workoutData:WorkoutSelectionController = WorkoutSelectionController()
     
+    //variable to access SegmentData data
     var segmentData:SegmentData = SegmentData()
     
+    //variable to access HomeController data
     var homeData:HomeController = HomeController()
+    
+    //returns WorkoutSelectionController data
     func getWorkoutData() -> WorkoutSelectionController{
         return workoutData
     }
     
+    //returns SegmentData data
     func getSegmentData() -> SegmentData{
         return segmentData
     }
     
+    //returns HomeController data
     func getHomeData() -> HomeController{
         return homeData
     }

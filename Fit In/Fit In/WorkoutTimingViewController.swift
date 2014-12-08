@@ -18,6 +18,7 @@ class WorkoutTimingViewController: UIViewController {
     @IBOutlet weak var startPicker: UIDatePicker!
     @IBOutlet weak var sliderLabel: UILabel!
     @IBOutlet weak var sliderValue: UISlider!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

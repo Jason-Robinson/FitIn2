@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import EventKit
 
 class HomeController: UIViewController {
 
     //access the data through app delegate
     var acceptedWorkoutViewController: UIViewController?
     var workoutSelectionViewController: UIViewController?
+    var authorizeViewController: UIViewController?
+    
     @IBOutlet weak var namePlate: UIImageView!
     
-    var currentButtonPressed:Int = 0
+    //var currentButtonPressed:Int = 0
     
     var button1ID = 1
     var button2ID = 2
@@ -41,7 +44,7 @@ class HomeController: UIViewController {
     let orangeSquare = UIView()
    let graySquare = UIView()
     var returnStatus = "none"
-    
+    var TFreturn: Bool!
     
     @IBOutlet weak var testDataLbl: UILabel!
     
@@ -62,9 +65,10 @@ class HomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.currentButtonPressed = 0
+        //self.currentButtonPressed = 0
         
         
+        //performSegueWithIdentifier("authorize", sender: self)
         let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
        dateLabel.text = timestamp
         
@@ -138,13 +142,40 @@ class HomeController: UIViewController {
         self.container4.addSubview(self.orangeSquare)
         self.container4.addSubview(self.button4)
         
-        
+       
         
         // Do any additional setup after loading the view.
         
     }
     //unwind segue
+    override func viewWillAppear(animated: Bool) {
+        println("viewWillAppear in Docs")
+        
+    }
     
+    override func viewDidAppear(animated: Bool) {
+        println("viewDidAppear in Docs")
+        TFreturn = determineStatus()
+        if (TFreturn == true){
+            println("true")
+            
+        }else{
+            println("false")
+        }
+        switch TFreturn{
+        case false:
+            println("false")
+            let vc : UIViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AuthorizeViewController") as UIViewController;
+            self.presentViewController(vc, animated: true, completion: nil)
+        case true:
+            println("true")
+        default:
+            break
+        }
+    }
+
+    
+
     @IBAction func returnToHome(segue: UIStoryboardSegue) {
         println("return to home")
         
@@ -265,6 +296,25 @@ class HomeController: UIViewController {
         UIApplication.sharedApplication().openURL(NSURL(string:"calshow://")!)
     }
     
+    func determineStatus() -> Bool {
+        let type = EKEntityTypeEvent
+        let stat = EKEventStore.authorizationStatusForEntityType(type)
+        switch stat {
+        case .Authorized:
+            println("authorized")
+            return true
+        case .NotDetermined:
+            println("not Deter")
+            return false
+        case .Restricted:
+            return false
+        case .Denied:
+            // new iOS 8 feature: sane way of getting the user directly to the relevant prefs
+            // I think the crash-in-background issue is now gone
+            println("Denied")
+            return false
+        }
+    }
     
     
     override func didReceiveMemoryWarning() {
