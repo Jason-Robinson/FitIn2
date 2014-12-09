@@ -36,13 +36,28 @@ class WorkoutTimingViewController: UIViewController {
         
         
     }
+    override func viewWillAppear(animated: Bool) {
+        println("viewWillAppear in Docs")
+        
+    }
     
+    override func viewDidAppear(animated: Bool) {
+        println("viewDidAppear in Docs")
+        var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        println(defaults.integerForKey("sliderValue"))
+        var value = defaults.integerForKey("sliderValue")
+        var endValue = defaults.objectForKey("endStrValue")
+        endTime.text = "\(endValue)"
+        sliderLabel.text = "\(value)"
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     @IBAction func buttonPress(sender: AnyObject) {
         println("Button pressed...will dissmiss")
+        var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        println(defaults.integerForKey("sliderValue"))
         performSegueWithIdentifier("Timing", sender: self)
         
         //last action of view controller
@@ -75,15 +90,36 @@ class WorkoutTimingViewController: UIViewController {
         dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
         
         var strDate = dateFormatter.stringFromDate(datePicker.date)
-        data.workoutTimingEnd = strDate
-        endTime.text = strDate
-        println(strDate)
+        var endDefaultValue = "9:00 AM"
+        
+        var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(strDate, forKey: "endStrValue")
+        //gets data from user defaults
+        if let firstNameIsNotNill = defaults.objectForKey("endStrValue") as? String {
+            
+            endDefaultValue = defaults.objectForKey("endStrValue") as String
+        }
+        
+        endTime.text = endDefaultValue
+        
     }
     @IBAction func sliderChange(sender: UISlider) {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let data = appDelegate.getSegmentData()
         var currentValue = Int(sender.value)
-        data.minWorkoutTime = currentValue
-        sliderLabel.text = "\(data.minWorkoutTime)"
+        var valueFromUserDefaults:Int!
+        
+        var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        defaults.setInteger(currentValue, forKey: "sliderValue")
+        defaults.synchronize()
+        //gets data from user defaults
+        if (defaults.integerForKey("sliderValue") >= 0){
+            println("test")
+            valueFromUserDefaults = defaults.integerForKey("sliderValue")
+        }
+
+        
+        
+        sliderLabel.text = "\(valueFromUserDefaults)"
     }
 }
