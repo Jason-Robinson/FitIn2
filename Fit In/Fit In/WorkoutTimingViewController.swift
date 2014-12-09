@@ -34,6 +34,14 @@ class WorkoutTimingViewController: UIViewController {
         
         endPicker.addTarget(self, action: Selector("endPickerChanged:"), forControlEvents: UIControlEvents.ValueChanged)
         
+        var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        println(defaults.integerForKey("sliderValue"))
+        var value = defaults.integerForKey("sliderValue")
+        var endValue = defaults.objectForKey("endStrValue") as String
+        endTime.text = "\(endValue)"
+        sliderLabel.text = "\(value)"
+        sliderValue.value = Float(value)
+        
         
     }
     override func viewWillAppear(animated: Bool) {
@@ -43,12 +51,7 @@ class WorkoutTimingViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         println("viewDidAppear in Docs")
-        var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        println(defaults.integerForKey("sliderValue"))
-        var value = defaults.integerForKey("sliderValue")
-        var endValue = defaults.objectForKey("endStrValue")
-        endTime.text = "\(endValue)"
-        sliderLabel.text = "\(value)"
+                
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
