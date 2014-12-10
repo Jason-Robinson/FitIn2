@@ -11,6 +11,7 @@ import UIKit
 class CustomizeController: UIViewController{
 
     
+    @IBOutlet weak var dailyReminderSwitch: UISwitch!
     var homes = ["Workout Selection"]
     
     
@@ -81,6 +82,17 @@ class CustomizeController: UIViewController{
         println(strDate)
     }
 
+    @IBAction func switchClicked(sender: AnyObject) {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let data = appDelegate.getSegmentData()
+        
+        if dailyReminderSwitch.on{
+            data.createRecurringEvent()
+            
+            println("on")}
+    }
+    
     //receives unwind from workout timing view
     @IBAction func returnToHome(segue: UIStoryboardSegue) {
         println("return to home")

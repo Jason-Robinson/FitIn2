@@ -226,7 +226,7 @@ class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITable
     ////add workout button function
     @IBAction func buttonPress(sender: AnyObject) {
         println("Button pressed...will dissmiss")
-        var calCheck = "false"
+        
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let data = appDelegate.getSegmentData()
         
@@ -243,144 +243,22 @@ class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITable
         }
         
         //user defaults variable
-        var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-       println("calCheck = \(self.calCheck)")
+        
         //gets data from user defaults
-        if let firstNameIsNotNill = defaults.objectForKey("calState") as? String {
-            println("test")
-            calCheck = defaults.objectForKey("calState") as String
-        }
-        //if false will create new calender, if true will not
-        if (calCheck == "false"){
-        createCalendar()
-        }
-        addEvent()
+        
+        
+        
+        data.addEvent()
         //activates segue to home controller
         performSegueWithIdentifier("Home", sender: self)
         }
 
     
-    func addEvent(){
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        let data = appDelegate.getSegmentData()
-        let date = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(.CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay, fromDate: date)
-        let month = components.month
-        let day = components.day
-        let year = components.year
-        let cal : EKCalendar! = self.calendarWithName("FitIn Calendar")
-        if cal == nil {
-            return
-        }
-        
-        
-        
-        var parsedTime = data.workoutTime.componentsSeparatedByString(":")
-        var hour:String = parsedTime[0]
-        var minutesAnd12Hour = parsedTime[1]
-        var minutesParsed = minutesAnd12Hour.componentsSeparatedByString(" ")
-        var minutes = minutesParsed[0]
-        
-        let hours:Int? = hour.toInt() // firstText is UITextField
-        let minute:Int? = minutes.toInt() // secondText is UITextField
-         let timeAmount:Int? = data.workoutLength.toInt()
-        var string:String!
-        // check a and b before unwrapping using !
-        
-        println(hours!)
-        println(minute!)
-        
-        let greg = NSCalendar(calendarIdentifier:NSCalendarIdentifierGregorian)!
-        let comp = NSDateComponents()
-        
-        comp.year = year
-        comp.month = month
-        comp.minute = minute!
-        comp.day = day
-        comp.hour = hours!
-        
-        let d1 = greg.dateFromComponents(comp)
-        if (timeAmount! == 60){
-            comp.hour = comp.hour + 1
-        }else{
-        comp.minute = comp.minute + timeAmount!
-        }
-        let d2 = greg.dateFromComponents(comp)
-        
-        let ev = EKEvent(eventStore:self.eventStore)
-        ev.title = "Fitin Workout"
-        ev.notes = data.dataFromWorkout
-        ev.calendar = cal
-        ev.startDate = d1
-        ev.endDate = d2
-        
-        // we can also easily add an alarm
-        let alarm = EKAlarm(relativeOffset:-3600) // one hour before
-        ev.addAlarm(alarm)
-        
-        var err : NSError?
-        let ok = self.eventStore.saveEvent(ev, span:EKSpanThisEvent, commit:true, error:&err)
-        if !ok {
-            println("save simple event \(err!.localizedDescription)")
-            return
-        }
-        println("no errors")
-    }
     
-    func calendarWithName( name:String ) -> EKCalendar? {
-        let calendars = self.eventStore.calendarsForEntityType(EKEntityTypeEvent) as [EKCalendar]
-       
-        
-        for cal in calendars { // (should be using identifier)
-            if cal.title == name {
-                
-                return cal
-            }
-        }
-        println ("failed to find calendar")
-        return nil
-    }
     
-    func createCalendar(){
-        var calCheck = "false"
-        var src : EKSource! = nil
-         var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        for source in self.eventStore.sources() as [EKSource] {
-            if source.sourceType.value == EKSourceTypeLocal.value {
-                src = source
-                break
-            }
-        }
-        
-        
-        
-        
-        
-        
-        
-        if src == nil {
-            println("failed to find local source")
-            return
-        }
-        let cal = EKCalendar(forEntityType:EKEntityTypeEvent,
-            eventStore:self.eventStore)
-        cal.source = src
-        cal.title = "FitIn Calendar"
-        // ready to save the new calendar into the database!
-        var err : NSError?
-        let ok = self.eventStore.saveCalendar(cal, commit:true, error:&err)
-        if !ok {
-            println("save calendar error: \(err!.localizedDescription)")
-            return
-        }
-        //true confirms the calendar has been created
-        calCheck = "true"
-        //sets user default value as calCheck for the key calState
-        defaults.setObject(calCheck, forKey: "calState")
-        println("no errors")
-    }
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

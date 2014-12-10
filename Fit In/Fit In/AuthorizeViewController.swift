@@ -73,7 +73,7 @@ class AuthorizeViewController: UIViewController {
         }
         else if (stat == .Denied){
             println("denied")
-            let alert = UIAlertController(title: "Need Authorization", message: "Wouldn't you like to authorize this app to use your Calendar?", preferredStyle: .Alert)
+            let alert = UIAlertController(title: "Need Authorization", message: "Please authorize this app to use your Calendar?", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "No", style: .Cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: {
                 _ in

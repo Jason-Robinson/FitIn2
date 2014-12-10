@@ -549,6 +549,9 @@
                                 <date key="date" timeIntervalSinceReferenceDate="439394400.211523">
                                     <!--2014-12-04 14:00:00 +0000-->
                                 </date>
+                                <connections>
+                                    <action selector="switchClicked:" destination="20v-xj-jCg" eventType="valueChanged" id="SFC-8U-yt6"/>
+                                </connections>
                             </datePicker>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hOa-T3-CuR">
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
@@ -568,10 +571,16 @@
                                 <items>
                                     <navigationItem id="cwQ-DM-rft">
                                         <barButtonItem key="rightBarButtonItem" id="496-wH-T3F">
-                                            <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="QJm-y4-ey6">
+                                            <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="QJm-y4-ey6">
                                                 <rect key="frame" x="-25" y="-15" width="51" height="31"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="switchClicked:" destination="20v-xj-jCg" eventType="valueChanged" id="Bb9-Vs-UBH"/>
+                                                </connections>
                                             </switch>
+                                            <connections>
+                                                <action selector="switchClicked:" destination="20v-xj-jCg" id="WQz-Om-kBI"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -626,6 +635,7 @@
                     <navigationItem key="navigationItem" id="sN1-xo-vBZ"/>
                     <connections>
                         <outlet property="dailyPicker" destination="wIH-WW-Q5e" id="ztI-7c-V1l"/>
+                        <outlet property="dailyReminderSwitch" destination="QJm-y4-ey6" id="5mG-uu-LjM"/>
                         <segue destination="uWd-oc-fAn" kind="unwind" identifier="customize" unwindAction="returnToHome:" id="CGM-9B-dno"/>
                     </connections>
                 </viewController>
@@ -877,7 +887,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aHQ-vv-AIt" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1085" y="-1116"/>
+            <point key="canvasLocation" x="1125" y="-630"/>
         </scene>
     </scenes>
     <resources>
