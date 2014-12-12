@@ -181,7 +181,7 @@ class SegmentData: NSObject {
         let greg = NSCalendar(calendarIdentifier:NSCalendarIdentifierGregorian)!
         // day without time means "all day"
         let comps : NSCalendarUnit = .YearCalendarUnit | .MonthCalendarUnit | .DayCalendarUnit
-        //comps.
+        
         reminder.dueDateComponents = greg.components(comps, fromDate:today)
         // Add alarm to reminder
        
@@ -205,15 +205,43 @@ class SegmentData: NSObject {
         formatter.dateStyle = .MediumStyle
         formatter.timeStyle = .MediumStyle
         
+            var parsedTime = self.workoutTime.componentsSeparatedByString(":")
+            var hour:String = parsedTime[0]
+            var minutesAnd12Hour = parsedTime[1]
+            var minutesParsed = minutesAnd12Hour.componentsSeparatedByString(" ")
+            var minutes = minutesParsed[0]
+            
+            let hours:Int? = hour.toInt()
+            let minute:Int? = minutes.toInt()
+            
+            
+            
+            
+            
         var startDate=NSDate().dateByAddingTimeInterval(-60*60*24)
-        var endDate=NSDate().dateByAddingTimeInterval(60*24*3)
+        var endDate=NSDate().dateByAddingTimeInterval(60*60*24*3)
         var predicate2 = eventStore.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
-        
-        println("startDate:\(start) endDate:\(endDate)")
+        var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+            var endDefaults = defaults.objectForKey("endStrValue") as String!
+             var startDefaults = defaults.objectForKey("startStrValue") as String!
+        var freeTime = 0
+        var time = 0
+            let userStartTime:Int? = startDefaults.toInt()
+            let userEndTime:Int? = endDefaults.toInt()
+           
+            
+          println("hello" + endDefaults! + startDefaults!)
+    
+            
         var eV = eventStore.eventsMatchingPredicate(predicate2) as [EKEvent]!
         var theDateFormat = NSDateFormatterStyle.ShortStyle
         formatter.dateStyle = theDateFormat
         var count = 0
+            
+            
+            
+        println("User start time: \(userStartTime)")
+        println("User start end: \(userEndTime)")
        if eV != nil {
             for i in eV {
                 
@@ -223,21 +251,22 @@ class SegmentData: NSObject {
                     self.array[count] = formatter.stringFromDate(i.startDate)
                     self.arrayEnd[count] = formatter.stringFromDate(i.endDate)
                     count += 1
-                    for date in array{
-                        println("This is it")
-                        println(date)
-                        
-                    }
-                    println("end")
-                    for date in arrayEnd{
-                        println("This is it 2")
-                        println(date)
-                        
-                    }
+                    
                     //eventStore.removeEvent(i, span: EKSpanThisEvent, error: nil)
                 }
+            
             }
+        for date in array{
+            println("This is it")
+            println(date)
+            
         }
+        println("end")
+        for date in arrayEnd{
+            println("This is it 2")
+            println(date)
+            
+        } }
         
         
     

@@ -58,7 +58,7 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
     //returns count of struct to set number of cells
       func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         var result = 0
-        println("Hi")
+       
         //home
         if (segmentIdentifier == 0){
             result = self.homeW.count
