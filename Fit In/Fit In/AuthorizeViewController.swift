@@ -68,11 +68,12 @@ class AuthorizeViewController: UIViewController {
         
         if (stat == .Authorized){
         println("Authorized")
-            homeController=self.storyboard!.instantiateViewControllerWithIdentifier("HomeController") as HomeController
+           // homeController=self.storyboard!.instantiateViewControllerWithIdentifier("HomeController") as HomeController
             
-            if (homeController != nil ) {
-                presentViewController(homeController!, animated: true, completion: nil)
-            }
+            
+                //presentViewController(homeController!, animated: true, completion: nil)
+                dismissViewControllerAnimated(true, completion: nil)
+            
         }
         else if (stat == .Denied){
             println("denied")

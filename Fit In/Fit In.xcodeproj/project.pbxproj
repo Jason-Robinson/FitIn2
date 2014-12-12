@@ -20,6 +20,9 @@
 		9668591F1A3639E000C068AD /* AuthorizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9668591E1A3639E000C068AD /* AuthorizeViewController.swift */; };
 		966859241A363D4000C068AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 966859221A363D4000C068AD /* Main.storyboard */; };
 		968C0C0D1A23F808000518EF /* SegmentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968C0C0C1A23F808000518EF /* SegmentData.swift */; };
+		96A4A3C31A3A8D0500B1B01F /* Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A4A3C21A3A8D0400B1B01F /* Parse.swift */; };
+		96A4A3C51A3B88FA00B1B01F /* Bubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A4A3C41A3B88FA00B1B01F /* Bubble.swift */; };
+		96A4A3C81A3B898E00B1B01F /* Bubble.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96A4A3C61A3B898E00B1B01F /* Bubble.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,9 @@
 		9668591E1A3639E000C068AD /* AuthorizeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizeViewController.swift; sourceTree = "<group>"; };
 		966859231A363D4000C068AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		968C0C0C1A23F808000518EF /* SegmentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentData.swift; sourceTree = "<group>"; };
+		96A4A3C21A3A8D0400B1B01F /* Parse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parse.swift; sourceTree = "<group>"; };
+		96A4A3C41A3B88FA00B1B01F /* Bubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bubble.swift; sourceTree = "<group>"; };
+		96A4A3C71A3B898E00B1B01F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Bubble.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +82,7 @@
 				8E9AEC811A12850D00B2F870 /* Fit In */,
 				8E9AEC971A12850D00B2F870 /* Fit InTests */,
 				8E9AEC801A12850D00B2F870 /* Products */,
+				8E9AEC821A12850D00B2F870 /* Supporting Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,8 +100,11 @@
 			children = (
 				9668591A1A314D0E00C068AD /* nameplate.png */,
 				8E9AEC841A12850D00B2F870 /* AppDelegate.swift */,
+				96A4A3C21A3A8D0400B1B01F /* Parse.swift */,
 				966859221A363D4000C068AD /* Main.storyboard */,
 				8E4672001A12BB1E006E7F14 /* WorkoutSelectionController.swift */,
+				96A4A3C61A3B898E00B1B01F /* Bubble.xib */,
+				96A4A3C41A3B88FA00B1B01F /* Bubble.swift */,
 				968C0C0C1A23F808000518EF /* SegmentData.swift */,
 				9668591C1A315F6E00C068AD /* WorkoutTimingViewController.swift */,
 				9668591E1A3639E000C068AD /* AuthorizeViewController.swift */,
@@ -103,7 +113,6 @@
 				8E4671FE1A12BAAD006E7F14 /* HomeController.swift */,
 				8E9AEC8B1A12850D00B2F870 /* Images.xcassets */,
 				8E9AEC8D1A12850D00B2F870 /* LaunchScreen.xib */,
-				8E9AEC821A12850D00B2F870 /* Supporting Files */,
 			);
 			path = "Fit In";
 			sourceTree = "<group>";
@@ -114,6 +123,7 @@
 				8E9AEC831A12850D00B2F870 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			path = "Fit In";
 			sourceTree = "<group>";
 		};
 		8E9AEC971A12850D00B2F870 /* Fit InTests */ = {
@@ -214,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E9AEC8F1A12850D00B2F870 /* LaunchScreen.xib in Resources */,
+				96A4A3C81A3B898E00B1B01F /* Bubble.xib in Resources */,
 				966859241A363D4000C068AD /* Main.storyboard in Resources */,
 				8E9AEC8C1A12850D00B2F870 /* Images.xcassets in Resources */,
 				9668591B1A314D0E00C068AD /* nameplate.png in Resources */,
@@ -235,8 +246,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E4672011A12BB1E006E7F14 /* WorkoutSelectionController.swift in Sources */,
+				96A4A3C51A3B88FA00B1B01F /* Bubble.swift in Sources */,
 				8E4672051A12BB55006E7F14 /* CustomizeController.swift in Sources */,
 				9668591F1A3639E000C068AD /* AuthorizeViewController.swift in Sources */,
+				96A4A3C31A3A8D0500B1B01F /* Parse.swift in Sources */,
 				968C0C0D1A23F808000518EF /* SegmentData.swift in Sources */,
 				9668591D1A315F6E00C068AD /* WorkoutTimingViewController.swift in Sources */,
 				8E9AEC851A12850D00B2F870 /* AppDelegate.swift in Sources */,
@@ -278,6 +291,14 @@
 				966859231A363D4000C068AD /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		96A4A3C61A3B898E00B1B01F /* Bubble.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				96A4A3C71A3B898E00B1B01F /* Base */,
+			);
+			name = Bubble.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

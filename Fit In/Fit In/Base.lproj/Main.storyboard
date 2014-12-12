@@ -30,93 +30,6 @@
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hGP-5d-dBY">
                                 <rect key="frame" x="59" y="309" width="100" height="100"/>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaX-lI-Tdk">
-                                <rect key="frame" x="62" y="311" width="95" height="95"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="button3Filled:" destination="A7R-fA-3bY" eventType="touchUpInside" id="udX-Ww-M2s"/>
-                                    <segue destination="j3V-O0-sda" kind="show" id="a87-i1-uNq"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rki-oN-Zv7">
-                                <rect key="frame" x="218" y="182" width="95" height="95"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="button2Filled:" destination="A7R-fA-3bY" eventType="touchUpInside" id="cmt-qn-Rah"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qov-hW-Ffp">
-                                <rect key="frame" x="62" y="182" width="95" height="95"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="button1Filled:" destination="A7R-fA-3bY" eventType="touchUpInside" id="qKV-jV-UE2"/>
-                                    <segue destination="rUY-wn-e34" kind="show" identifier="accepted" id="ClF-2O-Oy9"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mcz-Wj-Z2N">
-                                <rect key="frame" x="218" y="311" width="95" height="95"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="button4Filled:" destination="A7R-fA-3bY" eventType="touchUpInside" id="TUc-6M-bZC"/>
-                                    <segue destination="j3V-O0-sda" kind="show" id="qaX-ZP-m4L"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kGF-gh-R7s">
-                                <rect key="frame" x="88" y="190" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Workout" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Wh-dZ-336">
-                                <rect key="frame" x="75" y="227" width="55" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l7M-ci-ZE0">
-                                <rect key="frame" x="244" y="190" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Workout" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h62-F2-Fr9">
-                                <rect key="frame" x="236" y="227" width="58" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJO-Uc-d7l">
-                                <rect key="frame" x="244" y="327" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Workout" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbF-fD-Lnu">
-                                <rect key="frame" x="75" y="364" width="55" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nTJ-ZJ-xsc">
-                                <rect key="frame" x="88" y="327" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Workout" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7MS-b6-SCP">
-                                <rect key="frame" x="236" y="364" width="59" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YFm-La-ClC">
                                 <rect key="frame" x="282" y="94" width="36" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -175,23 +88,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="n1A-zJ-AR5"/>
                     <connections>
-                        <outlet property="button1" destination="Qov-hW-Ffp" id="zT7-MX-5gF"/>
-                        <outlet property="button1Time" destination="kGF-gh-R7s" id="YAW-rE-c5u"/>
-                        <outlet property="button1Workout" destination="9Wh-dZ-336" id="kiL-Xp-5ad"/>
-                        <outlet property="button2" destination="Rki-oN-Zv7" id="H1d-ki-8nS"/>
-                        <outlet property="button2Time" destination="l7M-ci-ZE0" id="V53-QA-2Bi"/>
-                        <outlet property="button2Workout" destination="h62-F2-Fr9" id="IuD-Vj-76t"/>
-                        <outlet property="button3" destination="IaX-lI-Tdk" id="v1w-P8-UJj"/>
-                        <outlet property="button3Time" destination="nTJ-ZJ-xsc" id="sqD-u7-yZ0"/>
-                        <outlet property="button3Workout" destination="lbF-fD-Lnu" id="1JN-PE-Eyg"/>
-                        <outlet property="button4" destination="mcz-Wj-Z2N" id="Nb5-Gh-7UQ"/>
-                        <outlet property="button4Time" destination="jJO-Uc-d7l" id="isL-xX-eFH"/>
-                        <outlet property="button4Workout" destination="7MS-b6-SCP" id="7MA-2i-QPn"/>
                         <outlet property="container1" destination="vG9-2z-Hc6" id="UnT-Mi-kB5"/>
                         <outlet property="container2" destination="lH6-he-rvh" id="I88-4U-qvc"/>
                         <outlet property="container3" destination="hGP-5d-dBY" id="Rqk-C7-dJu"/>
                         <outlet property="container4" destination="rcT-L6-qDY" id="Z4V-Lr-1le"/>
-                        <outlet property="dateLabel" destination="YFm-La-ClC" id="Aev-rM-84F"/>
+                        <outlet property="dateLabel" destination="YFm-La-ClC" id="ZO4-vc-lKr"/>
                         <segue destination="dJZ-iJ-Cya" kind="presentation" identifier="authorize" id="TOA-Bf-MBu"/>
                     </connections>
                 </viewController>
@@ -554,7 +455,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <items>
                                     <navigationItem id="5Mk-ym-vH5">
-                                        <barButtonItem key="rightBarButtonItem" title=">" style="plain" id="Pdu-rU-qO4">
+                                        <barButtonItem key="rightBarButtonItem" title=">" id="Pdu-rU-qO4">
                                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <segue destination="jJm-hb-fCF" kind="show" identifier="Customize" id="dpn-od-Aqv"/>
@@ -890,7 +791,4 @@
     <resources>
         <image name="nameplate.png" width="255" height="132"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="qaX-ZP-m4L"/>
-    </inferredMetricsTieBreakers>
 </document>

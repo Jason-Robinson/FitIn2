@@ -12,14 +12,13 @@ import EventKit
 class HomeController: UIViewController {
 
     //access the data through app delegate
-    var acceptedWorkoutViewController: UIViewController?
-    var workoutSelectionViewController: UIViewController?
-    var authorizeViewController: UIViewController?
+    
     
     @IBOutlet weak var namePlate: UIImageView!
     
     //var currentButtonPressed:Int = 0
     
+    @IBOutlet weak var dateLabel: UILabel!
     var button1ID = 1
     var button2ID = 2
     var button3ID = 3
@@ -27,124 +26,123 @@ class HomeController: UIViewController {
     
     var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var button1Time: UILabel!
-    @IBOutlet weak var button2Time: UILabel!
-    @IBOutlet weak var button3Time: UILabel!
-    @IBOutlet weak var button4Time: UILabel!
-    @IBOutlet weak var button4Workout: UILabel!
-   @IBOutlet weak var button1Workout: UILabel!
-    @IBOutlet weak var button2Workout: UILabel!
-    @IBOutlet weak var button3Workout: UILabel!
+    var acceptedWorkoutViewController: UIViewController?
+    var workoutSelectionViewController: UIViewController?
+    var authorizeViewController: UIViewController?
+    var animator: UIDynamicAnimator?
+    var gravity: UIGravityBehavior?
+    var collision: UICollisionBehavior?
     let container = UIView()
     
-    let redSquare = UIView()
-    let blueSquare = UIView()
-    let greenSquare = UIView()
-    let orangeSquare = UIView()
-   let graySquare = UIView()
+    
+   
     var returnStatus = "none"
     var TFreturn: Bool!
     
     @IBOutlet weak var testDataLbl: UILabel!
-    
-    
     @IBOutlet weak var container1: UIView!
-    
     @IBOutlet weak var container2: UIView!
-   
     @IBOutlet weak var container3: UIView!
-    @IBOutlet weak var button1: UIButton!
-    
     @IBOutlet weak var container4: UIView!
     
-    @IBOutlet weak var button2: UIButton!
-  
-    @IBOutlet weak var button3: UIButton!
-    @IBOutlet weak var button4: UIButton!
+    let topLeftBubble = NSBundle.mainBundle().loadNibNamed("Bubble", owner: nil, options: nil).first as Bubble
+    let topRightBubble = NSBundle.mainBundle().loadNibNamed("Bubble", owner: nil, options: nil).first as Bubble
+    let bottomLeftBubble = NSBundle.mainBundle().loadNibNamed("Bubble", owner: nil, options: nil).first as Bubble
+    let bottomRightBubble = NSBundle.mainBundle().loadNibNamed("Bubble", owner: nil, options: nil).first as Bubble
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.currentButtonPressed = 0
-        
         
         //performSegueWithIdentifier("authorize", sender: self)
-        let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .NoStyle)
-       dateLabel.text = timestamp
+        let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
+        dateLabel.text = timestamp
         
-        self.redSquare.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        self.blueSquare.frame = redSquare.frame
-        self.greenSquare.frame = redSquare.frame
-        self.orangeSquare.frame = redSquare.frame
+        //Set the Bubbles' attributes and adding them to the view
+        let topLeftBubbleSize = topLeftBubble.frame.size
+        let topLeftBubbleRect = CGRectMake(container1.frame.origin.x, container1.frame.origin.y, topLeftBubbleSize.width, topLeftBubbleSize.height)
+        topLeftBubble.frame = topLeftBubbleRect
+        topLeftBubble.backgroundColor = UIColor.orangeColor()
+        self.view.addSubview(topLeftBubble)
         
-        //self.button2.frame = redSquare.frame
-        // set background colors
-        self.redSquare.backgroundColor = UIColor.redColor()
-        self.blueSquare.backgroundColor = UIColor.blueColor()
-        self.greenSquare.backgroundColor = UIColor.greenColor()
-        self.orangeSquare.backgroundColor = UIColor.orangeColor()
+        let topRightBubbleSize = topRightBubble.frame.size
+        let topRightBubbleRect = CGRectMake(container2.frame.origin.x, container2.frame.origin.y, topRightBubbleSize.width, topRightBubbleSize.height)
+        topRightBubble.frame = topRightBubbleRect
+        topRightBubble.backgroundColor = UIColor.orangeColor()
+        self.view.addSubview(topRightBubble)
         
+        let bottomLeftBubbleSize = bottomLeftBubble.frame.size
+        let bottomLeftBubbleRect = CGRectMake(container3.frame.origin.x, container3.frame.origin.y, bottomLeftBubbleSize.width, bottomLeftBubbleSize.height)
+        bottomLeftBubble.frame = bottomLeftBubbleRect
+        bottomLeftBubble.backgroundColor = UIColor.orangeColor()
+        self.view.addSubview(bottomLeftBubble)
         
+        let bottomRightBubbleSize = bottomRightBubble.frame.size
+        let bottomRightBubbleRect = CGRectMake(container4.frame.origin.x, container4.frame.origin.y, bottomRightBubbleSize.width, bottomRightBubbleSize.height)
+        bottomRightBubble.frame = bottomRightBubbleRect
+        bottomRightBubble.backgroundColor = UIColor.orangeColor()
+        self.view.addSubview(bottomRightBubble)
         
+        //Creating gesture recognition for the Bubbles to act in the place of buttons
+        let aSelector : Selector = "button1Filled:"
+        let bSelector : Selector = "button2Filled:"
+        let cSelector : Selector = "button3Filled:"
+        let dSelector : Selector = "button4Filled:"
+        let atapGesture = UITapGestureRecognizer(target: self, action: aSelector)
+        atapGesture.numberOfTapsRequired = 1
+        let btapGesture = UITapGestureRecognizer(target: self, action: bSelector)
+        btapGesture.numberOfTapsRequired = 1
+        let ctapGesture = UITapGestureRecognizer(target: self, action: cSelector)
+        ctapGesture.numberOfTapsRequired = 1
+        let dtapGesture = UITapGestureRecognizer(target: self, action: dSelector)
+        dtapGesture.numberOfTapsRequired = 1
+        topLeftBubble.addGestureRecognizer(atapGesture)
+        bottomLeftBubble.addGestureRecognizer(ctapGesture)
+        topRightBubble.addGestureRecognizer(btapGesture)
+        bottomRightBubble.addGestureRecognizer(dtapGesture)
         
+        //Create the UIDynamicAnimator to use animations
+        self.animator = UIDynamicAnimator(referenceView: self.view)
+        //Creates the gravity behavior and applies it to the Bubbles
+        self.gravity = UIGravityBehavior(items: [topLeftBubble, topRightBubble, bottomLeftBubble, bottomRightBubble]);
+        //Sets the gravity's magnitude so the Bubbles move slower
+        self.gravity?.magnitude=0.1
         
-        // for now just add the redSquare
-        // we'll add blueSquare as part of the transition animation
-        self.container1.layer.cornerRadius = self.container1.frame.size.width / 2
-        self.container1.clipsToBounds = true
+        //Create instantaneous pushes for the Bubbles so they bounce around rather than up and down
+        let instantaneousPush: UIPushBehavior = UIPushBehavior(items: [topRightBubble, bottomRightBubble], mode: UIPushBehaviorMode.Instantaneous)
+        instantaneousPush.setAngle(CGFloat(3.14159), magnitude: 1.167)
+        let instantaneousPush2: UIPushBehavior = UIPushBehavior(items: [topLeftBubble, bottomLeftBubble], mode: UIPushBehaviorMode.Instantaneous)
+        instantaneousPush2.setAngle(CGFloat(0), magnitude: 1.167)
         
-        self.container2.layer.cornerRadius = self.container2.frame.size.width / 2
-        self.container2.clipsToBounds = true
+        //Creates collisions that apply to the Bubbles
+        self.collision = UICollisionBehavior(items: [topLeftBubble, topRightBubble, bottomLeftBubble, bottomRightBubble]);
+        self.collision?.translatesReferenceBoundsIntoBoundary=true
+        //The boundary in the horizontal middle of the bubbles
+        self.collision?.addBoundaryWithIdentifier("CenterHorizontal", fromPoint: CGPointMake(self.container3.frame.origin.x - 40, self.container3.frame.origin.y+40), toPoint: CGPointMake(self.container4.center.x + 40 + self.container4.frame.width, self.container4.frame.origin.y+40))
+        //Boundary above all bubbles
+        self.collision?.addBoundaryWithIdentifier("TopHorizontal", fromPoint: CGPointMake(self.container1.frame.origin.x - 40, self.container1.frame.origin.y-35), toPoint: CGPointMake(self.container2.center.x + 40 + self.container2.frame.width, self.container2.frame.origin.y-35))
+        //Boundary at the veritcal middle of the bubbles
+        self.collision?.addBoundaryWithIdentifier("CenterVertical", fromPoint: CGPointMake(self.container1.frame.origin.x + self.container1.frame.width + 30, self.container1.frame.origin.y-300), toPoint: CGPointMake(self.container1.frame.origin.x + self.container1.frame.width + 30, self.container3.frame.origin.y+300))
+        //Boundary below all bubbles
+        self.collision?.addBoundaryWithIdentifier("BottomHorizontal", fromPoint: CGPointMake(self.container3.frame.origin.x - 40, self.container3.frame.origin.y+225), toPoint: CGPointMake(self.container4.frame.origin.x + 40 + self.container4.frame.width, self.container4.frame.origin.y+225))
+        //Far left boundary
+        self.collision?.addBoundaryWithIdentifier("LeftVertical", fromPoint: CGPointMake(self.view.frame.origin.x + 35, self.view.frame.origin.y), toPoint: CGPointMake(self.view.frame.origin.x + 35, self.view.frame.origin.y + self.view.frame.height))
+        //Far right boundary
+        self.collision?.addBoundaryWithIdentifier("RightVertical", fromPoint: CGPointMake(self.view.frame.origin.x + self.view.frame.width - 35, self.view.frame.origin.y), toPoint: CGPointMake(self.view.frame.origin.x + self.view.frame.width - 35, self.view.frame.origin.y + self.view.frame.height))
         
-        self.container3.layer.cornerRadius = self.container3.frame.size.width / 2
-        self.container3.clipsToBounds = true
-        
-        self.container4.layer.cornerRadius = self.container4.frame.size.width / 2
-        self.container4.clipsToBounds = true
-        
-        var myColor : UIColor = UIColor( red: 0.5, green: 0.5, blue:0, alpha: 1.0 )
-        
-        //button
-        self.button1.layer.cornerRadius = self.button1.frame.size.width / 2
-        self.button1.clipsToBounds = true
-        
-        self.button2.layer.cornerRadius = self.button2.frame.size.width / 2
-        self.button2.clipsToBounds = true
-        
-        self.button3.layer.cornerRadius = self.button3.frame.size.width / 2
-        self.button3.clipsToBounds = true
-        
-        self.button4.layer.cornerRadius = self.button4.frame.size.width / 2
-        self.button4.clipsToBounds = true
-        
-        self.button1.layer.borderWidth = 3.0
-        self.button1.layer.borderColor = myColor.CGColor
-        
-        self.button2.layer.borderWidth = 3.0
-        self.button2.layer.borderColor = myColor.CGColor
-        
-        self.button3.layer.borderWidth = 3.0
-        self.button3.layer.borderColor = myColor.CGColor
-        
-        self.button4.layer.borderWidth = 3.0
-        self.button4.layer.borderColor = myColor.CGColor
-        
-        
-        self.container1.addSubview(self.redSquare)
-        self.container1.addSubview(self.button1)
-        
-        self.container2.addSubview(self.blueSquare)
-        self.container2.addSubview(self.button2)
-        
-        self.container3.addSubview(self.greenSquare)
-        self.container3.addSubview(self.button3)
-        
-        self.container4.addSubview(self.orangeSquare)
-        self.container4.addSubview(self.button4)
-        
-       
-        
-        // Do any additional setup after loading the view.
+        //Adding additional behaviors to the bubbles
+        var itemBehavior = UIDynamicItemBehavior(items: [topLeftBubble, topRightBubble, bottomLeftBubble, bottomRightBubble]);
+        //Stops rotation as they bounce and fall
+        itemBehavior.allowsRotation = false;
+        //Makes collisions completely elastic so no energy is lost
+        itemBehavior.elasticity = 1.0;
+        //Set resistance and friction to 0 so they don't slow
+        itemBehavior.resistance = 0.0;
+        itemBehavior.friction = 0.0;
+        self.animator!.addBehavior(itemBehavior)
+        self.animator!.addBehavior(self.collision)
+        self.animator!.addBehavior(self.gravity)
+        self.animator!.addBehavior(instantaneousPush)
+        self.animator!.addBehavior(instantaneousPush2)        // Do any additional setup after loading the view.
         
     }
     //unwind segue
@@ -183,21 +181,93 @@ class HomeController: UIViewController {
         
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let data = appDelegate.getSegmentData()
-        
-        //println(data.dataFromWorkout)
         if (data.currentButtonPressed == 2){
-            button2Workout.text = data.dataFromWorkout
-            button2Time.text = data.workoutTime
-        }else if(data.currentButtonPressed == 3){
-            button3Workout.text = data.dataFromWorkout
-            button3Time.text = data.workoutTime
-        }else if(data.currentButtonPressed == 4){
-            button4Workout.text = data.dataFromWorkout
-            button4Time.text = data.workoutTime
-        }else if (data.currentButtonPressed == 1){
-            button1Workout.text = data.dataFromWorkout
-            button1Time.text = data.workoutTime
+            //If the workout is 20 minutes or less, this logic makes the bubble small
+            if (data.workoutLength.toInt()<=20)
+            {
+                self.topRightBubble.frame = CGRectMake(container2.frame.origin.x, container2.frame.origin.y, container2.frame.size.width, container2.frame.size.height)
+            }
+                //If the workout is between 20 and 40, this logic makes the bubble medium
+            else if (data.workoutLength.toInt()<=40)
+            {
+                self.topRightBubble.frame = CGRectMake(container2.frame.origin.x - 10, container2.frame.origin.y - 10, container2.frame.size.width + 20, container2.frame.size.height + 20)
+            }
+                //If the workout is between 40 and 60, this logic makes the bubble large
+            else
+            {
+                self.topRightBubble.frame = CGRectMake(container2.frame.origin.x - 20, container2.frame.origin.y - 20 - 10, container2.frame.size.width + 40, container2.frame.size.height + 40)
+            }
+            
+            //Sets the selected workout data to the Bubble's labels and changes the bubble's color
+            self.topRightBubble.exerciseLabel?.text = data.dataFromWorkout
+            self.topRightBubble.timeLabel?.text = data.workoutTime
+            self.topRightBubble.backgroundColor=UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1.0)
         }
+            
+        else if(data.currentButtonPressed == 3){
+            if (data.workoutLength.toInt()<=20)
+            {
+                self.bottomLeftBubble.frame = CGRectMake(container3.frame.origin.x, container3.frame.origin.y, container3.frame.size.width, container3.frame.size.height)
+            }
+                
+            else if (data.workoutLength.toInt()<=40)
+            {
+                self.bottomLeftBubble.frame = CGRectMake(container3.frame.origin.x - 10, container3.frame.origin.y - 10, container3.frame.size.width + 20, container3.frame.size.height + 20)
+            }
+                
+            else
+            {
+                self.bottomLeftBubble.frame = CGRectMake(container3.frame.origin.x - 20, container3.frame.origin.y - 20 + 10, container3.frame.size.width + 40, container3.frame.size.height + 40)
+            }
+            
+            self.bottomLeftBubble.exerciseLabel?.text = data.dataFromWorkout
+            self.bottomLeftBubble.timeLabel?.text = data.workoutTime
+            self.bottomLeftBubble.backgroundColor=UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1.0)
+        }
+            
+        else if(data.currentButtonPressed == 4){
+            if (data.workoutLength.toInt()<=20)
+            {
+                self.bottomRightBubble.frame = CGRectMake(container4.frame.origin.x, container4.frame.origin.y, container4.frame.size.width, container4.frame.size.height)
+            }
+                
+            else if (data.workoutLength.toInt()<=40)
+            {
+                self.bottomRightBubble.frame = CGRectMake(container4.frame.origin.x - 10, container4.frame.origin.y - 10, container4.frame.size.width + 20, container4.frame.size.height + 20)
+            }
+                
+            else
+            {
+                self.bottomRightBubble.frame = CGRectMake(container4.frame.origin.x - 20, container4.frame.origin.y - 20 + 10, container4.frame.size.width + 40, container4.frame.size.height + 40)
+            }
+            
+            self.bottomRightBubble.exerciseLabel?.text = data.dataFromWorkout
+            self.bottomRightBubble.timeLabel?.text = data.workoutTime
+            self.bottomRightBubble.backgroundColor=UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1.0)
+        }
+            
+        else if (data.currentButtonPressed == 1){
+            if (data.workoutLength.toInt()<=20)
+            {
+                self.topLeftBubble.frame = CGRectMake(container1.frame.origin.x, container1.frame.origin.y, container1.frame.size.width, container1.frame.size.height)
+            }
+                
+            else if (data.workoutLength.toInt()<=40)
+            {
+                self.topLeftBubble.frame = CGRectMake(container1.frame.origin.x - 10, container1.frame.origin.y - 10, container1.frame.size.width + 20, container1.frame.size.height + 20)
+            }
+                
+            else
+            {
+                self.topLeftBubble.frame = CGRectMake(container1.frame.origin.x - 20, container1.frame.origin.y - 20 - 10, container1.frame.size.width + 40, container1.frame.size.height + 40)
+            }
+            
+            self.topLeftBubble.exerciseLabel?.text = data.dataFromWorkout
+            self.topLeftBubble.timeLabel?.text = data.workoutTime
+            self.topLeftBubble.backgroundColor=UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1.0)
+        }
+
+        //println(data.dataFromWorkout)
         
         
         
@@ -338,6 +408,8 @@ class HomeController: UIViewController {
     
         println("Check func")
         println(self.defaults.objectForKey("eventIDButton1") as String?)
+        var eventButtonID1 = self.defaults.objectForKey("eventIDButton1") as String!
+        println(eventButtonID1)
         if ( self.defaults.objectForKey("eventIDButton1") as String? == ""){
     
             self.defaults.setInteger(0, forKey:("buttonOne"))

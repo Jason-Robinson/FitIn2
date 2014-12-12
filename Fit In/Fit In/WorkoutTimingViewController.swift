@@ -26,18 +26,31 @@ class WorkoutTimingViewController: UIViewController {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let data = appDelegate.getSegmentData()
         
-        startTime.text = data.workoutTimingStart
-        endTime.text = data.workoutTimingEnd
+        
         sliderLabel.text = "\(data.minWorkoutTime)"
         
         startPicker.addTarget(self, action: Selector("startPickerChanged:"), forControlEvents: UIControlEvents.ValueChanged)
         
         endPicker.addTarget(self, action: Selector("endPickerChanged:"), forControlEvents: UIControlEvents.ValueChanged)
-        
+        var endValue:String!
+        var startValue:String!
         var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         println(defaults.integerForKey("sliderValue"))
         var value = defaults.integerForKey("sliderValue")
-        var endValue = defaults.objectForKey("endStrValue") as String?
+        
+        if let firstNameIsNotNill = defaults.objectForKey("startStrValue") as? String{
+            startValue = defaults.objectForKey("startStrValue") as String!}
+        else{
+            startValue = "9:00 AM"
+        }
+
+        
+        if let firstNameIsNotNill = defaults.objectForKey("endStrValue") as? String{
+            endValue = defaults.objectForKey("endStrValue") as String!}
+        else{
+            endValue = "5:00 PM"
+        }
+        startTime.text = "\(startValue)"
         endTime.text = "\(endValue)"
         sliderLabel.text = "\(value)"
         sliderValue.value = Float(value)
@@ -77,9 +90,18 @@ class WorkoutTimingViewController: UIViewController {
         dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
         
         var strDate = dateFormatter.stringFromDate(datePicker.date)
-        data.workoutTimingStart = strDate
-        startTime.text = strDate
-        println(strDate)
+        var startDefaultValue:String!
+        startTime.text = startDefaultValue
+
+        var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(strDate, forKey: "startStrValue")
+        //gets data from user defaults
+        if let firstNameIsNotNill = defaults.objectForKey("startStrValue") as? String {
+            
+            startDefaultValue = defaults.objectForKey("startStrValue") as String
+        }
+        
+        startTime.text = startDefaultValue
     }
     func endPickerChanged(datePicker:UIDatePicker) {
         
@@ -93,8 +115,8 @@ class WorkoutTimingViewController: UIViewController {
         dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
         
         var strDate = dateFormatter.stringFromDate(datePicker.date)
-        var endDefaultValue = "9:00 AM"
-        
+        var endDefaultValue:String!
+        endTime.text = endDefaultValue
         var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(strDate, forKey: "endStrValue")
         //gets data from user defaults

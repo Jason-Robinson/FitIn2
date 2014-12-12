@@ -122,14 +122,15 @@ class SegmentData: NSObject {
         let ok = self.eventStore.saveEvent(ev, span:EKSpanThisEvent, commit:true, error:&err)
        
         //initialize defaults
-        self.defaults.setObject(self.eventIDButton1, forKey: "eventID1")
+        /*self.defaults.setObject(self.eventIDButton1, forKey: "eventID1")
         self.defaults.setObject(self.eventIDButton2, forKey: "eventID2")
         self.defaults.setObject(self.eventIDButton3, forKey: "eventID3")
-        self.defaults.setObject(self.eventIDButton1, forKey: "eventID4")
+        self.defaults.setObject(self.eventIDButton1, forKey: "eventID4")*/
         
         //set defaults
         if (buttonPressed == 1){
             self.eventIDButton1 = ev.eventIdentifier
+            println("heeeeee" + self.eventIDButton1)
             self.defaults.setObject(self.eventIDButton1, forKey: "eventID1")
         }else if(buttonPressed == 2){
             self.eventIDButton2 = ev.eventIdentifier
@@ -169,18 +170,25 @@ class SegmentData: NSObject {
     }
     func createReminder(){
         var store = EKEventStore()
-        
+        var start = NSDate()
         // Reminder
         let cal : EKCalendar! = self.calendarWithName("Calendar")
         var reminder = EKReminder(eventStore: self.eventStore)
         reminder.title = "Test"
         reminder.calendar = cal
-        
+       
+        let today = NSDate()
+        let greg = NSCalendar(calendarIdentifier:NSCalendarIdentifierGregorian)!
+        // day without time means "all day"
+        let comps : NSCalendarUnit = .YearCalendarUnit | .MonthCalendarUnit | .DayCalendarUnit
+        //comps.
+        reminder.dueDateComponents = greg.components(comps, fromDate:today)
         // Add alarm to reminder
        
         
         // Add it to Reminders.app
-        eventStore.saveReminder(reminder, commit: true, error: nil)
+        var error:NSErrorPointer = NSErrorPointer()
+        eventStore.saveReminder(reminder, commit: true, error:error)
     }
     
     
@@ -210,8 +218,8 @@ class SegmentData: NSObject {
             for i in eV {
                 
                 
-                if i.title == "FitWhen Workout Reminder" {
-                   /*println(eV.count)
+                if i.title == "FitWhen Workout" {
+                   println(eV.count)
                     self.array[count] = formatter.stringFromDate(i.startDate)
                     self.arrayEnd[count] = formatter.stringFromDate(i.endDate)
                     count += 1
@@ -225,8 +233,8 @@ class SegmentData: NSObject {
                         println("This is it 2")
                         println(date)
                         
-                    }*/
-                    eventStore.removeEvent(i, span: EKSpanThisEvent, error: nil)
+                    }
+                    //eventStore.removeEvent(i, span: EKSpanThisEvent, error: nil)
                 }
             }
         }

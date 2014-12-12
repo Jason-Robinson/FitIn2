@@ -159,7 +159,7 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
     @IBAction func cancel(sender: AnyObject) {
         println("In cancel accpeted")
         status = "cancel"
-        performSegueWithIdentifier("accepted", sender: self)
+       dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func openCalender(sender: AnyObject) {
