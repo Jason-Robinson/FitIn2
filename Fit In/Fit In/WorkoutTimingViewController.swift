@@ -37,7 +37,7 @@ class WorkoutTimingViewController: UIViewController {
         var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
         println(defaults.integerForKey("sliderValue"))
         var value = defaults.integerForKey("sliderValue")
-        var endValue = defaults.objectForKey("endStrValue") as String
+        var endValue = defaults.objectForKey("endStrValue") as String?
         endTime.text = "\(endValue)"
         sliderLabel.text = "\(value)"
         sliderValue.value = Float(value)

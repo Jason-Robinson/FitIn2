@@ -8,11 +8,18 @@
 
 import UIKit
 import EventKit
+import EventKitUI
 
 class SegmentData: NSObject {
    
-    
+   var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var eventStore = EKEventStore()
+    var eventIDButton1 = ""
+    var eventIDButton2 = ""
+    var eventIDButton3 = ""
+    var eventIDButton4 = ""
+    
+    
     //work options
     var gym: [String] = ["Easy - 15 squats","Easy - Run up and down stairs for 2 minutes","Easy - 15 push-ups","Easy - 15 sit ups","Easy - 2 minutes of wall sits","Medium - 30 squats","Medium - 30 push-ups","Medium - 30 sit ups","Medium - Run up and down stairs for 5 minutes","Medium - 5 minutes of wall sits","Hard - 45 squats","Hard - 45 push-ups","Hard - 45 sit ups","Hard - 10 minutes of wall sits","Hard -  Run up and down stairs for 10 minutes"]
     var home: [String] = ["Easy - 15 squats","Easy - Run up and down stairs for 2 minutes","Easy - 15 push-ups","Easy - 15 sit ups","Easy - 2 minutes of wall sits","Medium - 30 squats","Medium - 30 push-ups","Medium - 30 sit ups","Medium - Run up and down stairs for 5 minutes","Medium - 5 minutes of wall sits","Hard - 45 squats","Hard - 45 push-ups","Hard - 45 sit ups","Hard - 10 minutes of wall sits","Hard -  Run up and down stairs for 10 minutes"]
@@ -20,11 +27,11 @@ class SegmentData: NSObject {
     
    
     //workout selection from workoutSelectionViewController
-    var dataFromWorkout:String = "Workout"
+    var dataFromWorkout:String = "Didn't Select A Workout"
     //time of day from workoutSelectionViewController
-    var workoutTime:String = "Select"
+    var workoutTime:String = "12:00 PM"
     //length of workout from workoutSelectionViewController
-    var workoutLength = ""
+    var workoutLength = "5"
     //beginning time to start workouts, default
     var workoutTimingStart = "9:00 AM"
     //ending time for workouts to start
@@ -38,13 +45,15 @@ class SegmentData: NSObject {
     var button2Pressed = 0
     var button3Pressed = 0
     var button4Pressed = 0
-    
+    var start:NSDate!
+    var end:NSDate!
     //minimum workout time in WorkoutTimeController
     var minWorkoutTime = 0
     
+    var array:[String] = ["","","","","",""]
+    var arrayEnd:[String] = ["","","","","",""]
     
-    
-    func addEvent(){
+    func addEvent(buttonPressed:Int){
         
         
         let date = NSDate()
@@ -82,7 +91,13 @@ class SegmentData: NSObject {
         comp.month = month
         comp.minute = minute!
         comp.day = day
-        comp.hour = hours!
+        println(minutesParsed[1])
+        //adjusts for 12 hr time format
+        if (minutesParsed[1] == "PM" && hours! != 12){
+            comp.hour = hours! + 12
+        }else{
+            comp.hour = hours!
+        }
         
         let start = greg.dateFromComponents(comp)
         if (timeAmount! == 60){
@@ -105,8 +120,34 @@ class SegmentData: NSObject {
         
         var err : NSError?
         let ok = self.eventStore.saveEvent(ev, span:EKSpanThisEvent, commit:true, error:&err)
+       
+        //initialize defaults
+        self.defaults.setObject(self.eventIDButton1, forKey: "eventID1")
+        self.defaults.setObject(self.eventIDButton2, forKey: "eventID2")
+        self.defaults.setObject(self.eventIDButton3, forKey: "eventID3")
+        self.defaults.setObject(self.eventIDButton1, forKey: "eventID4")
+        
+        //set defaults
+        if (buttonPressed == 1){
+            self.eventIDButton1 = ev.eventIdentifier
+            self.defaults.setObject(self.eventIDButton1, forKey: "eventID1")
+        }else if(buttonPressed == 2){
+            self.eventIDButton2 = ev.eventIdentifier
+            self.defaults.setObject(self.eventIDButton2, forKey: "eventID2")
+        }else if (buttonPressed == 3){
+            self.eventIDButton3 = ev.eventIdentifier
+            self.defaults.setObject(self.eventIDButton3, forKey: "eventID3")
+        }else if (buttonPressed == 4){
+            self.eventIDButton4 = ev.eventIdentifier
+            self.defaults.setObject(self.eventIDButton4, forKey: "eventID4")
+        }
+        
+        
+
+        
         if !ok {
             println("save simple event \(err!.localizedDescription)")
+            
             return
         }
         println("no errors")
@@ -118,7 +159,7 @@ class SegmentData: NSObject {
         
         
         for cal in calendars { // (should be using identifier)
-            if cal.title == name {
+            if cal.title == "Calendar" {
                 
                 return cal
             }
@@ -126,65 +167,73 @@ class SegmentData: NSObject {
         println ("failed to find calendar")
         return nil
     }
-    
-    func createRecurringEvent () {
+    func createReminder(){
+        var store = EKEventStore()
         
+        // Reminder
+        let cal : EKCalendar! = self.calendarWithName("Calendar")
+        var reminder = EKReminder(eventStore: self.eventStore)
+        reminder.title = "Test"
+        reminder.calendar = cal
+        
+        // Add alarm to reminder
+       
+        
+        // Add it to Reminders.app
+        eventStore.saveReminder(reminder, commit: true, error: nil)
+    }
+    
+    
+    
+           func deleteEvent(){
         
         let cal : EKCalendar! = self.calendarWithName("Calendar")
+            
+        let event = EKEvent(eventStore: self.eventStore)
         if cal == nil {
             return
         }
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = .MediumStyle
+        formatter.timeStyle = .MediumStyle
         
-        let date = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(.CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitDay | .WeekdayOrdinalCalendarUnit, fromDate: date)
-        let month = components.month
-        let day = components.day
-        let year = components.year
-        let dayOrdinal = components.weekdayOrdinal + 1
-        println(dayOrdinal)
+        var startDate=NSDate().dateByAddingTimeInterval(-60*60*24)
+        var endDate=NSDate().dateByAddingTimeInterval(60*24*3)
+        var predicate2 = eventStore.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
         
-        
-        let everyDay = EKRecurrenceDayOfWeek(2)
-        let reminderMonth = month
-        let recur = EKRecurrenceRule(
-            recurrenceWithFrequency:EKRecurrenceFrequencyDaily, // every year
-            interval:1, // no, every *two* years
-            daysOfTheWeek:nil,
-            daysOfTheMonth:nil,
-            monthsOfTheYear:nil,
-            weeksOfTheYear:nil,
-            daysOfTheYear:nil,
-            setPositions: nil,
-            end:nil)
-        
-        let ev = EKEvent(eventStore:self.eventStore)
-        ev.title = "Mysterious biennial Sunday-in-January morning ritual"
-        ev.addRecurrenceRule(recur)
-        ev.calendar = cal
-        // need a start date and end date
-        let greg = NSCalendar(calendarIdentifier:NSCalendarIdentifierGregorian)!
-        let comp = NSDateComponents()
-        comp.year = year
-        comp.month = reminderMonth
-        
-        comp.weekday = 3
-        comp.weekdayOrdinal = 5
-        comp.hour = 10
-        ev.startDate = greg.dateFromComponents(comp)
-        comp.hour = 11
-        ev.endDate = greg.dateFromComponents(comp)
-        
-        var err : NSError?
-        let ok = self.eventStore.saveEvent(ev, span:EKSpanFutureEvents, commit:true, error:&err)
-        if !ok {
-            println("save recurring event \(err!.localizedDescription)")
-            return
+        println("startDate:\(start) endDate:\(endDate)")
+        var eV = eventStore.eventsMatchingPredicate(predicate2) as [EKEvent]!
+        var theDateFormat = NSDateFormatterStyle.ShortStyle
+        formatter.dateStyle = theDateFormat
+        var count = 0
+       if eV != nil {
+            for i in eV {
+                
+                
+                if i.title == "FitWhen Workout Reminder" {
+                   /*println(eV.count)
+                    self.array[count] = formatter.stringFromDate(i.startDate)
+                    self.arrayEnd[count] = formatter.stringFromDate(i.endDate)
+                    count += 1
+                    for date in array{
+                        println("This is it")
+                        println(date)
+                        
+                    }
+                    println("end")
+                    for date in arrayEnd{
+                        println("This is it 2")
+                        println(date)
+                        
+                    }*/
+                    eventStore.removeEvent(i, span: EKSpanThisEvent, error: nil)
+                }
+            }
         }
-        println("no errors")
-    }
+        
+        
     
 }
+    
 
-
-
+}

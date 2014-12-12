@@ -78,7 +78,7 @@ class CustomizeController: UIViewController{
         
         var strDate = dateFormatter.stringFromDate(datePicker.date)
         data.dailyReminderTime = strDate
-        
+        //data.start = datePicker.date
         println(strDate)
     }
 
@@ -88,9 +88,13 @@ class CustomizeController: UIViewController{
         let data = appDelegate.getSegmentData()
         
         if dailyReminderSwitch.on{
-            data.createRecurringEvent()
+            data.createReminder()
             
-            println("on")}
+            println("on")
+        }else {
+            println("deleting")
+            data.deleteEvent()
+        }
     }
     
     //receives unwind from workout timing view

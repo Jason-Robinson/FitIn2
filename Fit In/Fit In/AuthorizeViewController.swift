@@ -12,7 +12,7 @@ import EventKit
 class AuthorizeViewController: UIViewController {
 
     var homeController: UIViewController?
-    var eventStore = EKEventStore()
+    var eventStore : EKEventStore!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -44,14 +44,17 @@ class AuthorizeViewController: UIViewController {
     func calendar() {
         
         
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let data = appDelegate.getSegmentData()
         
         // 'EKEntityTypeReminder' or 'EKEntityTypeEvent'
+        self.eventStore = EKEventStore()
         self.eventStore.requestAccessToEntityType(EKEntityTypeEvent, completion: {
             granted, error in
             if (granted) && (error == nil) {
                 println("granted \(granted)")
                 println("error  \(error)")
-                
+                data.eventStore = self.eventStore
             }
             
         })

@@ -11,7 +11,7 @@ import EventKit
 
 
 
-class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDataSource, UIPickerViewDelegate {
+class WorkoutSelectionController: UIViewController,  UITableViewDataSource, UITableViewDelegate,UIPickerViewDataSource, UIPickerViewDelegate {
 
     var calCheck = "false"
     
@@ -164,6 +164,7 @@ class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITable
         
         var strDate = dateFormatter.stringFromDate(datePicker.date)
         data.workoutTime = strDate
+        //data.start = dateFormatter.dateFromString(strDate)
         println(strDate)
     }
     //determines which segment "Home, office, gym" that has been selected, changes segmentIdentifier based on users selection, reloads tableView func's for this change
@@ -211,7 +212,19 @@ class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITable
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let data = appDelegate.getSegmentData()
         
+         var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        
+        if (picker[row] != ""){
         data.workoutLength = picker[row]
+        }else{
+            data.workoutLength = "5"
+        }
+        
+        
+        
+        
+        
+        
         println( picker[row])
     }
     //picker view------------------
@@ -230,16 +243,30 @@ class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITable
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let data = appDelegate.getSegmentData()
         
+        var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+       
         //determines which buttin was pushed and sets its ID has pressed to assist in navigating to 
         //accepted workout controller upon return to home controller
         if (data.currentButtonPressed == 1){
+            
             data.button1Pressed = 1
+            defaults.setInteger(data.button1Pressed, forKey: "buttonOne")
+            
         }else if (data.currentButtonPressed == 2){
+            
             data.button2Pressed = 1
+            defaults.setInteger(data.button2Pressed, forKey: "buttonTwo")
+            
         }else if (data.currentButtonPressed == 3){
+            
             data.button3Pressed = 1
+            defaults.setInteger(data.button3Pressed, forKey: "buttonThree")
+            
         }else if (data.currentButtonPressed == 4){
+            
             data.button4Pressed = 1
+            defaults.setInteger(data.button4Pressed, forKey: "buttonFour")
+            
         }
         
         //user defaults variable
@@ -248,7 +275,7 @@ class WorkoutSelectionController: UIViewController, UITableViewDelegate, UITable
         
         
         
-        data.addEvent()
+        data.addEvent(data.currentButtonPressed)
         //activates segue to home controller
         performSegueWithIdentifier("Home", sender: self)
         }

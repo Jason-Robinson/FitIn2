@@ -51,6 +51,10 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
        
         
     }
+    
+    @IBAction func editEvent (sender:AnyObject!) {
+        
+    }
     //returns count of struct to set number of cells
       func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         var result = 0

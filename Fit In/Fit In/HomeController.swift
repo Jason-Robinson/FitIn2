@@ -25,7 +25,7 @@ class HomeController: UIViewController {
     var button3ID = 3
     var button4ID = 4
     
-    
+    var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var button1Time: UILabel!
@@ -69,7 +69,7 @@ class HomeController: UIViewController {
         
         
         //performSegueWithIdentifier("authorize", sender: self)
-        let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
+        let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .NoStyle)
        dateLabel.text = timestamp
         
         self.redSquare.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
@@ -155,6 +155,7 @@ class HomeController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         println("viewDidAppear in Docs")
+        checkEventState()
         TFreturn = determineStatus()
         if (TFreturn == true){
             println("true")
@@ -207,9 +208,11 @@ class HomeController: UIViewController {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let data = appDelegate.getSegmentData()
         
+        var buttonPressOne = self.defaults.integerForKey("buttonOne")
+        
         data.currentButtonPressed = 1
-        println("button1Filled \(data.currentButtonPressed)")
-        if ( data.button1Pressed == 1){
+       println(buttonPressOne)
+        if ( buttonPressOne == 1){
             acceptedWorkoutViewController=self.storyboard!.instantiateViewControllerWithIdentifier("AcceptedWorkoutController") as AcceptedWorkoutController
             
             if (acceptedWorkoutViewController != nil ) {
@@ -230,9 +233,16 @@ class HomeController: UIViewController {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let data = appDelegate.getSegmentData()
         
+        
+        
+        
+        var buttonPressTwo = self.defaults.integerForKey("buttonTwo")
+        
+
         data.currentButtonPressed = 2
-       println(data.button2Pressed)
-        if ( data.button2Pressed == 1){
+        
+       
+        if ( buttonPressTwo == 1){
         acceptedWorkoutViewController=self.storyboard!.instantiateViewControllerWithIdentifier("AcceptedWorkoutController") as AcceptedWorkoutController
             
             if (acceptedWorkoutViewController != nil ) {
@@ -251,9 +261,12 @@ class HomeController: UIViewController {
     @IBAction func button3Filled(sender: AnyObject) {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let data = appDelegate.getSegmentData()
+        
+        var buttonPressThree = defaults.integerForKey("buttonThree")
+        
         data.currentButtonPressed = 3
         
-        if ( data.button3Pressed == 1){
+        if ( buttonPressThree == 1){
             acceptedWorkoutViewController=self.storyboard!.instantiateViewControllerWithIdentifier("AcceptedWorkoutController") as AcceptedWorkoutController
             
             if (acceptedWorkoutViewController != nil ) {
@@ -272,9 +285,11 @@ class HomeController: UIViewController {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let data = appDelegate.getSegmentData()
         
+        var buttonPressFour = defaults.integerForKey("buttonFour")
+        
         data.currentButtonPressed = 4
         
-        if ( data.button4Pressed == 1){
+        if ( buttonPressFour == 1){
             acceptedWorkoutViewController=self.storyboard!.instantiateViewControllerWithIdentifier("AcceptedWorkoutController") as AcceptedWorkoutController
             
             if (acceptedWorkoutViewController != nil ) {
@@ -315,8 +330,28 @@ class HomeController: UIViewController {
             return false
         }
     }
+    //checks if event ID for the current workouts of the active buttons are empty, if so resets button state to 0 so user can create a new event
+    func checkEventState(){
     
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    let data = appDelegate.getSegmentData()
     
+        println("Check func")
+        println(self.defaults.objectForKey("eventIDButton1") as String?)
+        if ( self.defaults.objectForKey("eventIDButton1") as String? == ""){
+    
+            self.defaults.setInteger(0, forKey:("buttonOne"))
+        
+        }else if ( self.defaults.objectForKey("eventIDButton2") as String? == ""){
+    
+            self.defaults.setInteger(0, forKey:("buttonTwo"))
+            
+        }else if (self.defaults.objectForKey("eventIDButton3") as String? == ""){
+            self.defaults.setInteger(0, forKey:("buttonThree"))
+        }else if (self.defaults.objectForKey("eventIDButton3") as String? == ""){
+            self.defaults.setInteger(0, forKey:("buttonFour"))
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
