@@ -14,7 +14,7 @@ import EventKit
 class WorkoutSelectionController: UIViewController,  UITableViewDataSource, UITableViewDelegate,UIPickerViewDataSource, UIPickerViewDelegate {
 
     var calCheck = "false"
-    
+    var lengthOfWorkoutArrays = 0
     var eventStore = EKEventStore()
     //add workout button
     @IBOutlet weak var addWorkout: UIButton!
@@ -36,11 +36,17 @@ class WorkoutSelectionController: UIViewController,  UITableViewDataSource, UITa
     var strWorkout:String = ""
     
     //workout data arrays
-    var homeW:[String] = []
-    var gymW:[String] = []
-    var officeW:[String] = []
+    var homeShort:[String] = []
+    var gymShort:[String] = []
+    var officeShort:[String] = []
     
+    var homeMedium:[String] = []
+    var gymMedium:[String] = []
+    var officeMedium:[String] = []
     
+    var homeLong:[String] = []
+    var gymLong:[String] = []
+    var officeLong:[String] = []
     
     //ID for segment control
     var segmentIdentifier = 0;
@@ -60,11 +66,17 @@ class WorkoutSelectionController: UIViewController,  UITableViewDataSource, UITa
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let data = appDelegate.getSegmentData()
 
-        homeW = data.home
-        gymW = data.gym
-        officeW = data.office
+        homeShort = data.homeShort
+        gymShort = data.gymShort
+        officeShort = data.officeShort
         
+        homeMedium = data.homeMedium
+        gymMedium = data.gymMedium
+        officeMedium = data.officeMedium
         
+        homeLong = data.homeLong
+        gymLong = data.gymLong
+        officeLong = data.officeLong
 
         
         self.tableView.reloadData()
@@ -76,21 +88,48 @@ class WorkoutSelectionController: UIViewController,  UITableViewDataSource, UITa
 
     //returns number of rows based on the count of the works arrays
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        var result = 0
+        var result = 15
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let data = appDelegate.getSegmentData()
+        //short
+        if (segmentIdentifier == 0 && self.lengthOfWorkoutArrays == 0) {
+            result = homeShort.count
+            
+        }
+        else if (segmentIdentifier == 0 && self.lengthOfWorkoutArrays == 0){
+            result = homeShort.count
         
-        //home
-        if (segmentIdentifier == 0){
-            result = homeW.count
         }
-            //office
-        else if (segmentIdentifier == 1){
-            result = officeW.count
+        else if (segmentIdentifier == 0 && self.lengthOfWorkoutArrays == 0){
+            result = homeShort.count
+            
         }
-            //gym
-        else if (segmentIdentifier == 2){
-            result = gymW.count
+        //medium
+        else if (segmentIdentifier == 1 && self.lengthOfWorkoutArrays == 1){
+            result = homeMedium.count
+            
         }
-        
+        else if (segmentIdentifier == 1 && self.lengthOfWorkoutArrays == 1){
+            result = homeMedium.count
+            
+        }
+        else if (segmentIdentifier == 1 && self.lengthOfWorkoutArrays == 1){
+            result = homeMedium.count
+           
+        }
+        //long workouts
+        else if (segmentIdentifier == 2 && self.lengthOfWorkoutArrays == 2){
+            result = homeLong.count
+           
+        }
+        else if (segmentIdentifier == 2 && self.lengthOfWorkoutArrays == 2){
+            result = homeLong.count
+            
+        }
+        else if (segmentIdentifier == 2 && self.lengthOfWorkoutArrays == 2){
+            result = homeLong.count
+            
+        }
         return result
     }
     
@@ -100,19 +139,49 @@ class WorkoutSelectionController: UIViewController,  UITableViewDataSource, UITa
         cell = tableView.dequeueReusableCellWithIdentifier("workoutCells", forIndexPath: indexPath) as UITableViewCell
         
         //strut objects on specific row
-        let gymData = gymW[indexPath.row]
-        let homeData = homeW[indexPath.row]
-        let officeData = officeW[indexPath.row]
+        let gymDataShort = gymShort[indexPath.row]
+        let homeDataShort = homeShort[indexPath.row]
+        let officeDataShort = officeShort[indexPath.row]
+        
+        let gymDataMedium = gymMedium[indexPath.row]
+        let homeDataMedium = homeMedium[indexPath.row]
+        let officeDataMedium = officeMedium[indexPath.row]
+        
+        let gymDataLong = gymLong[indexPath.row]
+        let homeDataLong = homeLong[indexPath.row]
+        let officeDataLong = officeLong[indexPath.row]
         
         //adds struct data to tableView
-        if (segmentIdentifier == 0){
-            cell.textLabel?.text = homeData//home
+        if (segmentIdentifier == 0 && self.lengthOfWorkoutArrays == 0){
+            cell.textLabel?.text = homeDataShort//home
            
-        }else if (segmentIdentifier == 1){
-            cell.textLabel?.text = officeData//office
-                    }else if (segmentIdentifier == 2){
-            cell.textLabel?.text = gymData//gym
+        }else if (segmentIdentifier == 1 && self.lengthOfWorkoutArrays == 0){
+            cell.textLabel?.text = officeDataShort//office
+        }else if (segmentIdentifier == 2 && self.lengthOfWorkoutArrays == 0){
+            cell.textLabel?.text = gymDataShort//gym
            
+            
+        }
+        
+        if (segmentIdentifier == 0 && self.lengthOfWorkoutArrays == 1){
+            cell.textLabel?.text = homeDataMedium//home
+            
+        }else if (segmentIdentifier == 1 && self.lengthOfWorkoutArrays == 1){
+            cell.textLabel?.text = officeDataMedium//office
+        }else if (segmentIdentifier == 2 && self.lengthOfWorkoutArrays == 1){
+            cell.textLabel?.text = gymDataMedium//gym
+            
+            
+        }
+        
+        if (segmentIdentifier == 0 && self.lengthOfWorkoutArrays == 2){
+            cell.textLabel?.text = homeDataLong//home
+            
+        }else if (segmentIdentifier == 1 && self.lengthOfWorkoutArrays == 2){
+            cell.textLabel?.text = officeDataLong//office
+        }else if (segmentIdentifier == 2 && self.lengthOfWorkoutArrays == 2){
+            cell.textLabel?.text = gymDataLong//gym
+            
             
         }
         
@@ -130,14 +199,34 @@ class WorkoutSelectionController: UIViewController,  UITableViewDataSource, UITa
         let data = appDelegate.getSegmentData()
         
         
-        if (segmentIdentifier == 0){
-            data.dataFromWorkout = homeW[indexPath.row]
+        if (segmentIdentifier == 0 && self.lengthOfWorkoutArrays == 0){
+            data.dataFromWorkout = homeShort[indexPath.row]
         }
-        else if (segmentIdentifier == 1){
-            data.dataFromWorkout = officeW[indexPath.row]
+        else if (segmentIdentifier == 1 && self.lengthOfWorkoutArrays == 0){
+            data.dataFromWorkout = officeShort[indexPath.row]
         }
-        else if (segmentIdentifier == 2){
-            data.dataFromWorkout = gymW[indexPath.row]
+        else if (segmentIdentifier == 2 && self.lengthOfWorkoutArrays == 0){
+            data.dataFromWorkout = gymShort[indexPath.row]
+        }
+        
+        if (segmentIdentifier == 0 && self.lengthOfWorkoutArrays == 1){
+            data.dataFromWorkout = homeMedium[indexPath.row]
+        }
+        else if (segmentIdentifier == 1 && self.lengthOfWorkoutArrays == 1){
+            data.dataFromWorkout = officeMedium[indexPath.row]
+        }
+        else if (segmentIdentifier == 2 && self.lengthOfWorkoutArrays == 1){
+            data.dataFromWorkout = gymMedium[indexPath.row]
+        }
+        
+        if (segmentIdentifier == 0 && self.lengthOfWorkoutArrays == 2){
+            data.dataFromWorkout = homeLong[indexPath.row]
+        }
+        else if (segmentIdentifier == 1 && self.lengthOfWorkoutArrays == 2){
+            data.dataFromWorkout = officeLong[indexPath.row]
+        }
+        else if (segmentIdentifier == 2 && self.lengthOfWorkoutArrays == 2){
+            data.dataFromWorkout = gymLong[indexPath.row]
         }
         println(data.dataFromWorkout)
         println(" cell Selected #\(indexPath.row)!")
@@ -220,6 +309,18 @@ class WorkoutSelectionController: UIViewController,  UITableViewDataSource, UITa
             data.workoutLength = "5"
         }
         
+        
+        if (data.workoutLength.toInt() >= 5 && data.workoutLength.toInt() < 20){
+            self.lengthOfWorkoutArrays = 0
+             self.tableView.reloadData()
+        }else if (data.workoutLength.toInt() >= 20 && data.workoutLength.toInt() < 40){
+            self.lengthOfWorkoutArrays = 1
+             self.tableView.reloadData()
+        }else if (data.workoutLength.toInt() >= 40 && data.workoutLength.toInt() <= 60){
+            self.lengthOfWorkoutArrays = 2
+            self.tableView.reloadData()
+        }
+       
         
         
         

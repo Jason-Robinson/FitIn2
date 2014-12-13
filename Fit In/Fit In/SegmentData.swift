@@ -21,10 +21,15 @@ class SegmentData: NSObject {
     
     
     //work options
-    var gym: [String] = ["Easy - 15 squats","Easy - Run up and down stairs for 2 minutes","Easy - 15 push-ups","Easy - 15 sit ups","Easy - 2 minutes of wall sits","Medium - 30 squats","Medium - 30 push-ups","Medium - 30 sit ups","Medium - Run up and down stairs for 5 minutes","Medium - 5 minutes of wall sits","Hard - 45 squats","Hard - 45 push-ups","Hard - 45 sit ups","Hard - 10 minutes of wall sits","Hard -  Run up and down stairs for 10 minutes"]
-    var home: [String] = ["Easy - 15 squats","Easy - Run up and down stairs for 2 minutes","Easy - 15 push-ups","Easy - 15 sit ups","Easy - 2 minutes of wall sits","Medium - 30 squats","Medium - 30 push-ups","Medium - 30 sit ups","Medium - Run up and down stairs for 5 minutes","Medium - 5 minutes of wall sits","Hard - 45 squats","Hard - 45 push-ups","Hard - 45 sit ups","Hard - 10 minutes of wall sits","Hard -  Run up and down stairs for 10 minutes"]
-    var office: [String] = ["Easy - 15 squats","Easy - Run up and down stairs for 2 minutes","Easy - 15 push-ups","Easy - 15 sit ups","Easy - 2 minutes of wall sits","Medium - 30 squats","Medium - 30 push-ups","Medium - 30 sit ups","Medium - Run up and down stairs for 5 minutes","Medium - 5 minutes of wall sits","Hard - 45 squats","Hard - 45 push-ups","Hard - 45 sit ups","Hard - 10 minutes of wall sits","Hard -  Run up and down stairs for 10 minutes"]
-    
+    var gymShort: [String] = ["Easy - 15 squats","Easy - Run up and down stairs for 2 minutes","Easy - 15 push-ups","Easy - 15 sit ups","Easy - 2 minutes of wall sits","Medium - 30 squats","Medium - 30 push-ups","Medium - 30 sit ups","Medium - Run up and down stairs for 5 minutes","Medium - 5 minutes of wall sits","Hard - 45 squats","Hard - 45 push-ups","Hard - 45 sit ups","Hard - 10 minutes of wall sits","Hard -  Run up and down stairs for 10 minutes"]
+    var homeShort: [String] = ["Easy - 15 squats","Easy - Run up and down stairs for 2 minutes","Easy - 15 push-ups","Easy - 15 sit ups","Easy - 2 minutes of wall sits","Medium - 30 squats","Medium - 30 push-ups","Medium - 30 sit ups","Medium - Run up and down stairs for 5 minutes","Medium - 5 minutes of wall sits","Hard - 45 squats","Hard - 45 push-ups","Hard - 45 sit ups","Hard - 10 minutes of wall sits","Hard -  Run up and down stairs for 10 minutes"]
+    var officeShort: [String] = ["Easy - 15 squats","Easy - Run up and down stairs for 2 minutes","Easy - 15 push-ups","Easy - 15 sit ups","Easy - 2 minutes of wall sits","Medium - 30 squats","Medium - 30 push-ups","Medium - 30 sit ups","Medium - Run up and down stairs for 5 minutes","Medium - 5 minutes of wall sits","Hard - 45 squats","Hard - 45 push-ups","Hard - 45 sit ups","Hard - 10 minutes of wall sits","Hard -  Run up and down stairs for 10 minutes"]
+    var gymMedium: [String] = ["gym medium","Easy - Run up and down stairs for 2 minutes","Easy - 15 push-ups","Easy - 15 sit ups","Easy - 2 minutes of wall sits","Medium - 30 squats","Medium - 30 push-ups","Medium - 30 sit ups","Medium - Run up and down stairs for 5 minutes","Medium - 5 minutes of wall sits","Hard - 45 squats","Hard - 45 push-ups","Hard - 45 sit ups","Hard - 10 minutes of wall sits","Hard -  Run up and down stairs for 10 minutes"]
+    var homeMedium: [String] = ["home Medium","Easy - Run up and down stairs for 2 minutes","Easy - 15 push-ups","Easy - 15 sit ups","Easy - 2 minutes of wall sits","Medium - 30 squats","Medium - 30 push-ups","Medium - 30 sit ups","Medium - Run up and down stairs for 5 minutes","Medium - 5 minutes of wall sits","Hard - 45 squats","Hard - 45 push-ups","Hard - 45 sit ups","Hard - 10 minutes of wall sits","Hard -  Run up and down stairs for 10 minutes"]
+    var officeMedium: [String] = ["office medium","Easy - Run up and down stairs for 2 minutes","Easy - 15 push-ups","Easy - 15 sit ups","Easy - 2 minutes of wall sits","Medium - 30 squats","Medium - 30 push-ups","Medium - 30 sit ups","Medium - Run up and down stairs for 5 minutes","Medium - 5 minutes of wall sits","Hard - 45 squats","Hard - 45 push-ups","Hard - 45 sit ups","Hard - 10 minutes of wall sits","Hard -  Run up and down stairs for 10 minutes"]
+    var gymLong: [String] = ["gym long", "Easy - Run up and down stairs for 2 minutes","Easy - 15 push-ups","Easy - 15 sit ups","Easy - 2 minutes of wall sits","Medium - 30 squats","Medium - 30 push-ups","Medium - 30 sit ups","Medium - Run up and down stairs for 5 minutes","Medium - 5 minutes of wall sits","Hard - 45 squats","Hard - 45 push-ups","Hard - 45 sit ups","Hard - 10 minutes of wall sits","Hard -  Run up and down stairs for 10 minutes"]
+    var homeLong: [String] = ["home long","Easy - Run up and down stairs for 2 minutes","Easy - 15 push-ups","Easy - 15 sit ups","Easy - 2 minutes of wall sits","Medium - 30 squats","Medium - 30 push-ups","Medium - 30 sit ups","Medium - Run up and down stairs for 5 minutes","Medium - 5 minutes of wall sits","Hard - 45 squats","Hard - 45 push-ups","Hard - 45 sit ups","Hard - 10 minutes of wall sits","Hard -  Run up and down stairs for 10 minutes"]
+    var officeLong: [String] = ["office long","Easy - Run up and down stairs for 2 minutes","Easy - 15 push-ups","Easy - 15 sit ups","Easy - 2 minutes of wall sits","Medium - 30 squats","Medium - 30 push-ups","Medium - 30 sit ups","Medium - Run up and down stairs for 5 minutes","Medium - 5 minutes of wall sits","Hard - 45 squats","Hard - 45 push-ups","Hard - 45 sit ups","Hard - 10 minutes of wall sits","Hard -  Run up and down stairs for 10 minutes"]
    
     //workout selection from workoutSelectionViewController
     var dataFromWorkout:String = "Didn't Select A Workout"
@@ -50,8 +55,8 @@ class SegmentData: NSObject {
     //minimum workout time in WorkoutTimeController
     var minWorkoutTime = 0
     
-    var array:[String] = ["","","","","",""]
-    var arrayEnd:[String] = ["","","","","",""]
+    var array:[String] = ["","","","","","","","","","","","",""]
+    var arrayEnd:[String] = ["","","","","","","","","","","","",""]
     
     func addEvent(buttonPressed:Int){
         
@@ -181,7 +186,7 @@ class SegmentData: NSObject {
         let greg = NSCalendar(calendarIdentifier:NSCalendarIdentifierGregorian)!
         // day without time means "all day"
         let comps : NSCalendarUnit = .YearCalendarUnit | .MonthCalendarUnit | .DayCalendarUnit
-        
+        //comps.
         reminder.dueDateComponents = greg.components(comps, fromDate:today)
         // Add alarm to reminder
        
@@ -190,8 +195,6 @@ class SegmentData: NSObject {
         var error:NSErrorPointer = NSErrorPointer()
         eventStore.saveReminder(reminder, commit: true, error:error)
     }
-    
-    
     
            func deleteEvent(){
         
@@ -205,46 +208,63 @@ class SegmentData: NSObject {
         formatter.dateStyle = .MediumStyle
         formatter.timeStyle = .MediumStyle
         
-            var parsedTime = self.workoutTime.componentsSeparatedByString(":")
-            var hour:String = parsedTime[0]
-            var minutesAnd12Hour = parsedTime[1]
-            var minutesParsed = minutesAnd12Hour.componentsSeparatedByString(" ")
-            var minutes = minutesParsed[0]
-            
-            let hours:Int? = hour.toInt()
-            let minute:Int? = minutes.toInt()
-            
-            
-            
-            
-            
         var startDate=NSDate().dateByAddingTimeInterval(-60*60*24)
-        var endDate=NSDate().dateByAddingTimeInterval(60*60*24*3)
+        var endDate=NSDate().dateByAddingTimeInterval(60*24*3)
         var predicate2 = eventStore.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
         var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-            var endDefaults = defaults.objectForKey("endStrValue") as String!
-             var startDefaults = defaults.objectForKey("startStrValue") as String!
+        var endDefaults = defaults.objectForKey("endStrValue") as String!
+        var startDefaults = defaults.objectForKey("startStrValue") as String!
         var freeTime = 0
         var time = 0
-            let userStartTime:Int? = startDefaults.toInt()
-            let userEndTime:Int? = endDefaults.toInt()
-           
+  //      let userStartTime:Int? = startDefaults.toInt()
+    //    let userEndTime:Int? = endDefaults.toInt()
+        
+        //parse startDefaults
+            var parsedStartDef:[String]
+            if (startDefaults == nil){
+                parsedStartDef = "9:00 AM".componentsSeparatedByString(":")
+            }else{
+             parsedStartDef = startDefaults.componentsSeparatedByString(":")
+            }
+                var startDefHour:String = parsedStartDef[0]
+            var startDefMinutesAnd12Hour = parsedStartDef[1]
+            var startDefMinutesParsed = startDefMinutesAnd12Hour.componentsSeparatedByString(" ")
+            var startDefMinutes = startDefMinutesParsed[0]
+            var startDefAMPM = startDefMinutesParsed[1]
+
+            let defaultStartHours:Int? = startDefHour.toInt()
+            let defaultStartMinute:Int? = startDefMinutes.toInt()
             
-          println("hello" + endDefaults! + startDefaults!)
-    
+        //parse endDefaults
+            var parsedStopDef:[String]
+            if (startDefaults == nil){
+                parsedStopDef = "5:00 PM".componentsSeparatedByString(":")
+            }else{
+                parsedStopDef = startDefaults.componentsSeparatedByString(":")
+            }
             
+            var stopDefHour:String = parsedStopDef[0]
+            var stopDefMinutesAnd12Hour = parsedStopDef[1]
+            var stopDefMinutesParsed = stopDefMinutesAnd12Hour.componentsSeparatedByString(" ")
+            var stopDefMinutes = stopDefMinutesParsed[0]
+            var stopDefAMPM = stopDefMinutesParsed[1]
+            
+            let defaultStopHours:Int? = stopDefHour.toInt()
+            let defaultStopMinute:Int? = stopDefMinutes.toInt()
+
+            println("hello" + parsedStartDef[0] + parsedStopDef[0])
+            println("yes  \(defaultStopHours!)")
+            println("no  \(defaultStopMinute!)")
+            
+            
+            
+        println("startDate:\(start) endDate:\(endDate)")
         var eV = eventStore.eventsMatchingPredicate(predicate2) as [EKEvent]!
         var theDateFormat = NSDateFormatterStyle.ShortStyle
         formatter.dateStyle = theDateFormat
         var count = 0
-            
-            
-            
-        println("User start time: \(userStartTime)")
-        println("User start end: \(userEndTime)")
-       if eV != nil {
+        if eV != nil {
             for i in eV {
-                
                 
                 if i.title == "FitWhen Workout" {
                    println(eV.count)
@@ -254,19 +274,19 @@ class SegmentData: NSObject {
                     
                     //eventStore.removeEvent(i, span: EKSpanThisEvent, error: nil)
                 }
-            
             }
-        for date in array{
-            println("This is it")
-            println(date)
-            
         }
-        println("end")
-        for date in arrayEnd{
-            println("This is it 2")
-            println(date)
-            
-        } }
+            for date in array{
+                println("start")
+                println(date)
+                
+            }
+            println("end")
+            for date in arrayEnd{
+                println("end")
+                println(date)
+                
+            }
         
         
     
