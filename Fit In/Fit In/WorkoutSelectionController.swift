@@ -352,22 +352,25 @@ class WorkoutSelectionController: UIViewController,  UITableViewDataSource, UITa
             
             data.button1Pressed = 1
             defaults.setInteger(data.button1Pressed, forKey: "buttonOne")
-            
+            defaults.setObject(data.workoutLength, forKey: "workoutLengthOne")
             
         }else if (data.currentButtonPressed == 2){
             
             data.button2Pressed = 1
             defaults.setInteger(data.button2Pressed, forKey: "buttonTwo")
+            defaults.setObject(data.workoutLength, forKey: "workoutLengthTwo")
             
         }else if (data.currentButtonPressed == 3){
             
             data.button3Pressed = 1
             defaults.setInteger(data.button3Pressed, forKey: "buttonThree")
+            defaults.setObject(data.workoutLength, forKey: "workoutLengthThree")
             
         }else if (data.currentButtonPressed == 4){
             
             data.button4Pressed = 1
             defaults.setInteger(data.button4Pressed, forKey: "buttonFour")
+            defaults.setObject(data.workoutLength, forKey: "workoutLengthFour")
             
         }
         

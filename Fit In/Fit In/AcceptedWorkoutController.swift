@@ -22,7 +22,7 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
     var gymW:[String] = []
     var officeW:[String] = []
     
-    
+    var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
     var segmentIdentifier = 0;
     var status = "none"
     //segmented controller outlet
@@ -41,8 +41,10 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
         gymW = data.gymShort
         officeW = data.officeShort
         
-         workoutSuggestion.text = data.dataFromWorkout
-         workoutTimeAmount.text = "\(data.workoutTime) for \(data.workoutLength) minutes"
+        updateView()
+        println("button + \(data.currentButtonPressed)")
+        
+        
         
         // Reload the table
         self.tableView.reloadData()
@@ -51,7 +53,56 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
        
         
     }
-    
+    func updateView(){
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let data = appDelegate.getSegmentData()
+        var eventID:String!
+        var workoutLength:String!
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        var strStartDate:String!
+        var event = data.eventStore
+        
+        if (data.currentButtonPressed == 1){
+            
+            eventID = defaults.objectForKey("eventID1") as String?
+            workoutLength = defaults.objectForKey("workoutLengthOne") as String?
+            var eventData = event.eventWithIdentifier(eventID)
+            strStartDate = dateFormatter.stringFromDate(eventData.startDate)
+            workoutSuggestion.text = eventData.notes
+            workoutTimeAmount.text = "\(strStartDate) for \(workoutLength) minutes"
+            
+        }else if(data.currentButtonPressed == 2){
+            
+            eventID = defaults.objectForKey("eventID2") as String?
+            workoutLength = defaults.objectForKey("workoutLengthTwo") as String?
+            var eventData = event.eventWithIdentifier(eventID)
+            strStartDate = dateFormatter.stringFromDate(eventData.startDate)
+            workoutSuggestion.text = eventData.notes
+            workoutTimeAmount.text = "\(strStartDate) for \(workoutLength) minutes"
+            
+        }else if (data.currentButtonPressed == 3){
+            
+            eventID = defaults.objectForKey("eventID3") as String?
+            workoutLength = defaults.objectForKey("workoutLengthThree") as String?
+            var eventData = event.eventWithIdentifier(eventID)
+            strStartDate = dateFormatter.stringFromDate(eventData.startDate)
+            workoutSuggestion.text = eventData.notes
+            workoutTimeAmount.text = "\(strStartDate) for \(workoutLength) minutes"
+            
+        }else if(data.currentButtonPressed == 4){
+            
+            eventID = defaults.objectForKey("eventID4") as String?
+            workoutLength = defaults.objectForKey("workoutLengthFour") as String?
+            var eventData = event.eventWithIdentifier(eventID)
+            strStartDate = dateFormatter.stringFromDate(eventData.startDate)
+            workoutSuggestion.text = eventData.notes
+            workoutTimeAmount.text = "\(strStartDate) for \(workoutLength) minutes"
+            
+        }
+        
+    }
     @IBAction func editEvent (sender:AnyObject!) {
         
     }

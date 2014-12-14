@@ -253,7 +253,11 @@ class HomeController: UIViewController {
             
             self.bottomRightBubble.exerciseLabel?.text = data.dataFromWorkout
             self.bottomRightBubble.timeLabel?.text = data.workoutTime
-            self.bottomRightBubble.backgroundColor=UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1.0)
+            println(self.defaults.objectForKey("eventID4") as String?)
+            if ( self.defaults.objectForKey("eventID4") as String? != "")
+            {
+                println(self.defaults.objectForKey("eventID4") as String?)
+                self.bottomRightBubble.backgroundColor=UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1.0)}
         }
             
         else if (data.currentButtonPressed == 1){
@@ -273,9 +277,9 @@ class HomeController: UIViewController {
             }
             
             self.topLeftBubble.exerciseLabel?.text = data.dataFromWorkout
-            if (data.currentButtonPressed == 0){
+            
             self.topLeftBubble.timeLabel?.text = data.workoutTime
-            }
+            
             self.topLeftBubble.backgroundColor=UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1.0)
         }
 
@@ -374,7 +378,7 @@ class HomeController: UIViewController {
         var buttonPressThree = self.defaults.integerForKey("buttonThree")
         var eventID = self.defaults.objectForKey("eventID3") as String?
         
-        if (eventID! == ""){
+        if (eventID == ""){
             buttonPressThree = 0
         }
         data.currentButtonPressed = 3
@@ -403,7 +407,7 @@ class HomeController: UIViewController {
         var buttonPressFour = self.defaults.integerForKey("buttonFour")
         var eventID = self.defaults.objectForKey("eventID4") as String?
         data.currentButtonPressed = 4
-        if (eventID! == ""){
+        if (eventID == ""){
             buttonPressFour = 0
         }
         if ( buttonPressFour == 1){

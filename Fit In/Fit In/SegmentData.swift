@@ -73,6 +73,8 @@ class SegmentData: NSObject {
         }
         
         
+        self.defaults.setInteger(currentButtonPressed, forKey:("currentButton"))
+        currentButtonPressed = self.defaults.integerForKey("currentButton")
         
         var parsedTime = self.workoutTime.componentsSeparatedByString(":")
         var hour:String = parsedTime[0]
