@@ -24,6 +24,16 @@ class HomeController: UIViewController {
     var button3ID = 3
     var button4ID = 4
     
+    var buttonOneTime:String!
+    var buttonTwoTime:String!
+    var buttonThreeTime:String!
+    var buttonFourTime:String!
+    
+    var buttonOneLength:String!
+    var buttonTwoLength:String!
+    var buttonThreeLength:String!
+    var buttonFourLength:String!
+    
     var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
     
     var acceptedWorkoutViewController: UIViewController?
@@ -52,7 +62,7 @@ class HomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        checkEventState()
         //performSegueWithIdentifier("authorize", sender: self)
         let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
         dateLabel.text = timestamp
@@ -153,7 +163,7 @@ class HomeController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         println("viewDidAppear in Docs")
-        checkEventState()
+       checkEventState()
         TFreturn = determineStatus()
         if (TFreturn == true){
             println("true")
@@ -263,7 +273,9 @@ class HomeController: UIViewController {
             }
             
             self.topLeftBubble.exerciseLabel?.text = data.dataFromWorkout
+            if (data.currentButtonPressed == 0){
             self.topLeftBubble.timeLabel?.text = data.workoutTime
+            }
             self.topLeftBubble.backgroundColor=UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1.0)
         }
 
@@ -278,7 +290,30 @@ class HomeController: UIViewController {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let data = appDelegate.getSegmentData()
         
+        var event = data.eventStore
+        
+        
+       
+        
+        var dateFormatter = NSDateFormatter()
+        
+        //datePicker.datePickerMode = UIDatePickerMode.CountDownTimer
+        
+        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        
+        
+        
+        
         var buttonPressOne = self.defaults.integerForKey("buttonOne")
+        var eventID = self.defaults.objectForKey("eventID1") as String?
+        
+        if (eventID == ""){
+            
+            buttonPressOne = 0
+            println(buttonPressOne)
+            
+        }
+        
         
         data.currentButtonPressed = 1
        println(buttonPressOne)
@@ -307,8 +342,12 @@ class HomeController: UIViewController {
         
         
         var buttonPressTwo = self.defaults.integerForKey("buttonTwo")
+        var eventID = self.defaults.objectForKey("eventID2") as String?
+       
+        if (eventID == ""){
+            buttonPressTwo = 0
+        }
         
-
         data.currentButtonPressed = 2
         
        
@@ -332,8 +371,12 @@ class HomeController: UIViewController {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let data = appDelegate.getSegmentData()
         
-        var buttonPressThree = defaults.integerForKey("buttonThree")
+        var buttonPressThree = self.defaults.integerForKey("buttonThree")
+        var eventID = self.defaults.objectForKey("eventID3") as String?
         
+        if (eventID! == ""){
+            buttonPressThree = 0
+        }
         data.currentButtonPressed = 3
         
         if ( buttonPressThree == 1){
@@ -355,10 +398,14 @@ class HomeController: UIViewController {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let data = appDelegate.getSegmentData()
         
-        var buttonPressFour = defaults.integerForKey("buttonFour")
         
+        
+        var buttonPressFour = self.defaults.integerForKey("buttonFour")
+        var eventID = self.defaults.objectForKey("eventID4") as String?
         data.currentButtonPressed = 4
-        
+        if (eventID! == ""){
+            buttonPressFour = 0
+        }
         if ( buttonPressFour == 1){
             acceptedWorkoutViewController=self.storyboard!.instantiateViewControllerWithIdentifier("AcceptedWorkoutController") as AcceptedWorkoutController
             
@@ -403,27 +450,82 @@ class HomeController: UIViewController {
     //checks if event ID for the current workouts of the active buttons are empty, if so resets button state to 0 so user can create a new event
     func checkEventState(){
     
-    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-    let data = appDelegate.getSegmentData()
-    
-        println("Check func")
-        println(self.defaults.objectForKey("eventIDButton1") as String?)
-        var eventButtonID1 = self.defaults.objectForKey("eventIDButton1") as String!
-        println(eventButtonID1)
-        if ( self.defaults.objectForKey("eventIDButton1") as String? == ""){
-    
-            self.defaults.setInteger(0, forKey:("buttonOne"))
+        println("made it")
         
-        }else if ( self.defaults.objectForKey("eventIDButton2") as String? == ""){
-    
-            self.defaults.setInteger(0, forKey:("buttonTwo"))
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let data = appDelegate.getSegmentData()
+        var dateFormatter = NSDateFormatter()
+        var event = data.eventStore
+        //datePicker.datePickerMode = UIDatePickerMode.CountDownTimer
+        
+        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        
+        
+        var eventIDOne = self.defaults.objectForKey("eventID1") as String?
+        println("1")
+        var findEventOne =  event.eventWithIdentifier(eventIDOne)
+        println("1.1")
+        if (findEventOne != nil){
+            println("1.2")
+            var strStartDate = dateFormatter.stringFromDate(findEventOne.startDate)
+            println("1.3")
+            self.buttonOneTime = strStartDate
+            self.topLeftBubble.timeLabel?.text = strStartDate
             
-        }else if (self.defaults.objectForKey("eventIDButton3") as String? == ""){
-            self.defaults.setInteger(0, forKey:("buttonThree"))
-        }else if (self.defaults.objectForKey("eventIDButton3") as String? == ""){
-            self.defaults.setInteger(0, forKey:("buttonFour"))
+            println("1.4")
+            println(strStartDate)
         }
+        
+        println("1.5")
+        
+        var eventIDTwo = self.defaults.objectForKey("eventID2") as String?
+        var findEventTwo =  event.eventWithIdentifier(eventIDTwo)
+        if (findEventTwo != nil){
+            
+            var strStartDate = dateFormatter.stringFromDate(findEventTwo.startDate)
+            self.buttonTwoTime = strStartDate
+            self.topRightBubble.timeLabel?.text = strStartDate
+            
+
+        }
+        
+        println("2")
+        var eventIDThree = self.defaults.objectForKey("eventID3") as String?
+        var findEventThree =  event.eventWithIdentifier(eventIDThree)
+        
+        if (findEventThree != nil){
+            
+            var strStartDate = dateFormatter.stringFromDate(findEventThree.startDate)
+            self.buttonThreeTime = strStartDate
+            self.bottomLeftBubble.timeLabel?.text = strStartDate
+            
+
+            
+        }
+        
+        var eventIDFour = self.defaults.objectForKey("eventID4") as String?
+        var findEventFour =  event.eventWithIdentifier(eventIDFour)
+        
+        if (findEventFour != nil){
+            
+            
+            var strStartDate = dateFormatter.stringFromDate(findEventFour.startDate)
+            
+            self.buttonFourTime = strStartDate
+            self.bottomRightBubble.timeLabel?.text = strStartDate
+            
+
+        }
+       
+        println("4")
+       println("ended it")
+        
+
     }
+    
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -353,6 +353,7 @@ class WorkoutSelectionController: UIViewController,  UITableViewDataSource, UITa
             data.button1Pressed = 1
             defaults.setInteger(data.button1Pressed, forKey: "buttonOne")
             
+            
         }else if (data.currentButtonPressed == 2){
             
             data.button2Pressed = 1

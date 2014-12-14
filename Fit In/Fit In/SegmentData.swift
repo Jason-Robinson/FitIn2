@@ -127,10 +127,10 @@ class SegmentData: NSObject {
         let ok = self.eventStore.saveEvent(ev, span:EKSpanThisEvent, commit:true, error:&err)
        
         //initialize defaults
-        /*self.defaults.setObject(self.eventIDButton1, forKey: "eventID1")
+        self.defaults.setObject(self.eventIDButton1, forKey: "eventID1")
         self.defaults.setObject(self.eventIDButton2, forKey: "eventID2")
         self.defaults.setObject(self.eventIDButton3, forKey: "eventID3")
-        self.defaults.setObject(self.eventIDButton1, forKey: "eventID4")*/
+        self.defaults.setObject(self.eventIDButton1, forKey: "eventID4")
         
         //set defaults
         if (buttonPressed == 1){
