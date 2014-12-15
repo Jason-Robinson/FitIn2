@@ -249,44 +249,29 @@ class SegmentData: NSObject {
         formatter.dateStyle = theDateFormat
         
         var count = 0
-        if eV != nil {
+        
             for i in eV {
                 
                 if i.title == "FitWhen Workout" {
                    var endTime = dateFormatter.stringFromDate(i.endDate)
-                    var trueFalse = parseTime(timestamp, endTime: endTime)
+                    self.parseTime(timestamp, endTime: endTime, event:i)
                     //self.array[count] = formatter.stringFromDate(i.startDate)
                     //self.arrayEnd[count] = formatter.stringFromDate(i.endDate)
                     count += 1
-                    println(i.eventIdentifier)
+                    
+                    
                     //println(compareResult)
-                    if ( trueFalse == true){
-                        
-                        eventStore.removeEvent(i, span: EKSpanThisEvent, error: nil)
+                    
                     }
                 }
-            }
+        
         }
         
         
-            /*for date in array{
-                println("start")
-                println(date)
-                
-            }
-            println("end")
-            for date in arrayEnd{
-                println("end")
-                println(date)
-                
-            }*/
-        
-        
     
-}
-    func parseTime(stringTime:String, endTime:String) -> Bool{
+    func parseTime(stringTime:String, endTime:String, event:EKEvent) {
         
-        var result = false
+        var result = true
         var parsedTime = stringTime.componentsSeparatedByString(":")
         var hour:String = parsedTime[0]
         var minutesAnd12Hour = parsedTime[1]
@@ -298,7 +283,7 @@ class SegmentData: NSObject {
         var endMinutesAnd12Hour = parsedEndTime[1]
         var endMinutesParsed = endMinutesAnd12Hour.componentsSeparatedByString(" ")
         var endMinutes = endMinutesParsed[0]
-
+        
         var endHourInt: Int? = endHour.toInt()
         if (endMinutes == "PM"){
             endHourInt! += 12
@@ -321,17 +306,39 @@ class SegmentData: NSObject {
         var difference = (endStrToInt! - currentStrToInt!)
         println("\(endStrToInt!)")
         println("\(currentStrToInt!)")
-       
+        
         if(endStrToInt! < currentStrToInt!){
             result = false
         }else{
             result = true
         }
-        return result
+        println(event.eventIdentifier)
+        var button1 = self.eventStore.eventWithIdentifier(event.eventIdentifier) 
+        if(result == false){
+        
+        if( self.defaults.objectForKey("eventID1") as String? == event.eventIdentifier){
+            self.defaults.setObject("", forKey: "eventID1")
+        }else if( self.defaults.objectForKey("eventID2") as String? == event.eventIdentifier){
+            self.defaults.setObject("", forKey: "eventID2")
+        }else if( self.defaults.objectForKey("eventID3") as String? == event.eventIdentifier){
+            self.defaults.setObject("", forKey: "eventID3")
+        }else if( self.defaults.objectForKey("eventID4") as String? == event.eventIdentifier){
+            self.defaults.setObject("", forKey: "eventID4")
+            }
+        self.eventStore.removeEvent(event, span: EKSpanThisEvent, error: nil)
+        }
+        
+        
+        
     }
+    
+    
+}
+
+
     /*func deleteEvent(){
         let cal : EKCalendar! = self.calendarWithName("Calendar")
-        
+
         let event = EKEvent(eventStore: self.eventStore)
         if cal == nil {
             return
@@ -364,4 +371,4 @@ class SegmentData: NSObject {
             }
         }
     }*/
-}
+

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="A7R-fA-3bY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6724" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="A7R-fA-3bY">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -455,7 +455,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <items>
                                     <navigationItem id="5Mk-ym-vH5">
-                                        <barButtonItem key="rightBarButtonItem" title="&gt;" id="Pdu-rU-qO4">
+                                        <barButtonItem key="rightBarButtonItem" title=">" id="Pdu-rU-qO4">
                                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <segue destination="jJm-hb-fCF" kind="show" identifier="Customize" id="dpn-od-Aqv"/>
@@ -749,7 +749,7 @@
                                     <action selector="authorizeButton:" destination="dJZ-iJ-Cya" eventType="touchUpInside" id="mfS-F2-OC6"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ofU-eq-24e">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Nameplate2.png" translatesAutoresizingMaskIntoConstraints="NO" id="ofU-eq-24e">
                                 <rect key="frame" x="56" y="140" width="488" height="30"/>
                             </imageView>
                         </subviews>
@@ -780,13 +780,13 @@
                             </mask>
                         </variation>
                     </view>
-                    <connections>
-                        <outlet property="imageView" destination="ofU-eq-24e" id="Fgg-lP-JYb"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aHQ-vv-AIt" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1125" y="-630"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Nameplate2.png" width="496" height="143"/>
+    </resources>
 </document>

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EventKit
 
 class CustomizeController: UIViewController{
 
@@ -84,26 +85,57 @@ class CustomizeController: UIViewController{
 
     @IBAction func switchClicked(sender: AnyObject) {
         
-        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-        let data = appDelegate.getSegmentData()
+        
         
         if dailyReminderSwitch.on{
-           // data.createReminder()
+           
+            addReminder()
             
-            println("on")
         }else {
             println("deleting")
-            data.deleteEvent()
+            
         }
     }
+    func addReminder(){
+     var eventStore = EKEventStore()
+    var reminder = EKReminder(eventStore: eventStore)
+    let calendar = NSCalendar.currentCalendar()
+    let nowDate = NSDate()
+    let alarmDate = nowDate.dateByAddingTimeInterval(60)
+    var alarmForReminder = EKAlarm(absoluteDate: alarmDate)
+    var date = NSDateComponents()
+    var components = calendar.components(.CalendarUnitDay, fromDateComponents: date, toDateComponents: date, options: nil)
+    let month = components.month
+    let day = components.day
+    let year = components.year
+    let recurCount = 365
+    let recurStart = nowDate
+    let recurEnd = EKRecurrenceEnd.recurrenceEndWithOccurrenceCount(recurCount) as EKRecurrenceEnd
     
+    let recurrenceRule = EKRecurrenceRule(recurrenceWithFrequency: EKRecurrenceFrequencyDaily, interval: 1, end: recurEnd)
+    
+    reminder.addAlarm(alarmForReminder)
+    reminder.calendar = eventStore.defaultCalendarForNewReminders()
+    reminder.title = "Work Out"
+    reminder.notes = "Check-In with FitWhen!!"
+    
+    //reminder.addRecurrenceRule(recurrenceRule)
+    
+    eventStore.saveReminder(reminder, commit: true, error: NSErrorPointer())
+    }
     //receives unwind from workout timing view
     @IBAction func returnToHome(segue: UIStoryboardSegue) {
         println("return to home")
     }
     //seque to customize view controller
     @IBAction func returnHome(sender: AnyObject) {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let data = appDelegate.getSegmentData()
+        data.deleteEvent()
+        
         performSegueWithIdentifier("customize", sender: self)
+        
     }
     
 

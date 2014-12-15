@@ -81,7 +81,7 @@ class HomeController: UIViewController {
         //
         checkEventState()
         //performSegueWithIdentifier("authorize", sender: self)
-        let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
+        let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .NoStyle)
         dateLabel.text = timestamp
         
         //Set the Bubbles' attributes and adding them to the view
@@ -180,7 +180,11 @@ class HomeController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         println("viewDidAppear in Docs")
-       checkEventState()
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let data = appDelegate.getSegmentData()
+        
+        
+        checkEventState()
         updateButtonColor()
         
         TFreturn = determineStatus()
@@ -200,6 +204,9 @@ class HomeController: UIViewController {
         default:
             break
         }
+        
+        
+        
     }
 
     func buttonResize(){
@@ -227,6 +234,7 @@ class HomeController: UIViewController {
             self.topRightBubble.exerciseLabel?.text = data.dataFromWorkout
             self.topRightBubble.timeLabel?.text = data.workoutTime
             self.topRightBubble.backgroundColor=UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1.0)
+            
         }
             
         else if(data.currentButtonPressed == 3){
@@ -294,30 +302,21 @@ class HomeController: UIViewController {
             self.topLeftBubble.backgroundColor=UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1.0)
         }
         
-    }
-/*
-    func changeBubbleColor(){
         
-        if( data.currentButtonPressed == 0){
-            self.bottomRightBubble.backgroundColor = UIColor.orangeColor()
-        }
-        if (data.currentButtonPressed == 0){
-            self.bottomLeftBubble.backgroundColor = UIColor.orangeColor()
-        }
-        if (data.currentButtonPressed == 0){
-            self.topLeftBubble.backgroundColor = UIColor.orangeColor()
-        }
-        if (data.currentButtonPressed == 0){
-            self.topRightBubble.backgroundColor = UIColor.orangeColor()
-        }
-    }*/
+        
+        
+    }
+
+    
     
     @IBAction func returnToHome(segue: UIStoryboardSegue) {
         println("return to home")
         buttonResize()
         
         
-
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let data = appDelegate.getSegmentData()
+        data.deleteEvent()
         //println(data.dataFromWorkout)
         
         
@@ -498,6 +497,7 @@ class HomeController: UIViewController {
         let data = appDelegate.getSegmentData()
         
         //button event ID's
+        println("here")
         var buttonOne: String!
         buttonOne = self.defaults.objectForKey("eventID1") as String?
         var buttonTwo: String!
@@ -506,10 +506,12 @@ class HomeController: UIViewController {
         buttonThree = self.defaults.objectForKey("eventID3") as String?
         var buttonFour: String!
         buttonFour = self.defaults.objectForKey("eventID4") as String?
+        println("Here3")
         
         //if button one ID doesn't equal empty string, meaning there is an event, resizes button after view is changed for app is closed
-        if (   buttonOne! != "" )
+        if (   self.defaults.objectForKey("eventID1") as String? != "" )
         {
+            println("Onnneee")
             println(self.defaults.objectForKey("eventID1") as String?)
             self.topLeftBubble.backgroundColor=UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1.0)
             
@@ -528,14 +530,18 @@ class HomeController: UIViewController {
                 self.topLeftBubble.frame = CGRectMake(container4.frame.origin.x - 20, container4.frame.origin.y - 20 + 10, container4.frame.size.width + 40, container4.frame.size.height + 40)
             }
             
+        }else{
             
             
-            
-
+            self.topLeftBubble.backgroundColor = UIColor.orangeColor()
+            self.topLeftBubble.timeLabel?.text = "Select"
+            self.topLeftBubble.exerciseLabel?.text = "Workout"
+           
         }
         //if button two ID doesn't equal empty string, meaning there is an event, resizes button after view is changed for app is closed
-        if ( buttonTwo != "" )
+        if ( self.defaults.objectForKey("eventID2") as String? != "" )
         {
+            println("Twooooo")
             println(self.defaults.objectForKey("eventID2") as String?)
             self.topRightBubble.backgroundColor=UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1.0)
             if (self.defaults.integerForKey("workoutLengthTwo") < 20)
@@ -553,13 +559,18 @@ class HomeController: UIViewController {
                 self.topRightBubble.frame = CGRectMake(container4.frame.origin.x - 20, container4.frame.origin.y - 20 + 10, container4.frame.size.width + 40, container4.frame.size.height + 40)
             }
             
+        }else{
             
-
+            self.topRightBubble.backgroundColor = UIColor.orangeColor()
+            self.topRightBubble.timeLabel?.text = "Select"
+            self.topRightBubble.exerciseLabel?.text = "Workout"
+            
         }
         
         //if button three ID doesn't equal empty string, meaning there is an event, resizes button after view is changed for app is closed
-        if ( buttonThree != "" )
+        if ( self.defaults.objectForKey("eventID3") as String? != "" )
         {
+            println("Three")
             println(self.defaults.objectForKey("eventID3") as String?)
             self.bottomLeftBubble.backgroundColor=UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1.0)
             //less than 20 minute workout
@@ -577,17 +588,20 @@ class HomeController: UIViewController {
             {
                 self.bottomLeftBubble.frame = CGRectMake(container4.frame.origin.x - 20, container4.frame.origin.y - 20 + 10, container4.frame.size.width + 40, container4.frame.size.height + 40)
             }
+        
+        }else{
             
-            
-            
-            
-
+            self.bottomLeftBubble.backgroundColor = UIColor.orangeColor()
+            self.bottomLeftBubble.timeLabel?.text = "Select"
+            self.bottomLeftBubble.exerciseLabel?.text = "Workout"
+           
         }
        
         //if button four ID doesn't equal empty string, meaning there is an event, resizes button after view is changed for app is closed
-        if ( buttonFour != "" )
+        if ( self.defaults.objectForKey("eventID4") as String? != "" )
         {
-            println(self.defaults.objectForKey("eventID4") as String?)
+            println("Four")
+            println( self.defaults.objectForKey("eventID4") as String?)
             self.bottomRightBubble.backgroundColor=UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1.0)
             if (self.defaults.integerForKey("workoutLengthFour") < 20)
             {
@@ -603,12 +617,14 @@ class HomeController: UIViewController {
             {
                 self.bottomRightBubble.frame = CGRectMake(container4.frame.origin.x - 20, container4.frame.origin.y - 20 + 10, container4.frame.size.width + 40, container4.frame.size.height + 40)
             }
+           
+        }else{
             
+            self.bottomRightBubble.backgroundColor = UIColor.orangeColor()
+            self.bottomRightBubble.timeLabel?.text = "Select"
+            self.bottomRightBubble.exerciseLabel?.text = "Workout"
             
-            
-            
-
-        
+           
         }
         
 

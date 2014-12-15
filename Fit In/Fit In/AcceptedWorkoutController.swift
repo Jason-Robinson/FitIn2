@@ -221,6 +221,9 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
     @IBAction func cancel(sender: AnyObject) {
         println("In cancel accpeted")
         status = "cancel"
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let data = appDelegate.getSegmentData()
+        data.deleteEvent()
        dismissViewControllerAnimated(true, completion: nil)
     }
     
