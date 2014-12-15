@@ -750,7 +750,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ofU-eq-24e">
-                                <rect key="frame" x="56" y="120" width="488" height="50"/>
+                                <rect key="frame" x="56" y="140" width="488" height="30"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -765,7 +765,7 @@
                             <constraint firstItem="8Ai-Cn-Gjz" firstAttribute="top" secondItem="SvV-mH-mhA" secondAttribute="bottom" constant="220" id="WnQ-Zh-9sb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ekb-cF-btl" secondAttribute="trailing" constant="60" id="d6o-xB-ojE"/>
                             <constraint firstAttribute="centerX" secondItem="Ekb-cF-btl" secondAttribute="centerX" id="eVZ-dM-Zxe"/>
-                            <constraint firstItem="ofU-eq-24e" firstAttribute="top" secondItem="SvV-mH-mhA" secondAttribute="bottom" constant="100" id="gpZ-RF-RUy"/>
+                            <constraint firstItem="ofU-eq-24e" firstAttribute="top" secondItem="SvV-mH-mhA" secondAttribute="bottom" constant="120" id="gpZ-RF-RUy"/>
                             <constraint firstAttribute="centerX" secondItem="8Ai-Cn-Gjz" secondAttribute="centerX" id="mpM-9b-6g5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ofU-eq-24e" secondAttribute="trailing" constant="40" id="p9g-dd-2zq"/>
                             <constraint firstItem="8Ai-Cn-Gjz" firstAttribute="top" secondItem="Ekb-cF-btl" secondAttribute="bottom" constant="28" id="w5z-si-qNH"/>
