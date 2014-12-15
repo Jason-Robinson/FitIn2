@@ -172,28 +172,6 @@ class SegmentData: NSObject {
         println ("failed to find calendar")
         return nil
     }
-    func createReminder(){
-        var store = EKEventStore()
-        var start = NSDate()
-        // Reminder
-        let cal : EKCalendar! = self.calendarWithName("Calendar")
-        var reminder = EKReminder(eventStore: self.eventStore)
-        reminder.title = "Test"
-        reminder.calendar = cal
-       
-        let today = NSDate()
-        let greg = NSCalendar(calendarIdentifier:NSCalendarIdentifierGregorian)!
-        // day without time means "all day"
-        let comps : NSCalendarUnit = .YearCalendarUnit | .MonthCalendarUnit | .DayCalendarUnit
-        //comps.
-        reminder.dueDateComponents = greg.components(comps, fromDate:today)
-        // Add alarm to reminder
-       
-        
-        // Add it to Reminders.app
-        var error:NSErrorPointer = NSErrorPointer()
-        eventStore.saveReminder(reminder, commit: true, error:error)
-    }
     
     func deleteEvent(){
         
@@ -204,7 +182,7 @@ class SegmentData: NSObject {
             return
         }
         let formatter = NSDateFormatter()
-        formatter.dateStyle = .MediumStyle
+        formatter.dateStyle = .NoStyle
         formatter.timeStyle = .MediumStyle
         
         var startDate=NSDate().dateByAddingTimeInterval(-60*60*24)
@@ -255,27 +233,43 @@ class SegmentData: NSObject {
             println("yes  \(defaultStopHours!)")
             println("no  \(defaultStopMinute!)")
             
-            
-            
+        var dateFormatter = NSDateFormatter()
+        
+        //datePicker.datePickerMode = UIDatePickerMode.CountDownTimer
+        
+        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+          let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .NoStyle, timeStyle: .ShortStyle)
+        //parseTime(timestamp)
+        println(timestamp)
+        
         println("startDate:\(start) endDate:\(endDate)")
         var eV = eventStore.eventsMatchingPredicate(predicate2) as [EKEvent]!
         var theDateFormat = NSDateFormatterStyle.ShortStyle
+        
         formatter.dateStyle = theDateFormat
+        
         var count = 0
         if eV != nil {
             for i in eV {
                 
                 if i.title == "FitWhen Workout" {
-                   println(eV.count)
-                    self.array[count] = formatter.stringFromDate(i.startDate)
-                    self.arrayEnd[count] = formatter.stringFromDate(i.endDate)
+                   var endTime = dateFormatter.stringFromDate(i.endDate)
+                    var trueFalse = parseTime(timestamp, endTime: endTime)
+                    //self.array[count] = formatter.stringFromDate(i.startDate)
+                    //self.arrayEnd[count] = formatter.stringFromDate(i.endDate)
                     count += 1
-                    
-                    //eventStore.removeEvent(i, span: EKSpanThisEvent, error: nil)
+                    println(i.eventIdentifier)
+                    //println(compareResult)
+                    if ( trueFalse == true){
+                        
+                        eventStore.removeEvent(i, span: EKSpanThisEvent, error: nil)
+                    }
                 }
             }
         }
-            for date in array{
+        
+        
+            /*for date in array{
                 println("start")
                 println(date)
                 
@@ -285,11 +279,89 @@ class SegmentData: NSObject {
                 println("end")
                 println(date)
                 
-            }
+            }*/
         
         
     
 }
-    
+    func parseTime(stringTime:String, endTime:String) -> Bool{
+        
+        var result = false
+        var parsedTime = stringTime.componentsSeparatedByString(":")
+        var hour:String = parsedTime[0]
+        var minutesAnd12Hour = parsedTime[1]
+        var minutesParsed = minutesAnd12Hour.componentsSeparatedByString(" ")
+        var minutes = minutesParsed[0]
+        
+        var parsedEndTime = endTime.componentsSeparatedByString(":")
+        var endHour:String = parsedEndTime[0]
+        var endMinutesAnd12Hour = parsedEndTime[1]
+        var endMinutesParsed = endMinutesAnd12Hour.componentsSeparatedByString(" ")
+        var endMinutes = endMinutesParsed[0]
 
+        var endHourInt: Int? = endHour.toInt()
+        if (endMinutes == "PM"){
+            endHourInt! += 12
+            endHour = "\(endHourInt!)"
+        }
+        var hourInt: Int? = hour.toInt()
+        if (minutes == "PM"){
+            hourInt! += 12
+            hour = "\(hourInt!)"
+        }
+        var stringTimeTotal:String!
+        var strEndTimeTotal:String!
+        
+        stringTimeTotal = hour+minutes
+        strEndTimeTotal = endHour+endMinutes
+        
+        var currentStrToInt: Int? = stringTimeTotal.toInt()
+        var endStrToInt: Int? = strEndTimeTotal.toInt()
+        
+        var difference = (endStrToInt! - currentStrToInt!)
+        println("\(endStrToInt!)")
+        println("\(currentStrToInt!)")
+       
+        if(endStrToInt! < currentStrToInt!){
+            result = false
+        }else{
+            result = true
+        }
+        return result
+    }
+    /*func deleteEvent(){
+        let cal : EKCalendar! = self.calendarWithName("Calendar")
+        
+        let event = EKEvent(eventStore: self.eventStore)
+        if cal == nil {
+            return
+        }
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = .MediumStyle
+        formatter.timeStyle = .MediumStyle
+        
+        var startDate=NSDate().dateByAddingTimeInterval(-60*60*24)
+        var endDate=NSDate().dateByAddingTimeInterval(60*24*3)
+        var predicate2 = eventStore.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
+        var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        
+        println("startDate:\(start) endDate:\(endDate)")
+        var eV = eventStore.eventsMatchingPredicate(predicate2) as [EKEvent]!
+        var theDateFormat = NSDateFormatterStyle.ShortStyle
+        formatter.dateStyle = theDateFormat
+        var count = 0
+        if eV != nil {
+            for i in eV {
+                
+                if i.title == "FitWhen Workout" {
+                    println(eV.count)
+                    self.array[count] = formatter.stringFromDate(i.startDate)
+                    self.arrayEnd[count] = formatter.stringFromDate(i.endDate)
+                    count += 1
+                    
+                    //eventStore.removeEvent(i, span: EKSpanThisEvent, error: nil)
+                }
+            }
+        }
+    }*/
 }

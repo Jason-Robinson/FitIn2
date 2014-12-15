@@ -88,7 +88,7 @@ class CustomizeController: UIViewController{
         let data = appDelegate.getSegmentData()
         
         if dailyReminderSwitch.on{
-            data.createReminder()
+           // data.createReminder()
             
             println("on")
         }else {
