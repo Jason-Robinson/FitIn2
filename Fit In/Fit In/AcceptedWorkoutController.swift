@@ -57,6 +57,10 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
         
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let data = appDelegate.getSegmentData()
+        
+        
+        let dataHome = appDelegate.getHomeData()
+        
         var eventID:String!
         var workoutLength:String!
         var dateFormatter = NSDateFormatter()
@@ -69,37 +73,44 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
             eventID = defaults.objectForKey("eventID1") as String?
             workoutLength = defaults.objectForKey("workoutLengthOne") as String?
             var eventData = event.eventWithIdentifier(eventID)
-            strStartDate = dateFormatter.stringFromDate(eventData.startDate)
-            workoutSuggestion.text = eventData.notes
-            workoutTimeAmount.text = "\(strStartDate) for \(workoutLength) minutes"
+            if (eventData != nil){
+                strStartDate = dateFormatter.stringFromDate(eventData.startDate)
+                workoutSuggestion.text = eventData.notes
+                workoutTimeAmount.text = "\(strStartDate) for \(workoutLength) minutes"
+            }
             
         }else if(data.currentButtonPressed == 2){
             
             eventID = defaults.objectForKey("eventID2") as String?
             workoutLength = defaults.objectForKey("workoutLengthTwo") as String?
             var eventData = event.eventWithIdentifier(eventID)
-            strStartDate = dateFormatter.stringFromDate(eventData.startDate)
-            workoutSuggestion.text = eventData.notes
-            workoutTimeAmount.text = "\(strStartDate) for \(workoutLength) minutes"
+            if (eventData != nil){
+                strStartDate = dateFormatter.stringFromDate(eventData.startDate)
+                workoutSuggestion.text = eventData.notes
+                workoutTimeAmount.text = "\(strStartDate) for \(workoutLength) minutes"
+            }
             
         }else if (data.currentButtonPressed == 3){
             
             eventID = defaults.objectForKey("eventID3") as String?
             workoutLength = defaults.objectForKey("workoutLengthThree") as String?
             var eventData = event.eventWithIdentifier(eventID)
+           if (eventData != nil){
             strStartDate = dateFormatter.stringFromDate(eventData.startDate)
             workoutSuggestion.text = eventData.notes
             workoutTimeAmount.text = "\(strStartDate) for \(workoutLength) minutes"
+            }
             
         }else if(data.currentButtonPressed == 4){
             
             eventID = defaults.objectForKey("eventID4") as String?
             workoutLength = defaults.objectForKey("workoutLengthFour") as String?
             var eventData = event.eventWithIdentifier(eventID)
+            if (eventData != nil){
             strStartDate = dateFormatter.stringFromDate(eventData.startDate)
             workoutSuggestion.text = eventData.notes
             workoutTimeAmount.text = "\(strStartDate) for \(workoutLength) minutes"
-            
+            }
         }
         
     }
@@ -109,7 +120,7 @@ class AcceptedWorkoutController:  UIViewController, UITableViewDelegate, UITable
     //returns count of struct to set number of cells
       func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         var result = 0
-        println("Hi")
+        
         //home
         if (segmentIdentifier == 0){
             result = self.homeW.count

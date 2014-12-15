@@ -78,7 +78,7 @@ class WorkoutSelectionController: UIViewController,  UITableViewDataSource, UITa
         gymLong = data.gymLong
         officeLong = data.officeLong
 
-        
+        //picker.value = Float(30)
         self.tableView.reloadData()
         
         //targets date picker changed function

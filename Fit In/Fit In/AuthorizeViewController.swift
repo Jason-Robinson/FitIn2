@@ -13,11 +13,12 @@ class AuthorizeViewController: UIViewController {
 
     var homeController: UIViewController?
     var eventStore : EKEventStore!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
-    
+        
+       
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(animated: Bool) {

@@ -49,12 +49,14 @@ class HomeController: UIViewController {
     var returnStatus = "none"
     var TFreturn: Bool!
     
-    @IBOutlet weak var testDataLbl: UILabel!
+    //bubble container variables from UI
     @IBOutlet weak var container1: UIView!
     @IBOutlet weak var container2: UIView!
     @IBOutlet weak var container3: UIView!
     @IBOutlet weak var container4: UIView!
     
+    
+    //bubble variables from Bubble.swift
     let topLeftBubble = NSBundle.mainBundle().loadNibNamed("Bubble", owner: nil, options: nil).first as Bubble
     let topRightBubble = NSBundle.mainBundle().loadNibNamed("Bubble", owner: nil, options: nil).first as Bubble
     let bottomLeftBubble = NSBundle.mainBundle().loadNibNamed("Bubble", owner: nil, options: nil).first as Bubble
@@ -62,6 +64,21 @@ class HomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let data = appDelegate.getSegmentData()
+        
+        
+        //checks if event ID's have been set from nil, if not then NSUserDefaults for the ID's are set to ""
+        if (self.defaults.objectForKey("eventID1") == nil && self.defaults.objectForKey("eventID1") == nil && self.defaults.objectForKey("eventID1") == nil && self.defaults.objectForKey("eventID1") == nil ){
+                self.defaults.setObject(data.eventIDButton1, forKey: "eventID1")
+                self.defaults.setObject(data.eventIDButton2, forKey: "eventID2")
+                self.defaults.setObject(data.eventIDButton3, forKey: "eventID3")
+                self.defaults.setObject(data.eventIDButton4, forKey: "eventID4")
+        }
+        
+        //
         checkEventState()
         //performSegueWithIdentifier("authorize", sender: self)
         let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle, timeStyle: .ShortStyle)
@@ -164,6 +181,8 @@ class HomeController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         println("viewDidAppear in Docs")
        checkEventState()
+        updateButtonColor()
+        
         TFreturn = determineStatus()
         if (TFreturn == true){
             println("true")
@@ -183,11 +202,7 @@ class HomeController: UIViewController {
         }
     }
 
-    
-
-    @IBAction func returnToHome(segue: UIStoryboardSegue) {
-        println("return to home")
-        
+    func buttonResize(){
         
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let data = appDelegate.getSegmentData()
@@ -236,12 +251,12 @@ class HomeController: UIViewController {
         }
             
         else if(data.currentButtonPressed == 4){
-            if (data.workoutLength.toInt()<=20)
+            if (data.workoutLength.toInt() < 20)
             {
                 self.bottomRightBubble.frame = CGRectMake(container4.frame.origin.x, container4.frame.origin.y, container4.frame.size.width, container4.frame.size.height)
             }
                 
-            else if (data.workoutLength.toInt()<=40)
+            else if (data.workoutLength.toInt() < 40)
             {
                 self.bottomRightBubble.frame = CGRectMake(container4.frame.origin.x - 10, container4.frame.origin.y - 10, container4.frame.size.width + 20, container4.frame.size.height + 20)
             }
@@ -253,11 +268,9 @@ class HomeController: UIViewController {
             
             self.bottomRightBubble.exerciseLabel?.text = data.dataFromWorkout
             self.bottomRightBubble.timeLabel?.text = data.workoutTime
-            println(self.defaults.objectForKey("eventID4") as String?)
-            if ( self.defaults.objectForKey("eventID4") as String? != "")
-            {
-                println(self.defaults.objectForKey("eventID4") as String?)
-                self.bottomRightBubble.backgroundColor=UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1.0)}
+            
+            
+            self.bottomRightBubble.backgroundColor=UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1.0)
         }
             
         else if (data.currentButtonPressed == 1){
@@ -277,11 +290,33 @@ class HomeController: UIViewController {
             }
             
             self.topLeftBubble.exerciseLabel?.text = data.dataFromWorkout
-            
             self.topLeftBubble.timeLabel?.text = data.workoutTime
-            
             self.topLeftBubble.backgroundColor=UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1.0)
         }
+        
+    }
+/*
+    func changeBubbleColor(){
+        
+        if( data.currentButtonPressed == 0){
+            self.bottomRightBubble.backgroundColor = UIColor.orangeColor()
+        }
+        if (data.currentButtonPressed == 0){
+            self.bottomLeftBubble.backgroundColor = UIColor.orangeColor()
+        }
+        if (data.currentButtonPressed == 0){
+            self.topLeftBubble.backgroundColor = UIColor.orangeColor()
+        }
+        if (data.currentButtonPressed == 0){
+            self.topRightBubble.backgroundColor = UIColor.orangeColor()
+        }
+    }*/
+    
+    @IBAction func returnToHome(segue: UIStoryboardSegue) {
+        println("return to home")
+        buttonResize()
+        
+        
 
         //println(data.dataFromWorkout)
         
@@ -397,16 +432,19 @@ class HomeController: UIViewController {
             }
         }
     }
-    
+    //when button 4 is clicked, bottom right
     @IBAction func button4Filled(sender: AnyObject) {
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let data = appDelegate.getSegmentData()
         
         
-        
+        //gets value from NSUserDefaults based on key
         var buttonPressFour = self.defaults.integerForKey("buttonFour")
         var eventID = self.defaults.objectForKey("eventID4") as String?
+        
+        //sets segment data button pressed to 4
         data.currentButtonPressed = 4
+        //signifies if event has been deleted
         if (eventID == ""){
             buttonPressFour = 0
         }
@@ -426,12 +464,13 @@ class HomeController: UIViewController {
     }
     
     
-    
+    // opens calender if Calendar button is clicked
     @IBAction func openCalender(sender: AnyObject) {
         
         UIApplication.sharedApplication().openURL(NSURL(string:"calshow://")!)
     }
     
+    //determines status of iCal access granted
     func determineStatus() -> Bool {
         let type = EKEntityTypeEvent
         let stat = EKEventStore.authorizationStatusForEntityType(type)
@@ -445,43 +484,165 @@ class HomeController: UIViewController {
         case .Restricted:
             return false
         case .Denied:
-            // new iOS 8 feature: sane way of getting the user directly to the relevant prefs
-            // I think the crash-in-background issue is now gone
             println("Denied")
             return false
         }
     }
-    //checks if event ID for the current workouts of the active buttons are empty, if so resets button state to 0 so user can create a new event
+    /*
+      updates button color depending if there is an existing event for the button, if yes then
+      changes to blue, if not stays orange. Resizes buttons if view is changed or app closed
+    */
+    func updateButtonColor(){
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let data = appDelegate.getSegmentData()
+        
+        //button event ID's
+        var buttonOne: String!
+        buttonOne = self.defaults.objectForKey("eventID1") as String?
+        var buttonTwo: String!
+        buttonTwo = self.defaults.objectForKey("eventID2") as String?
+        var buttonThree: String!
+        buttonThree = self.defaults.objectForKey("eventID3") as String?
+        var buttonFour: String!
+        buttonFour = self.defaults.objectForKey("eventID4") as String?
+        
+        //if button one ID doesn't equal empty string, meaning there is an event, resizes button after view is changed for app is closed
+        if (   buttonOne! != "" )
+        {
+            println(self.defaults.objectForKey("eventID1") as String?)
+            self.topLeftBubble.backgroundColor=UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1.0)
+            
+            if (self.defaults.integerForKey("workoutLengthOne") < 20)
+            {
+                self.topLeftBubble.frame = CGRectMake(container4.frame.origin.x, container4.frame.origin.y, container4.frame.size.width, container4.frame.size.height)
+            }
+                
+            else if (self.defaults.integerForKey("workoutLengthOne") < 40)
+            {
+                self.topLeftBubble.frame = CGRectMake(container4.frame.origin.x - 10, container4.frame.origin.y - 10, container4.frame.size.width + 20, container4.frame.size.height + 20)
+            }
+                
+            else
+            {
+                self.topLeftBubble.frame = CGRectMake(container4.frame.origin.x - 20, container4.frame.origin.y - 20 + 10, container4.frame.size.width + 40, container4.frame.size.height + 40)
+            }
+            
+            
+            
+            
+
+        }
+        //if button two ID doesn't equal empty string, meaning there is an event, resizes button after view is changed for app is closed
+        if ( buttonTwo != "" )
+        {
+            println(self.defaults.objectForKey("eventID2") as String?)
+            self.topRightBubble.backgroundColor=UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1.0)
+            if (self.defaults.integerForKey("workoutLengthTwo") < 20)
+            {
+                self.topRightBubble.frame = CGRectMake(container4.frame.origin.x, container4.frame.origin.y, container4.frame.size.width, container4.frame.size.height)
+            }
+                
+            else if (self.defaults.integerForKey("workoutLengthTwo") < 40)
+            {
+                self.topRightBubble.frame = CGRectMake(container4.frame.origin.x - 10, container4.frame.origin.y - 10, container4.frame.size.width + 20, container4.frame.size.height + 20)
+            }
+                
+            else
+            {
+                self.topRightBubble.frame = CGRectMake(container4.frame.origin.x - 20, container4.frame.origin.y - 20 + 10, container4.frame.size.width + 40, container4.frame.size.height + 40)
+            }
+            
+            
+
+        }
+        
+        //if button three ID doesn't equal empty string, meaning there is an event, resizes button after view is changed for app is closed
+        if ( buttonThree != "" )
+        {
+            println(self.defaults.objectForKey("eventID3") as String?)
+            self.bottomLeftBubble.backgroundColor=UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1.0)
+            //less than 20 minute workout
+            if (self.defaults.integerForKey("workoutLengthThree") < 20)
+            {
+                self.bottomLeftBubble.frame = CGRectMake(container4.frame.origin.x, container4.frame.origin.y, container4.frame.size.width, container4.frame.size.height)
+            }
+            //less than 40 minute workouts
+            else if (self.defaults.integerForKey("workoutLengthThree") < 40)
+            {
+                self.bottomLeftBubble.frame = CGRectMake(container4.frame.origin.x - 10, container4.frame.origin.y - 10, container4.frame.size.width + 20, container4.frame.size.height + 20)
+            }
+            //40-60 minute workouts
+            else
+            {
+                self.bottomLeftBubble.frame = CGRectMake(container4.frame.origin.x - 20, container4.frame.origin.y - 20 + 10, container4.frame.size.width + 40, container4.frame.size.height + 40)
+            }
+            
+            
+            
+            
+
+        }
+       
+        //if button four ID doesn't equal empty string, meaning there is an event, resizes button after view is changed for app is closed
+        if ( buttonFour != "" )
+        {
+            println(self.defaults.objectForKey("eventID4") as String?)
+            self.bottomRightBubble.backgroundColor=UIColor(red: 41/255, green: 128/255, blue: 185/255, alpha: 1.0)
+            if (self.defaults.integerForKey("workoutLengthFour") < 20)
+            {
+                self.bottomRightBubble.frame = CGRectMake(container4.frame.origin.x, container4.frame.origin.y, container4.frame.size.width, container4.frame.size.height)
+            }
+                
+            else if (self.defaults.integerForKey("workoutLengthFour") < 40)
+            {
+                self.bottomRightBubble.frame = CGRectMake(container4.frame.origin.x - 10, container4.frame.origin.y - 10, container4.frame.size.width + 20, container4.frame.size.height + 20)
+            }
+                
+            else
+            {
+                self.bottomRightBubble.frame = CGRectMake(container4.frame.origin.x - 20, container4.frame.origin.y - 20 + 10, container4.frame.size.width + 40, container4.frame.size.height + 40)
+            }
+            
+            
+            
+            
+
+        
+        }
+        
+
+        
+    }
+    //finds all events based off event identifiers set in addEvent (SegmentData.swift).
+    //if not nil, returns event data to add workout start time to bubbles
     func checkEventState(){
     
-        println("made it")
+        
         
         let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         let data = appDelegate.getSegmentData()
         var dateFormatter = NSDateFormatter()
         var event = data.eventStore
-        //datePicker.datePickerMode = UIDatePickerMode.CountDownTimer
+       
         
         dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
         
-        
+        //button 1
         var eventIDOne = self.defaults.objectForKey("eventID1") as String?
-        println("1")
         var findEventOne =  event.eventWithIdentifier(eventIDOne)
-        println("1.1")
+        
         if (findEventOne != nil){
-            println("1.2")
+            
             var strStartDate = dateFormatter.stringFromDate(findEventOne.startDate)
-            println("1.3")
             self.buttonOneTime = strStartDate
             self.topLeftBubble.timeLabel?.text = strStartDate
             
-            println("1.4")
-            println(strStartDate)
+            
         }
         
-        println("1.5")
         
+        //button 2
         var eventIDTwo = self.defaults.objectForKey("eventID2") as String?
         var findEventTwo =  event.eventWithIdentifier(eventIDTwo)
         if (findEventTwo != nil){
@@ -493,7 +654,7 @@ class HomeController: UIViewController {
 
         }
         
-        println("2")
+        //button 3
         var eventIDThree = self.defaults.objectForKey("eventID3") as String?
         var findEventThree =  event.eventWithIdentifier(eventIDThree)
         
@@ -507,6 +668,7 @@ class HomeController: UIViewController {
             
         }
         
+        //button 4
         var eventIDFour = self.defaults.objectForKey("eventID4") as String?
         var findEventFour =  event.eventWithIdentifier(eventIDFour)
         
@@ -521,8 +683,7 @@ class HomeController: UIViewController {
 
         }
        
-        println("4")
-       println("ended it")
+       
         
 
     }
