@@ -336,39 +336,4 @@ class SegmentData: NSObject {
 }
 
 
-    /*func deleteEvent(){
-        let cal : EKCalendar! = self.calendarWithName("Calendar")
-
-        let event = EKEvent(eventStore: self.eventStore)
-        if cal == nil {
-            return
-        }
-        let formatter = NSDateFormatter()
-        formatter.dateStyle = .MediumStyle
-        formatter.timeStyle = .MediumStyle
-        
-        var startDate=NSDate().dateByAddingTimeInterval(-60*60*24)
-        var endDate=NSDate().dateByAddingTimeInterval(60*24*3)
-        var predicate2 = eventStore.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
-        var defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        
-        println("startDate:\(start) endDate:\(endDate)")
-        var eV = eventStore.eventsMatchingPredicate(predicate2) as [EKEvent]!
-        var theDateFormat = NSDateFormatterStyle.ShortStyle
-        formatter.dateStyle = theDateFormat
-        var count = 0
-        if eV != nil {
-            for i in eV {
-                
-                if i.title == "FitWhen Workout" {
-                    println(eV.count)
-                    self.array[count] = formatter.stringFromDate(i.startDate)
-                    self.arrayEnd[count] = formatter.stringFromDate(i.endDate)
-                    count += 1
-                    
-                    //eventStore.removeEvent(i, span: EKSpanThisEvent, error: nil)
-                }
-            }
-        }
-    }*/
-
+   
