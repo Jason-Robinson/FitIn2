@@ -32,7 +32,7 @@ class SegmentData: NSObject {
     var officeLong: [String] = ["office long","Easy - Run up and down stairs for 2 minutes","Easy - 15 push-ups","Easy - 15 sit ups","Easy - 2 minutes of wall sits","Medium - 30 squats","Medium - 30 push-ups","Medium - 30 sit ups","Medium - Run up and down stairs for 5 minutes","Medium - 5 minutes of wall sits","Hard - 45 squats","Hard - 45 push-ups","Hard - 45 sit ups","Hard - 10 minutes of wall sits","Hard -  Run up and down stairs for 10 minutes"]
    
     //workout selection from workoutSelectionViewController
-    var dataFromWorkout:String = "Didn't Select A Workout"
+    var dataFromWorkout:String = "5 Mins"
     //time of day from workoutSelectionViewController
     var workoutTime:String = "12:00 PM"
     //length of workout from workoutSelectionViewController
@@ -249,7 +249,7 @@ class SegmentData: NSObject {
         formatter.dateStyle = theDateFormat
         
         var count = 0
-        
+        if (eV != nil){
             for i in eV {
                 
                 if i.title == "FitWhen Workout" {
@@ -264,7 +264,7 @@ class SegmentData: NSObject {
                     
                     }
                 }
-        
+            }
         }
         
         

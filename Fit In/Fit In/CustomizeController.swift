@@ -46,6 +46,7 @@ class CustomizeController: UIViewController{
             data.workoutTimingStart = "9:00 AM"
             data.workoutTimingEnd = "5:00 PM"
             data.minWorkoutTime = 0
+            data.deleteEvent()
             println("Defaults restored")
         })
         
@@ -85,6 +86,8 @@ class CustomizeController: UIViewController{
 
     @IBAction func switchClicked(sender: AnyObject) {
         
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let data = appDelegate.getSegmentData()
         
         
         if dailyReminderSwitch.on{
@@ -93,7 +96,7 @@ class CustomizeController: UIViewController{
             
         }else {
             println("deleting")
-            
+            data.deleteEvent()
         }
     }
     func addReminder(){
