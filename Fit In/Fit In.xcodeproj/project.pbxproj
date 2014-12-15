@@ -15,6 +15,7 @@
 		8E9AEC8C1A12850D00B2F870 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E9AEC8B1A12850D00B2F870 /* Images.xcassets */; };
 		8E9AEC8F1A12850D00B2F870 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E9AEC8D1A12850D00B2F870 /* LaunchScreen.xib */; };
 		8E9AEC9B1A12850D00B2F870 /* Fit_InTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9AEC9A1A12850D00B2F870 /* Fit_InTests.swift */; };
+		8ED740911A3ED7BB0027C784 /* nameplate2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED740901A3ED7BB0027C784 /* nameplate2.png */; };
 		9668591B1A314D0E00C068AD /* nameplate.png in Resources */ = {isa = PBXBuildFile; fileRef = 9668591A1A314D0E00C068AD /* nameplate.png */; };
 		9668591D1A315F6E00C068AD /* WorkoutTimingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9668591C1A315F6E00C068AD /* WorkoutTimingViewController.swift */; };
 		9668591F1A3639E000C068AD /* AuthorizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9668591E1A3639E000C068AD /* AuthorizeViewController.swift */; };
@@ -48,6 +49,7 @@
 		8E9AEC941A12850D00B2F870 /* Fit InTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fit InTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E9AEC991A12850D00B2F870 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E9AEC9A1A12850D00B2F870 /* Fit_InTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fit_InTests.swift; sourceTree = "<group>"; };
+		8ED740901A3ED7BB0027C784 /* nameplate2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nameplate2.png; path = ../../../../nameplate2.png; sourceTree = "<group>"; };
 		9668591A1A314D0E00C068AD /* nameplate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nameplate.png; sourceTree = "<group>"; };
 		9668591C1A315F6E00C068AD /* WorkoutTimingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutTimingViewController.swift; sourceTree = "<group>"; };
 		9668591E1A3639E000C068AD /* AuthorizeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizeViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				966859221A363D4000C068AD /* Main.storyboard */,
 				8E4672001A12BB1E006E7F14 /* WorkoutSelectionController.swift */,
 				96A4A3C61A3B898E00B1B01F /* Bubble.xib */,
+				8ED740901A3ED7BB0027C784 /* nameplate2.png */,
 				96A4A3C41A3B88FA00B1B01F /* Bubble.swift */,
 				968C0C0C1A23F808000518EF /* SegmentData.swift */,
 				9668591C1A315F6E00C068AD /* WorkoutTimingViewController.swift */,
@@ -226,6 +229,7 @@
 			files = (
 				8E9AEC8F1A12850D00B2F870 /* LaunchScreen.xib in Resources */,
 				96A4A3C81A3B898E00B1B01F /* Bubble.xib in Resources */,
+				8ED740911A3ED7BB0027C784 /* nameplate2.png in Resources */,
 				966859241A363D4000C068AD /* Main.storyboard in Resources */,
 				8E9AEC8C1A12850D00B2F870 /* Images.xcassets in Resources */,
 				9668591B1A314D0E00C068AD /* nameplate.png in Resources */,

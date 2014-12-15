@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6724" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="A7R-fA-3bY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="A7R-fA-3bY">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -455,7 +455,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <items>
                                     <navigationItem id="5Mk-ym-vH5">
-                                        <barButtonItem key="rightBarButtonItem" title=">" id="Pdu-rU-qO4">
+                                        <barButtonItem key="rightBarButtonItem" title="&gt;" id="Pdu-rU-qO4">
                                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <segue destination="jJm-hb-fCF" kind="show" identifier="Customize" id="dpn-od-Aqv"/>
@@ -732,8 +732,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In order to use FitIn, you must allow the application to access your calendar." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ekb-cF-btl">
-                                <rect key="frame" x="86" y="280" width="428" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="In order to use FitWhen, you must allow the application to access your calendar." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ekb-cF-btl">
+                                <rect key="frame" x="86" y="280" width="614" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -749,32 +749,30 @@
                                     <action selector="authorizeButton:" destination="dJZ-iJ-Cya" eventType="touchUpInside" id="mfS-F2-OC6"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nameplate.png" translatesAutoresizingMaskIntoConstraints="NO" id="V2Z-np-xPR">
-                                <rect key="frame" x="196" y="120" width="208" height="90"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ofU-eq-24e">
+                                <rect key="frame" x="56" y="120" width="488" height="50"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="IJ4-Qd-54F" firstAttribute="top" secondItem="Ekb-cF-btl" secondAttribute="bottom" constant="250" id="3hi-fv-ZQ7"/>
-                            <constraint firstItem="Ekb-cF-btl" firstAttribute="leading" secondItem="IgL-zS-HEC" secondAttribute="leadingMargin" constant="70" id="8oE-VM-9E7"/>
+                            <constraint firstItem="ofU-eq-24e" firstAttribute="leading" secondItem="IgL-zS-HEC" secondAttribute="leadingMargin" constant="40" id="47h-3n-Buq"/>
+                            <constraint firstItem="Ekb-cF-btl" firstAttribute="leading" secondItem="IgL-zS-HEC" secondAttribute="leadingMargin" constant="60" id="8oE-VM-9E7"/>
                             <constraint firstItem="Ekb-cF-btl" firstAttribute="top" secondItem="SvV-mH-mhA" secondAttribute="bottom" constant="94" id="ATa-3l-KWV"/>
-                            <constraint firstItem="Ekb-cF-btl" firstAttribute="top" secondItem="V2Z-np-xPR" secondAttribute="bottom" constant="30" id="BfF-KQ-fuf"/>
-                            <constraint firstItem="V2Z-np-xPR" firstAttribute="leading" secondItem="IgL-zS-HEC" secondAttribute="leadingMargin" constant="180" id="GTJ-nv-5XI"/>
+                            <constraint firstItem="IJ4-Qd-54F" firstAttribute="top" secondItem="ofU-eq-24e" secondAttribute="bottom" constant="430" id="BAg-i8-dwg"/>
                             <constraint firstItem="IJ4-Qd-54F" firstAttribute="top" secondItem="8Ai-Cn-Gjz" secondAttribute="bottom" constant="200" id="GwH-hD-1hg"/>
                             <constraint firstAttribute="centerY" secondItem="Ekb-cF-btl" secondAttribute="centerY" id="Snn-Oy-bWo"/>
                             <constraint firstItem="8Ai-Cn-Gjz" firstAttribute="top" secondItem="SvV-mH-mhA" secondAttribute="bottom" constant="220" id="WnQ-Zh-9sb"/>
-                            <constraint firstAttribute="bottom" secondItem="V2Z-np-xPR" secondAttribute="bottom" constant="390" id="bIh-Ei-gK4"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Ekb-cF-btl" secondAttribute="trailing" constant="70" id="d6o-xB-ojE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ekb-cF-btl" secondAttribute="trailing" constant="60" id="d6o-xB-ojE"/>
                             <constraint firstAttribute="centerX" secondItem="Ekb-cF-btl" secondAttribute="centerX" id="eVZ-dM-Zxe"/>
+                            <constraint firstItem="ofU-eq-24e" firstAttribute="top" secondItem="SvV-mH-mhA" secondAttribute="bottom" constant="100" id="gpZ-RF-RUy"/>
                             <constraint firstAttribute="centerX" secondItem="8Ai-Cn-Gjz" secondAttribute="centerX" id="mpM-9b-6g5"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="V2Z-np-xPR" secondAttribute="trailing" constant="180" id="oYm-qi-W7o"/>
-                            <constraint firstItem="V2Z-np-xPR" firstAttribute="top" secondItem="SvV-mH-mhA" secondAttribute="bottom" constant="100" id="pu3-1G-ebZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ofU-eq-24e" secondAttribute="trailing" constant="40" id="p9g-dd-2zq"/>
                             <constraint firstItem="8Ai-Cn-Gjz" firstAttribute="top" secondItem="Ekb-cF-btl" secondAttribute="bottom" constant="28" id="w5z-si-qNH"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="ATa-3l-KWV"/>
-                                <exclude reference="BfF-KQ-fuf"/>
                                 <exclude reference="eVZ-dM-Zxe"/>
                                 <exclude reference="WnQ-Zh-9sb"/>
                                 <exclude reference="w5z-si-qNH"/>
@@ -782,13 +780,13 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="ofU-eq-24e" id="Fgg-lP-JYb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aHQ-vv-AIt" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1125" y="-630"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="nameplate.png" width="255" height="132"/>
-    </resources>
 </document>

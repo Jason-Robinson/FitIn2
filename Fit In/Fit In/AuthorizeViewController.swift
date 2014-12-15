@@ -14,9 +14,12 @@ class AuthorizeViewController: UIViewController {
     var homeController: UIViewController?
     var eventStore : EKEventStore!
     
+    
+    @IBOutlet weak var imageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loadSomeImage()
         
        
         // Do any additional setup after loading the view.
@@ -122,7 +125,10 @@ class AuthorizeViewController: UIViewController {
         }
     }
 
-    
+    func loadSomeImage() {
+        var image = UIImage(named: "nameplate2.png")
+        self.imageView.image = image
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
